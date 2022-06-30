@@ -1,0 +1,20 @@
+.text-field {
+	box-sizing: border-box;
+	font-size: 1rem;
+	margin: 0;
+	padding: 16.5px 14px;
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.23);
+	height: 56px;
+}
+
+.text-field:hover {
+	border-color: rgba(0, 0, 0, 0.87);
+}
+
+.text-field:focus {
+	outline: none;
+	border-width: 2px;
+	border-color: #1976d2;
+	padding: 15.5px 13px;
+}

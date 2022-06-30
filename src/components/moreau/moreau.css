@@ -1,0 +1,50 @@
+.moreau {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.moreau .toolbar {
+	justify-content: space-between;
+}
+
+.moreau .page-content {
+	flex: 1 1 0;
+	padding: 10px;
+	overflow-y: hidden;
+	display: flex;
+}
+
+.moreau .page-content .filter-column {
+	height: 100%;
+	padding: 10px;
+	flex: 1 1 0;
+	overflow-y: auto;
+}
+
+.moreau .page-content .filter-column .filter-control-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.moreau .page-content .group-list {
+	height: 100%;
+	padding: 10px;
+	flex: 1 1 0;
+	overflow-y: auto;
+}
+
+.moreau .page-content .monster-list {
+	height: 100%;
+	padding: 10px;
+	flex: 3 3 0;
+	overflow-y: auto;
+}
+
+.moreau .drawer-content {
+	padding: 10px;
+	overflow-y: auto;
+	width: 750px;
+}

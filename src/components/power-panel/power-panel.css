@@ -1,0 +1,13 @@
+.power-panel {
+	background-color: rgb(231, 228, 209);
+	padding: 5px 10px;
+}
+
+.power-panel .top-line {
+	display: block;
+}
+
+.power-panel .description,
+.power-panel .content {
+	padding-left: 15px;
+}
