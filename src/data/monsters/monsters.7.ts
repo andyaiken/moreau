@@ -9783,7 +9783,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -9954,7 +9954,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 13,
 			modifier: 1,
@@ -10130,7 +10130,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 12,
 			modifier: 1,
@@ -10263,7 +10263,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 22,
 			modifier: 6,
@@ -14835,7 +14835,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Elven',
 		skills: 'Bluff +18, Insight +16, Stealth +20',
 		equipment: 'leather armor; rapier',
-		category: '',
+		category: 'Eladrin',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -25235,7 +25235,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 16,
 			modifier: 3,
@@ -43667,7 +43667,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Arcana +19, Stealth +15',
 		equipment: 'leather armor',
-		category: 'Shadar-kai',
+		category: 'Shadar-Kai',
 		strength: {
 			score: 12,
 			modifier: 1,
@@ -43857,7 +43857,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Acrobatics +19, Stealth +19',
 		equipment: 'kukri; leather armor',
-		category: 'Shadar-kai',
+		category: 'Shadar-Kai',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -44016,7 +44016,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Arcana +19, Stealth +15',
 		equipment: 'leather armor',
-		category: 'Shadar-kai',
+		category: 'Shadar-Kai',
 		strength: {
 			score: 12,
 			modifier: 1,
@@ -44184,7 +44184,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Acrobatics +19, Stealth +19',
 		equipment: 'leather armor; spiked chain',
-		category: 'Shadar-kai',
+		category: 'Shadar-Kai',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -45014,7 +45014,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 17,
 			modifier: 3,

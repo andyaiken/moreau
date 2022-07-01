@@ -15,6 +15,6 @@
 .text-field:focus {
 	outline: none;
 	border-width: 2px;
-	border-color: #1976d2;
+	border-color: rgb(25, 118, 210);
 	padding: 15.5px 13px;
 }

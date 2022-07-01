@@ -198,7 +198,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; githyanki lich ()',
+		keywords: 'undead; githyanki lich',
 		level: 26,
 		role: {
 			type: 0,
@@ -428,7 +428,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 26 Elite Artillery',
-		phenotype: 'Medium natural humanoid (undead; githyanki lich ())'
+		phenotype: 'Medium natural humanoid (undead; githyanki lich)'
 	},
 	{
 		id: '47a0f0af-e64a-439b-8db8-acc1aa7480bf',
@@ -12397,7 +12397,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; lizardfolk ()',
+		keywords: 'reptile; lizardfolk',
 		level: 6,
 		role: {
 			type: 2,
@@ -12502,7 +12502,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 6 Elite Brute',
-		phenotype: 'Medium natural humanoid (reptile; lizardfolk ())'
+		phenotype: 'Medium natural humanoid (reptile; lizardfolk)'
 	},
 	{
 		id: '1f913d7a-f261-4392-ba20-50ed9381a4e1',
@@ -12685,7 +12685,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; lizardfolk ()',
+		keywords: 'reptile; lizardfolk',
 		level: 7,
 		role: {
 			type: 3,
@@ -12831,7 +12831,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 7 Elite Controller',
-		phenotype: 'Medium natural humanoid (reptile; lizardfolk ())'
+		phenotype: 'Medium natural humanoid (reptile; lizardfolk)'
 	},
 	{
 		id: '33ac5d0c-9cde-4d58-8ede-defe57be6432',
@@ -13331,7 +13331,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; lizardfolk ()',
+		keywords: 'reptile; lizardfolk',
 		level: 7,
 		role: {
 			type: 3,
@@ -13477,7 +13477,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 7 Elite Controller',
-		phenotype: 'Medium natural humanoid (reptile; lizardfolk ())'
+		phenotype: 'Medium natural humanoid (reptile; lizardfolk)'
 	},
 	{
 		id: '1924a444-ea2d-40f3-90f0-1036e1eef3c2',
@@ -32703,7 +32703,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: 'Perception +13',
 		equipment: 'plate armor, greataxe',
-		category: 'Archon, Fire',
+		category: 'Archon',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -32833,7 +32833,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'plate armor, scimitar',
-		category: 'Archon, Fire',
+		category: 'Archon',
 		strength: {
 			score: 26,
 			modifier: 8,
@@ -32950,7 +32950,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'scale armor (metal robes)',
-		category: 'Archon, Fire',
+		category: 'Archon',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -33152,7 +33152,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'plate armor',
-		category: 'Archon, Ice',
+		category: 'Archon',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -33338,7 +33338,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'plate armor, maul',
-		category: 'Archon, Ice',
+		category: 'Archon',
 		strength: {
 			score: 24,
 			modifier: 7,
@@ -33446,7 +33446,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: 'Intimidate +23',
 		equipment: '',
-		category: 'Archon, Ice',
+		category: 'Archon',
 		strength: {
 			score: 26,
 			modifier: 8,
@@ -46128,7 +46128,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Arcana +17, Endurance +21, History +17, Insight +18, Intimidate +17, Perception +18, Religion +17',
 		equipment: '',
-		category: 'Dragon, Undead (Dracolich)',
+		category: 'Dracolich',
 		strength: {
 			score: 26,
 			modifier: 8,
@@ -46321,7 +46321,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Arcana +20, Endurance +24, History +20, Insight +21, Intimidate +19, Perception +21, Religion +20',
 		equipment: '',
-		category: 'Dragon, Undead (Dracolich)',
+		category: 'Dracolich',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -46533,7 +46533,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Arcana +24, Endurance +27, History +24, Insight +25, Intimidate +23, Perception +25, Religion +24',
 		equipment: '',
-		category: 'Dragon, Undead (Dracolich)',
+		category: 'Dracolich',
 		strength: {
 			score: 31,
 			modifier: 10,
@@ -46767,7 +46767,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Nature +9, Perception +9, Stealth +17',
 		equipment: '',
-		category: 'Dragon, Chromatic (Black)',
+		category: 'Dragon',
 		strength: {
 			score: 16,
 			modifier: 3,
@@ -47015,7 +47015,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Nature +13, Perception +13, Stealth +21',
 		equipment: '',
-		category: 'Dragon, Chromatic (Black)',
+		category: 'Dragon',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -47263,7 +47263,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Nature +17, Perception +17, Stealth +27',
 		equipment: '',
-		category: 'Dragon, Chromatic (Black)',
+		category: 'Dragon',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -47533,7 +47533,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Nature +22, Perception +22, Stealth +33',
 		equipment: '',
-		category: 'Dragon, Chromatic (Black)',
+		category: 'Dragon',
 		strength: {
 			score: 26,
 			modifier: 8,
@@ -47803,7 +47803,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +18, Insight +10, Perception +10, Nature +10',
 		equipment: '',
-		category: 'Dragon, Chromatic (Blue)',
+		category: 'Dragon',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -48032,7 +48032,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +22, Insight +13, Perception +13, Nature +13',
 		equipment: '',
-		category: 'Dragon, Chromatic (Blue)',
+		category: 'Dragon',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -48261,7 +48261,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +28, Insight +18, Perception +18, Nature +18',
 		equipment: '',
-		category: 'Dragon, Chromatic (Blue)',
+		category: 'Dragon',
 		strength: {
 			score: 27,
 			modifier: 8,
@@ -48512,7 +48512,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +34, Insight +23, Nature +23, Perception +23',
 		equipment: '',
-		category: 'Dragon, Chromatic (Blue)',
+		category: 'Dragon',
 		strength: {
 			score: 31,
 			modifier: 10,
@@ -48785,7 +48785,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +15, Diplomacy +10, Insight +15, Intimidate +10, Perception +10',
 		equipment: '',
-		category: 'Dragon, Chromatic (Green)',
+		category: 'Dragon',
 		strength: {
 			score: 15,
 			modifier: 2,
@@ -49058,7 +49058,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +21, Diplomacy +16, Insight +19, Intimidate +16, Perception +14',
 		equipment: '',
-		category: 'Dragon, Chromatic (Green)',
+		category: 'Dragon',
 		strength: {
 			score: 16,
 			modifier: 3,
@@ -49338,7 +49338,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +25, Diplomacy +20, Insight +22, Intimidate +20, Perception +17',
 		equipment: '',
-		category: 'Dragon, Chromatic (Green)',
+		category: 'Dragon',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -49618,7 +49618,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +31, Diplomacy +26, Insight +27, Intimidate +26, Perception +22',
 		equipment: '',
-		category: 'Dragon, Chromatic (Green)',
+		category: 'Dragon',
 		strength: {
 			score: 24,
 			modifier: 7,
@@ -49920,7 +49920,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +9, Insight +10, Intimidate +14, Perception +10',
 		equipment: '',
-		category: 'Dragon, Chromatic (Red)',
+		category: 'Dragon',
 		strength: {
 			score: 22,
 			modifier: 6,
@@ -50149,7 +50149,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +14, Insight +15, Intimidate +19, Perception +15',
 		equipment: '',
-		category: 'Dragon, Chromatic (Red)',
+		category: 'Dragon',
 		strength: {
 			score: 25,
 			modifier: 7,

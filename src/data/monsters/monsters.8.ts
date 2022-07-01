@@ -7180,7 +7180,7 @@ const monsters: Monster[] = [
 		languages: 'Aarakocra',
 		skills: 'Acrobatics +8, Athletics +6, Perception +7',
 		equipment: 'spear, 4 javelins',
-		category: '',
+		category: 'Aarakocra',
 		strength: {
 			score: 13,
 			modifier: 1,
@@ -7643,7 +7643,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Arcana +28, History +25, Insight +26',
 		equipment: '',
-		category: '',
+		category: 'Acererak',
 		strength: {
 			score: 19,
 			modifier: 4,
@@ -7906,7 +7906,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Acererak',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -8783,7 +8783,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 12,
 			modifier: 1,
@@ -21530,7 +21530,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; human ()',
+		keywords: 'undead; human',
 		level: 18,
 		role: {
 			type: 3,
@@ -21726,7 +21726,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 18 Elite Controller',
-		phenotype: 'Medium natural humanoid (undead; human ())'
+		phenotype: 'Medium natural humanoid (undead; human)'
 	},
 	{
 		id: '89c76756-3a24-4604-ae5f-1f99dd880b05',
@@ -35759,7 +35759,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Deep Speech, Draconic',
 		skills: 'Acrobatics +18, Bluff +18, Stealth +18, Thievery +18',
 		equipment: 'death weapon; spear',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 19,
 			modifier: 4,
@@ -40181,7 +40181,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Athletics +19',
 		equipment: '',
-		category: '',
+		category: 'Abyssal Zealot',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -40308,7 +40308,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Arcana +21',
 		equipment: '',
-		category: '',
+		category: 'Abyssal Zealot',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -41062,7 +41062,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: 'Stealth +13',
 		equipment: '',
-		category: '',
+		category: 'Basilisk',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -42485,7 +42485,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -43428,7 +43428,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Arcana +19, History +19, Insight +17',
 		equipment: 'implement, wand; quarterstaff',
-		category: '',
+		category: 'Acererak',
 		strength: {
 			score: 14,
 			modifier: 2,

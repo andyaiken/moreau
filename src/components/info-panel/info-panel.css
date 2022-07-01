@@ -1,0 +1,36 @@
+.info-panel {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid rgba(0, 0, 0, 0.23);
+	border-radius: 4px;
+	padding: 5px 10px;
+}
+
+.info-panel.clickable {
+	cursor: pointer;
+	border-color: rgba(25, 118, 210, 0.5);
+	color: rgb(25, 118, 210);
+}
+
+.info-panel.clickable:hover,
+.info-panel.clickable:focus {
+	border-color: rgb(25, 118, 210);
+	background-color: rgba(25, 118, 210, 0.04);
+}
+
+.info-panel.selected {
+	background-color: rgb(25, 118, 210) !important;
+	color: white;
+}
+
+.info-panel .info-panel-content {
+	flex: 1 1 auto;
+}
+
+.info-panel .info-panel-info {
+	flex: 0 0 auto;
+	text-align: right;
+	opacity: 0.7;
+}

@@ -164,6 +164,19 @@ export class StatBlock extends Component<Props, State> {
 			);
 		}
 
+		let details = null;
+		if (this.props.monster.details) {
+			details = (
+				<div className='row'>
+					<div className='cell'>
+						<div className='value'>
+							{this.props.monster.details}
+						</div>
+					</div>
+				</div>
+			);
+		}
+
 		let tactics = null;
 		if (this.props.monster.tactics) {
 			tactics = (
@@ -288,6 +301,7 @@ export class StatBlock extends Component<Props, State> {
 				</div>
 				{equip}
 				{tactics}
+				{details}
 			</div>
 		);
 	};

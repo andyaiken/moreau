@@ -43,6 +43,21 @@
 	overflow-y: auto;
 }
 
+.moreau .page-content .monster-list .category-header {
+	font-size: 2rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+.moreau .page-content .monster-list .empty {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	opacity: 0.6;
+}
+
 .moreau .drawer-content {
 	padding: 10px;
 	overflow-y: auto;

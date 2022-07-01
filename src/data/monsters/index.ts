@@ -1,5 +1,8 @@
 import { Monster } from '../../models/monster';
 
+// TODO: Categorise all monsters
+// TODO: Separate monsters into files by category
+
 import { monsters as monsters0 } from './monsters.0';
 import { monsters as monsters1 } from './monsters.1';
 import { monsters as monsters2 } from './monsters.2';

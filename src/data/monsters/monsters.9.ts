@@ -1282,7 +1282,7 @@ const monsters: Monster[] = [
 		languages: 'Dwarven, Giant',
 		skills: 'Stealth +13',
 		equipment: '',
-		category: '',
+		category: 'Galeb Duhr',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -5105,7 +5105,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'cold; ice archon ()',
+		keywords: 'cold; ice archon',
 		level: 19,
 		role: {
 			type: 3,
@@ -5272,7 +5272,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 19 Controller (L)',
-		phenotype: 'Medium elemental humanoid (cold; ice archon ())'
+		phenotype: 'Medium elemental humanoid (cold; ice archon)'
 	},
 	{
 		id: '6e5a5047-0fb6-4592-8ca1-a8d459f873b2',
@@ -12603,7 +12603,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'human, orc; half-orc ()',
+		keywords: 'human, orc; half-orc',
 		level: 2,
 		role: {
 			type: 9,
@@ -12702,7 +12702,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 2 Minion',
-		phenotype: 'Medium natural humanoid (human, orc; half-orc ())'
+		phenotype: 'Medium natural humanoid (human, orc; half-orc)'
 	},
 	{
 		id: '1005f4e2-20c1-45cc-8a07-b92c64a1bb69',
@@ -20530,7 +20530,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'water; orc ()',
+		keywords: 'water; orc',
 		level: 6,
 		role: {
 			type: 4,
@@ -20695,7 +20695,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 6 Lurker',
-		phenotype: 'Medium elemental humanoid (water; orc ())'
+		phenotype: 'Medium elemental humanoid (water; orc)'
 	},
 	{
 		id: '23c53560-531e-418a-830a-d6577688fccb',
@@ -29800,7 +29800,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 2,
 		type: 2,
-		keywords: 'spellscarred; eladrin ()',
+		keywords: 'spellscarred; eladrin',
 		level: 5,
 		role: {
 			type: 7,
@@ -29950,7 +29950,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 5 Soldier (L)',
-		phenotype: 'Medium fey humanoid (spellscarred; eladrin ())'
+		phenotype: 'Medium fey humanoid (spellscarred; eladrin)'
 	},
 	{
 		id: 'ebaa9020-1596-47aa-b5c3-0b2ad792f454',
@@ -31448,7 +31448,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; human ()',
+		keywords: 'undead; human',
 		level: 10,
 		role: {
 			type: 3,
@@ -31648,7 +31648,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 10 Elite Controller',
-		phenotype: 'Medium natural humanoid (undead; human ())'
+		phenotype: 'Medium natural humanoid (undead; human)'
 	},
 	{
 		id: '809a6a7a-0300-4d86-9840-1499fffb4925',
@@ -31657,7 +31657,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; human ()',
+		keywords: 'undead; human',
 		level: 12,
 		role: {
 			type: 3,
@@ -31857,7 +31857,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 12 Elite Controller',
-		phenotype: 'Medium natural humanoid (undead; human ())'
+		phenotype: 'Medium natural humanoid (undead; human)'
 	},
 	{
 		id: '8a087f10-663a-4c05-87ec-6c91780cad04',
@@ -34902,7 +34902,7 @@ const monsters: Monster[] = [
 		languages: 'Supernal',
 		skills: 'Intimidate +12',
 		equipment: 'chainmail; dagger; longsword',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -36157,7 +36157,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead, wight; hobgoblin ()',
+		keywords: 'undead, wight; hobgoblin',
 		level: 4,
 		role: {
 			type: 7,
@@ -36376,7 +36376,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 4 Elite Soldier (L)',
-		phenotype: 'Medium natural humanoid (undead, wight; hobgoblin ())'
+		phenotype: 'Medium natural humanoid (undead, wight; hobgoblin)'
 	},
 	{
 		id: '66c3e93c-753f-4ae3-ae7c-214f168b8a56',
@@ -37202,7 +37202,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; hobgoblin ()',
+		keywords: 'undead; hobgoblin',
 		level: 5,
 		role: {
 			type: 6,
@@ -37344,7 +37344,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 5 Skirmisher',
-		phenotype: 'Medium natural humanoid (undead; hobgoblin ())'
+		phenotype: 'Medium natural humanoid (undead; hobgoblin)'
 	},
 	{
 		id: '27349762-b4e2-4333-8fc0-9cc2dacd7738',
@@ -39762,7 +39762,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Bluff +13, Stealth +14',
 		equipment: 'leather armor; short sword',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 13,
 			modifier: 1,
@@ -39932,7 +39932,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Arcana +9, Religion +9',
 		equipment: 'quarterstaff',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 10,
 			modifier: 0,
@@ -40087,7 +40087,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Nature +6, Stealth +9',
 		equipment: 'leather armor; short sword; shortbow',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -40249,7 +40249,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Intimidate +9, Religion +8',
 		equipment: 'broadsword; heavy shield; plate armor',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -52922,7 +52922,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Athletics +16, Stealth +17',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -53415,7 +53415,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Stealth +26',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -53545,7 +53545,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -54146,7 +54146,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'aquatic, water; Genasi ()',
+		keywords: 'aquatic, water; Genasi',
 		level: 10,
 		role: {
 			type: 0,
@@ -54311,7 +54311,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 10 Artillery (L)',
-		phenotype: 'Medium elemental humanoid (aquatic, water; genasi ())'
+		phenotype: 'Medium elemental humanoid (aquatic, water; genasi)'
 	},
 	{
 		id: '943234a6-d9d7-49db-bc49-70018a57510d',
@@ -55626,7 +55626,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Athletics +14, Stealth +15',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -55784,7 +55784,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Athletics +15, Stealth +13',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 19,
 			modifier: 4,
@@ -57540,7 +57540,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Athletics +18, Stealth +15',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 22,
 			modifier: 6,
@@ -58234,7 +58234,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Deep Speech, Primordial',
 		skills: 'Stealth +20',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 24,
 			modifier: 7,
@@ -59482,7 +59482,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Athletics +18, Stealth +17',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -59619,7 +59619,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -60086,7 +60086,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Arcana +25, Insight +22, Intimidate +25, Stealth +23',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -63666,7 +63666,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'blind; grimlock ()',
+		keywords: 'blind; grimlock',
 		level: 18,
 		role: {
 			type: 9,
@@ -63762,7 +63762,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 18 Minion',
-		phenotype: 'Medium natural humanoid (blind; grimlock ())'
+		phenotype: 'Medium natural humanoid (blind; grimlock)'
 	},
 	{
 		id: '2151bcd4-745c-4d48-a0cc-cdb50a211c3e',

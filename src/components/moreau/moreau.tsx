@@ -13,20 +13,147 @@ import { MonsterUtils } from '../../utils/monster-utils';
 import { GeneralUtils } from '../../utils/general-utils';
 
 import './moreau.css';
+import { InfoPanel } from '../info-panel';
+
+class MonsterFilter {
+
+	text: string = '';
+	level: number[] = [1, 40];
+	roleType: RoleType = RoleType.Any;
+	roleFlag: RoleFlag = RoleFlag.Any;
+	roleLeader: boolean = false;
+	monsterSize: MonsterSize = MonsterSize.Any;
+	monsterOrigin: MonsterOrigin = MonsterOrigin.Any;
+	monsterType: MonsterType = MonsterType.Any;
+
+	isActive = () => {
+		if (this.text) {
+			return true;
+		}
+
+		if (Math.min(...this.level) !== 1) {
+			return true;
+		}
+
+		if (Math.max(...this.level) !== 40) {
+			return true;
+		}
+
+		if (this.roleType !== RoleType.Any) {
+			return true;
+		}
+
+		if (this.roleFlag !== RoleFlag.Any) {
+			return true;
+		}
+
+		if (this.roleLeader) {
+			return true;
+		}
+
+		if (this.monsterSize !== MonsterSize.Any) {
+			return true;
+		}
+
+		if (this.monsterOrigin !== MonsterOrigin.Any) {
+			return true;
+		}
+
+		if (this.monsterType !== MonsterType.Any) {
+			return true;
+		}
+
+		return false;
+	};
+
+	reset = () => {
+		this.text = '';
+		this.level = [1, 40];
+		this.roleType = RoleType.Any;
+		this.roleFlag = RoleFlag.Any;
+		this.roleLeader = false;
+		this.monsterSize = MonsterSize.Any;
+		this.monsterOrigin = MonsterOrigin.Any;
+		this.monsterType = MonsterType.Any;
+	};
+
+	execute = (monsters: Monster[]) => {
+		return monsters
+			.filter(m => {
+				if (!this.text) {
+					return true;
+				}
+
+				if (m.name.toLowerCase().includes(this.text.toLowerCase())) {
+					return true;
+				}
+
+				if (m.category.toLowerCase().includes(this.text.toLowerCase())) {
+					return true;
+				}
+
+				if (m.keywords.toLowerCase().includes(this.text.toLowerCase())) {
+					return true;
+				}
+
+				return false;
+			})
+			.filter(m => {
+				const min = Math.min(...this.level);
+				const max = Math.max(...this.level);
+				return (m.level >= min) && (m.level <= max);
+			})
+			.filter(m => {
+				if (this.roleType === RoleType.Any) {
+					return true;
+				}
+
+				return m.role.type === this.roleType;
+			})
+			.filter(m => {
+				if (this.roleFlag === RoleFlag.Any) {
+					return true;
+				}
+
+				return m.role.flag === this.roleFlag;
+			})
+			.filter(m => {
+				if (this.roleLeader && !m.role.leader) {
+					return false;
+				}
+
+				return true;
+			})
+			.filter(m => {
+				if (this.monsterSize === MonsterSize.Any) {
+					return true;
+				}
+
+				return m.size === this.monsterSize;
+			})
+			.filter(m => {
+				if (this.monsterOrigin === MonsterOrigin.Any) {
+					return true;
+				}
+
+				return m.origin === this.monsterOrigin;
+			})
+			.filter(m => {
+				if (this.monsterType === MonsterType.Any) {
+					return true;
+				}
+
+				return m.type === this.monsterType;
+			});
+	};
+}
 
 interface Props {
 };
 
 interface State {
 	monsters: Monster[];
-	filterText: string;
-	filterLevel: number[];
-	filterRoleType: RoleType;
-	filterRoleFlag: RoleFlag;
-	filterLeader: boolean;
-	filterMonsterSize: MonsterSize;
-	filterMonsterOrigin: MonsterOrigin,
-	filterMonsterType: MonsterType,
+	filter: MonsterFilter;
 	selectedCategory: string | null;
 	selectedMonster: Monster | null;
 };
@@ -37,64 +164,90 @@ export class Moreau extends Component<Props, State> {
 
 		this.state = {
 			monsters: monsters,
-			filterText: '',
-			filterLevel: [1, 40],
-			filterRoleType: RoleType.Any,
-			filterRoleFlag: RoleFlag.Any,
-			filterLeader: false,
-			filterMonsterSize: MonsterSize.Any,
-			filterMonsterOrigin: MonsterOrigin.Any,
-			filterMonsterType: MonsterType.Any,
+			filter: new MonsterFilter(),
 			selectedCategory: null,
 			selectedMonster: null
 		};
 	};
 
-	setFilterText = (text: string) => {
+	setFilterText = (value: string) => {
+		const filter = this.state.filter;
+		filter.text = value;
+
 		this.setState({
-			filterText: text
+			filter: filter
 		});
 	};
 
 	setFilterLevel = (value: number[]) => {
+		const filter = this.state.filter;
+		filter.level = value;
+
 		this.setState({
-			filterLevel: value
+			filter: filter
 		});
 	};
 
-	setFilterRoleType = (type: RoleType) => {
+	setFilterRoleType = (value: RoleType) => {
+		const filter = this.state.filter;
+		filter.roleType = value;
+
 		this.setState({
-			filterRoleType: type
+			filter: filter
 		});
 	};
 
-	setFilterRoleFlag = (flag: RoleFlag) => {
+	setFilterRoleFlag = (value: RoleFlag) => {
+		const filter = this.state.filter;
+		filter.roleFlag = value;
+
 		this.setState({
-			filterRoleFlag: flag
+			filter: filter
 		});
 	};
 
 	setFilterLeader = (value: boolean) => {
+		const filter = this.state.filter;
+		filter.roleLeader = value;
+
 		this.setState({
-			filterLeader: value
+			filter: filter
 		});
 	};
 
-	setFilterMonsterSize = (size: MonsterSize) => {
+	setFilterMonsterSize = (value: MonsterSize) => {
+		const filter = this.state.filter;
+		filter.monsterSize = value;
+
 		this.setState({
-			filterMonsterSize: size
+			filter: filter
 		});
 	};
 
-	setFilterMonsterOrigin = (origin: MonsterOrigin) => {
+	setFilterMonsterOrigin = (value: MonsterOrigin) => {
+		const filter = this.state.filter;
+		filter.monsterOrigin = value;
+
 		this.setState({
-			filterMonsterOrigin: origin
+			filter: filter
 		});
 	};
 
-	setFilterMonsterType = (type: MonsterType) => {
+	setFilterMonsterType = (value: MonsterType) => {
+		const filter = this.state.filter;
+		filter.monsterType = value;
+
 		this.setState({
-			filterMonsterType: type
+			filter: filter
+		});
+	};
+
+	resetFilter = () => {
+		const filter = this.state.filter;
+		filter.reset();
+
+		this.setState({
+			filter: filter
 		});
 	};
 
@@ -111,99 +264,55 @@ export class Moreau extends Component<Props, State> {
 	};
 
 	render = () => {
-		const filteredMonsters = this.state.monsters
-			.filter(m => {
-				if (!this.state.filterText) {
-					return true;
-				}
+		const filteredMonsters = this.state.filter.execute(this.state.monsters);
+		const monsters = GeneralUtils.sort(filteredMonsters.filter(m => m.category === this.state.selectedCategory));
 
-				if (m.name.toLowerCase().includes(this.state.filterText.toLowerCase())) {
-					return true;
-				}
-
-				if (m.category.toLowerCase().includes(this.state.filterText.toLowerCase())) {
-					return true;
-				}
-
-				if (m.keywords.toLowerCase().includes(this.state.filterText.toLowerCase())) {
-					return true;
-				}
-
-				return false;
-			})
-			.filter(m => {
-				const min = Math.min(...this.state.filterLevel);
-				const max = Math.max(...this.state.filterLevel);
-				return (m.level >= min) && (m.level <= max);
-			})
-			.filter(m => {
-				if (this.state.filterRoleType === RoleType.Any) {
-					return true;
-				}
-
-				return m.role.type === this.state.filterRoleType;
-			})
-			.filter(m => {
-				if (this.state.filterRoleFlag === RoleFlag.Any) {
-					return true;
-				}
-
-				return m.role.flag === this.state.filterRoleFlag;
-			})
-			.filter(m => {
-				if (this.state.filterLeader && !m.role.leader) {
-					return false;
-				}
-
-				return true;
-			})
-			.filter(m => {
-				if (this.state.filterMonsterSize === MonsterSize.Any) {
-					return true;
-				}
-
-				return m.size === this.state.filterMonsterSize;
-			})
-			.filter(m => {
-				if (this.state.filterMonsterOrigin === MonsterOrigin.Any) {
-					return true;
-				}
-
-				return m.origin === this.state.filterMonsterOrigin;
-			})
-			.filter(m => {
-				if (this.state.filterMonsterType === MonsterType.Any) {
-					return true;
-				}
-
-				return m.type === this.state.filterMonsterType;
-			});
-
-		// TODO: Filter by min / max level
-
-		const groups = GeneralUtils.distinct(filteredMonsters.map(m => m.category))
+		const groupList = GeneralUtils.distinct(filteredMonsters.map(m => m.category))
 			.sort()
 			.map(category => {
 				const count = filteredMonsters.filter(m => m.category === category).length;
 				return (
-					<div key={category}>
-						<Button variant={category === this.state.selectedCategory ? 'contained' : 'outlined'} onClick={() => this.setSelectedCategory(category)} fullWidth={true}>
-							{category || '(none)'} ({count})
-						</Button>
-					</div>
+					<InfoPanel
+						key={category}
+						content={category || 'Uncategorised'}
+						info={count}
+						selected={category === this.state.selectedCategory}
+						onClick={() => this.setSelectedCategory(category)}
+					/>
 				);
 			});
 
-		const monsters = GeneralUtils.sort(filteredMonsters.filter(m => m.category === this.state.selectedCategory))
-			.map(m => (
-				<Button key={m.id} variant={m.id === this.state.selectedMonster?.id ? 'contained' : 'outlined'} onClick={() => this.setSelectedMonster(m)}>
-					<Stack spacing={1}>
-						<Typography variant='h6' noWrap={true}>{m.name}</Typography>
+		let monsterList: React.ReactNode = monsters.map(m => (
+			<InfoPanel
+				key={m.id}
+				content={(
+					<Typography variant='h6' noWrap={true}>{m.name}</Typography>
+				)}
+				info={(
+					<div>
 						<div>Level {m.level} {MonsterUtils.getRole(m.role)}</div>
 						<div>{MonsterUtils.getPhenotype(m)}</div>
-					</Stack>
-				</Button>
-			));
+					</div>
+				)}
+				onClick={() => this.setSelectedMonster(m)}
+			/>
+		));
+		if (this.state.selectedCategory && (monsters.length === 0)) {
+			monsterList = (
+				<div className='empty'>There are no monsters in this category that match the filter.</div>
+			);
+		}
+
+		let monsterColumnHeading = null;
+		if (this.state.selectedCategory === null) {
+			monsterColumnHeading = (
+				<div className='empty'>Select a category from the list</div>
+			);
+		} else {
+			monsterColumnHeading = (
+				<div className='category-header'>{this.state.selectedCategory || 'Uncategorised'}</div>
+			);
+		}
 
 		let drawer = null;
 		if (this.state.selectedMonster) {
@@ -224,10 +333,10 @@ export class Moreau extends Component<Props, State> {
 				<div className='page-content'>
 					<div className='filter-column'>
 						<Stack spacing={1}>
-							<TextField placeholder='Search...' text={this.state.filterText} onChange={value => this.setFilterText(value)} />
-							<div>Show Levels {Math.min(...this.state.filterLevel)} to {Math.max(...this.state.filterLevel)}</div>
-							<Slider min={1} max={40} value={this.state.filterLevel} onChange={(e, value) => this.setFilterLevel(value as number[])} />
-							<Select value={this.state.filterRoleType} onChange={e => this.setFilterRoleType(e.target.value as RoleType)}>
+							<TextField placeholder='Search...' text={this.state.filter.text} onChange={value => this.setFilterText(value)} />
+							<div>Show Levels {Math.min(...this.state.filter.level)} to {Math.max(...this.state.filter.level)}</div>
+							<Slider min={1} max={40} value={this.state.filter.level} onChange={(e, value) => this.setFilterLevel(value as number[])} />
+							<Select value={this.state.filter.roleType} onChange={e => this.setFilterRoleType(e.target.value as RoleType)}>
 								<MenuItem value={RoleType.Any}>Any Role</MenuItem>
 								<MenuItem value={RoleType.Artillery}>{EnumHelper.roleType(RoleType.Artillery)}</MenuItem>
 								<MenuItem value={RoleType.Brute}>{EnumHelper.roleType(RoleType.Brute)}</MenuItem>
@@ -236,7 +345,7 @@ export class Moreau extends Component<Props, State> {
 								<MenuItem value={RoleType.Skirmisher}>{EnumHelper.roleType(RoleType.Skirmisher)}</MenuItem>
 								<MenuItem value={RoleType.Soldier}>{EnumHelper.roleType(RoleType.Soldier)}</MenuItem>
 							</Select>
-							<Select value={this.state.filterRoleFlag} onChange={e => this.setFilterRoleFlag(e.target.value as RoleFlag)}>
+							<Select value={this.state.filter.roleFlag} onChange={e => this.setFilterRoleFlag(e.target.value as RoleFlag)}>
 								<MenuItem value={RoleFlag.Any}>Any Role Modifier</MenuItem>
 								<MenuItem value={RoleFlag.Standard}>{EnumHelper.roleFlag(RoleFlag.Standard)}</MenuItem>
 								<MenuItem value={RoleFlag.Elite}>{EnumHelper.roleFlag(RoleFlag.Elite)}</MenuItem>
@@ -245,9 +354,9 @@ export class Moreau extends Component<Props, State> {
 							</Select>
 							<div className='filter-control-row'>
 								<div>Leaders Only</div>
-								<Switch checked={this.state.filterLeader} onChange={e => this.setFilterLeader(e.target.checked)} />
+								<Switch checked={this.state.filter.roleLeader} onChange={e => this.setFilterLeader(e.target.checked)} />
 							</div>
-							<Select value={this.state.filterMonsterSize} onChange={e => this.setFilterMonsterSize(e.target.value as MonsterSize)}>
+							<Select value={this.state.filter.monsterSize} onChange={e => this.setFilterMonsterSize(e.target.value as MonsterSize)}>
 								<MenuItem value={MonsterSize.Any}>Any Size</MenuItem>
 								<MenuItem value={MonsterSize.Tiny}>{EnumHelper.monsterSize(MonsterSize.Tiny)}</MenuItem>
 								<MenuItem value={MonsterSize.Small}>{EnumHelper.monsterSize(MonsterSize.Small)}</MenuItem>
@@ -256,7 +365,7 @@ export class Moreau extends Component<Props, State> {
 								<MenuItem value={MonsterSize.Huge}>{EnumHelper.monsterSize(MonsterSize.Huge)}</MenuItem>
 								<MenuItem value={MonsterSize.Gargantuan}>{EnumHelper.monsterSize(MonsterSize.Gargantuan)}</MenuItem>
 							</Select>
-							<Select value={this.state.filterMonsterOrigin} onChange={e => this.setFilterMonsterOrigin(e.target.value as MonsterOrigin)}>
+							<Select value={this.state.filter.monsterOrigin} onChange={e => this.setFilterMonsterOrigin(e.target.value as MonsterOrigin)}>
 								<MenuItem value={MonsterOrigin.Any}>Any Origin</MenuItem>
 								<MenuItem value={MonsterOrigin.Aberrant}>{EnumHelper.monsterOrigin(MonsterOrigin.Aberrant)}</MenuItem>
 								<MenuItem value={MonsterOrigin.Elemental}>{EnumHelper.monsterOrigin(MonsterOrigin.Elemental)}</MenuItem>
@@ -265,20 +374,22 @@ export class Moreau extends Component<Props, State> {
 								<MenuItem value={MonsterOrigin.Natural}>{EnumHelper.monsterOrigin(MonsterOrigin.Natural)}</MenuItem>
 								<MenuItem value={MonsterOrigin.Shadow}>{EnumHelper.monsterOrigin(MonsterOrigin.Shadow)}</MenuItem>
 							</Select>
-							<Select value={this.state.filterMonsterType} onChange={e => this.setFilterMonsterType(e.target.value as MonsterType)}>
+							<Select value={this.state.filter.monsterType} onChange={e => this.setFilterMonsterType(e.target.value as MonsterType)}>
 								<MenuItem value={MonsterType.Any}>Any Type</MenuItem>
 								<MenuItem value={MonsterType.Animate}>{EnumHelper.monsterType(MonsterType.Animate)}</MenuItem>
 								<MenuItem value={MonsterType.Beast}>{EnumHelper.monsterType(MonsterType.Beast)}</MenuItem>
 								<MenuItem value={MonsterType.Humanoid}>{EnumHelper.monsterType(MonsterType.Humanoid)}</MenuItem>
 								<MenuItem value={MonsterType.MagicalBeast}>{EnumHelper.monsterType(MonsterType.MagicalBeast)}</MenuItem>
 							</Select>
+							<Button variant='outlined' fullWidth={true} disabled={!this.state.filter.isActive()} onClick={() => this.resetFilter()}>Reset Filter</Button>
 						</Stack>
 					</div>
 					<div className='group-list'>
-						<Stack spacing={1}>{groups}</Stack>
+						<Stack spacing={1}>{groupList}</Stack>
 					</div>
 					<div className='monster-list'>
-						<Stack spacing={1}>{monsters}</Stack>
+						{monsterColumnHeading}
+						<Stack spacing={1}>{monsterList}</Stack>
 					</div>
 				</div>
 				<Backdrop open={this.state.selectedMonster !== null} onClick={() => this.setSelectedMonster(null)} />

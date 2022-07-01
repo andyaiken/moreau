@@ -1357,7 +1357,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 12,
 			modifier: 1,
@@ -9519,7 +9519,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; human ()',
+		keywords: 'undead; human',
 		level: 25,
 		role: {
 			type: 3,
@@ -9699,7 +9699,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 25 Solo Controller',
-		phenotype: 'Medium natural humanoid (undead; human ())'
+		phenotype: 'Medium natural humanoid (undead; human)'
 	},
 	{
 		id: 'f82091b0-7f81-4dda-be37-2aee25e5cd5a',
@@ -12488,7 +12488,7 @@ const monsters: Monster[] = [
 		languages: '(understands Abyssal, Deep Speech)',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -12637,7 +12637,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -24897,7 +24897,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Intimidate +7',
 		equipment: 'flail; heavy shield; scale armor',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -25030,7 +25030,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Intimidate +9, Streetwise +9',
 		equipment: 'heavy flail; plate armor',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -25201,7 +25201,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Intimidate +7',
 		equipment: 'crossbow; crossbow bolts (20); flail; heavy shield; scale armor',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -25347,7 +25347,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: '',
 		equipment: 'chainmail; flail; heavy shield',
-		category: '',
+		category: 'Emerald Claw',
 		strength: {
 			score: 16,
 			modifier: 3,
@@ -25413,18 +25413,18 @@ const monsters: Monster[] = [
 				id: '3e863536-f304-4078-bceb-71626995da94',
 				name: 'Fanatic',
 				action: {
-					action: 1,
-					trigger: 'requires a flail',
+					action: 4,
+					trigger: 'when reduced to 0 hit points',
 					sustainAction: 0,
 					use: 1,
 					recharge: ''
 				},
 				keywords: '',
-				condition: 'when reduced to 0 hit points',
-				range: 'The Emerald Claw trooper makes a melee basic attack against an adjacent enemy.',
+				condition: 'requires a flail',
+				range: '',
 				attack: null,
 				description: '',
-				details: '',
+				details: 'The Emerald Claw trooper makes a melee basic attack against an adjacent enemy.',
 				damage: '',
 				category: 5
 			}
@@ -39090,7 +39090,7 @@ const monsters: Monster[] = [
 		languages: 'Supernal',
 		skills: 'Insight +23, Intimidate +24',
 		equipment: 'greatsword; plate armor',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 32,
 			modifier: 11,
@@ -45234,7 +45234,7 @@ const monsters: Monster[] = [
 		size: 3,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; yuan-ti ()',
+		keywords: 'reptile; yuan-ti',
 		level: 30,
 		role: {
 			type: 3,
@@ -45390,7 +45390,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 30 Controller (L)',
-		phenotype: 'Large natural humanoid (reptile; yuan-ti ())'
+		phenotype: 'Large natural humanoid (reptile; yuan-ti)'
 	},
 	{
 		id: 'fbe4178c-eabc-4cc6-a18d-db0a16cb85bc',
@@ -46334,7 +46334,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; yuan-ti ()',
+		keywords: 'reptile; yuan-ti',
 		level: 28,
 		role: {
 			type: 6,
@@ -46496,7 +46496,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 28 Skirmisher',
-		phenotype: 'Medium natural humanoid (reptile; yuan-ti ())'
+		phenotype: 'Medium natural humanoid (reptile; yuan-ti)'
 	},
 	{
 		id: 'ac5c82c5-11c3-4d95-9fef-fded200733d7',
@@ -46887,7 +46887,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Endurance +23, Intimidate +18',
 		equipment: 'spiked chain',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 28,
 			modifier: 9,
@@ -49752,7 +49752,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; githyanki lich ()',
+		keywords: 'undead; githyanki lich',
 		level: 25,
 		role: {
 			type: 3,
@@ -49938,7 +49938,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 25 Elite Controller',
-		phenotype: 'Medium natural humanoid (undead; githyanki lich ())'
+		phenotype: 'Medium natural humanoid (undead; githyanki lich)'
 	}
 ];
 

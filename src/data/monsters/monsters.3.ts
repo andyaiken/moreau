@@ -1354,7 +1354,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; githyanki ()',
+		keywords: 'undead; githyanki',
 		level: 20,
 		role: {
 			type: 3,
@@ -1558,7 +1558,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 20 Controller',
-		phenotype: 'Medium natural humanoid (undead; githyanki ())'
+		phenotype: 'Medium natural humanoid (undead; githyanki)'
 	},
 	{
 		id: 'b0e1e6c8-2bf0-43d8-bae2-e4f0725f3f08',
@@ -2137,7 +2137,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 27,
 			modifier: 8,
@@ -3505,7 +3505,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead; githyanki ()',
+		keywords: 'undead; githyanki',
 		level: 19,
 		role: {
 			type: 7,
@@ -3689,7 +3689,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 19 Soldier',
-		phenotype: 'Medium natural humanoid (undead; githyanki ())'
+		phenotype: 'Medium natural humanoid (undead; githyanki)'
 	},
 	{
 		id: 'be3521b9-b83b-4026-aee0-0796a34af85d',
@@ -7587,7 +7587,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 2,
 		type: 2,
-		keywords: 'plant; dryad ()',
+		keywords: 'plant; dryad',
 		level: 9,
 		role: {
 			type: 6,
@@ -7708,7 +7708,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 9 Skirmisher',
-		phenotype: 'Medium fey humanoid (plant; dryad ())'
+		phenotype: 'Medium fey humanoid (plant; dryad)'
 	},
 	{
 		id: '68ab3f2c-2f05-41e7-9a07-1f5bc2d23e0a',
@@ -18846,7 +18846,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'blind; human ()',
+		keywords: 'blind; human',
 		level: 8,
 		role: {
 			type: 3,
@@ -18980,7 +18980,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 8 Controller',
-		phenotype: 'Medium natural humanoid (blind; human ())'
+		phenotype: 'Medium natural humanoid (blind; human)'
 	},
 	{
 		id: 'e92c3557-6523-4acf-aaab-78546253ca38',
@@ -19185,7 +19185,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 25,
 		role: {
 			type: 7,
@@ -19353,7 +19353,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 25 Soldier (L)',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: 'ed903086-2208-4877-8aa0-ba971c330d4b',
@@ -19362,7 +19362,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 24,
 		role: {
 			type: 9,
@@ -19467,7 +19467,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 24 Minion',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: '17bbf018-09c2-4f24-a67c-0de71b1b21a9',
@@ -19476,7 +19476,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 24,
 		role: {
 			type: 3,
@@ -19628,7 +19628,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 24 Controller',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: '9e98a995-acd8-43d8-bd59-5fbc20efb103',
@@ -20541,7 +20541,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 27,
 		role: {
 			type: 3,
@@ -20737,7 +20737,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 27 Elite Controller',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: '20179ec7-d77e-4a53-b32d-770fff5f378b',
@@ -21359,7 +21359,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; eladrin ()',
+		keywords: 'exalted; eladrin',
 		level: 25,
 		role: {
 			type: 3,
@@ -21521,7 +21521,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 25 Controller',
-		phenotype: 'Medium immortal humanoid (exalted; eladrin ())'
+		phenotype: 'Medium immortal humanoid (exalted; eladrin)'
 	},
 	{
 		id: 'a4e42e05-757a-4d98-9681-e57a9707e1ad',
@@ -21530,7 +21530,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 25,
 		role: {
 			type: 0,
@@ -21685,7 +21685,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 25 Artillery',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: 'b0849376-1d7d-42a4-86ef-1494b8e9c625',
@@ -21694,7 +21694,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 24,
 		role: {
 			type: 9,
@@ -21799,7 +21799,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 24 Minion',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: '7e77ceb7-ee53-40ee-a7b5-c2dea28aaebd',
@@ -21808,7 +21808,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 3,
 		type: 2,
-		keywords: 'exalted; human ()',
+		keywords: 'exalted; human',
 		level: 24,
 		role: {
 			type: 3,
@@ -21963,7 +21963,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 24 Controller',
-		phenotype: 'Medium immortal humanoid (exalted; human ())'
+		phenotype: 'Medium immortal humanoid (exalted; human)'
 	},
 	{
 		id: 'e1861693-b2da-4bdd-b94d-e1c64a0c5a85',
@@ -23083,7 +23083,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'water; Genasi ()',
+		keywords: 'water; Genasi',
 		level: 2,
 		role: {
 			type: 4,
@@ -23229,7 +23229,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 2 Elite Lurker',
-		phenotype: 'Medium elemental humanoid (water; genasi ())'
+		phenotype: 'Medium elemental humanoid (water; genasi)'
 	},
 	{
 		id: '04e68c77-e08a-4f4c-b297-3825675f784c',
@@ -27593,7 +27593,7 @@ const monsters: Monster[] = [
 		size: 5,
 		origin: 3,
 		type: 1,
-		keywords: 'reptile; hydra ()',
+		keywords: 'reptile; hydra',
 		level: 26,
 		role: {
 			type: 2,
@@ -27766,7 +27766,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 26 Solo Brute',
-		phenotype: 'Gargantuan immortal beast (reptile; hydra ())'
+		phenotype: 'Gargantuan immortal beast (reptile; hydra)'
 	},
 	{
 		id: 'b3743e8c-34c9-4282-a7b0-297c8c381ac0',
@@ -27979,7 +27979,7 @@ const monsters: Monster[] = [
 		languages: 'Supernal',
 		skills: 'Insight +24, Religion +24',
 		equipment: 'plate armor; quarterstaff',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 21,
 			modifier: 5,
@@ -28863,7 +28863,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'undead, vampire; half-elf ()',
+		keywords: 'undead, vampire; half-elf',
 		level: 18,
 		role: {
 			type: 6,
@@ -29085,7 +29085,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 18 Elite Skirmisher',
-		phenotype: 'Medium natural humanoid (undead, vampire; half-elf ())'
+		phenotype: 'Medium natural humanoid (undead, vampire; half-elf)'
 	},
 	{
 		id: '300078db-ad6c-4b4f-afbb-a99dc3b4e1dc',
@@ -29394,7 +29394,7 @@ const monsters: Monster[] = [
 		languages: 'Supernal',
 		skills: 'Arcana +24, Diplomacy +26, History +24, Insight +27, Religion +24',
 		equipment: 'greatsword; plate armor',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 31,
 			modifier: 10,
@@ -30179,7 +30179,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: 'Athletics +26, Stealth +29',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 25,
 			modifier: 7,
@@ -30350,7 +30350,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Primordial',
 		skills: 'Stealth +26',
 		equipment: '',
-		category: '',
+		category: 'Slaad',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -30821,7 +30821,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'earth; Genasi ()',
+		keywords: 'earth; Genasi',
 		level: 2,
 		role: {
 			type: 7,
@@ -31030,7 +31030,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 2 Elite Soldier',
-		phenotype: 'Medium elemental humanoid (earth; genasi ())'
+		phenotype: 'Medium elemental humanoid (earth; genasi)'
 	},
 	{
 		id: '92a8eafc-b0fc-4985-85d6-69134a2e6a54',
@@ -31338,7 +31338,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'chainmail',
-		category: '',
+		category: 'Archon',
 		strength: {
 			score: 25,
 			modifier: 7,
@@ -37655,7 +37655,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'living construct; Warforged ()',
+		keywords: 'living construct; Warforged',
 		level: 12,
 		role: {
 			type: 3,
@@ -37864,7 +37864,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 12 Elite Controller',
-		phenotype: 'Medium natural humanoid (living construct; warforged ())'
+		phenotype: 'Medium natural humanoid (living construct; warforged)'
 	},
 	{
 		id: '65f8812c-2625-4203-85f5-646ae5c2bed5',
@@ -42476,7 +42476,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: 'Stealth +9',
 		equipment: '',
-		category: '',
+		category: 'Chuul',
 		strength: {
 			score: 16,
 			modifier: 3,
@@ -49015,7 +49015,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: 'Stealth +10',
 		equipment: '',
-		category: '',
+		category: 'Wyvern',
 		strength: {
 			score: 24,
 			modifier: 7,

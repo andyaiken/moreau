@@ -1729,7 +1729,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'aquatic; sahuagin ()',
+		keywords: 'aquatic; sahuagin',
 		level: 12,
 		role: {
 			type: 3,
@@ -1951,7 +1951,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 12 Elite Controller',
-		phenotype: 'Medium natural humanoid (aquatic; sahuagin ())'
+		phenotype: 'Medium natural humanoid (aquatic; sahuagin)'
 	},
 	{
 		id: 'e9d942f0-fbe2-4f34-9d30-976dc4bf5710',
@@ -2178,7 +2178,7 @@ const monsters: Monster[] = [
 		size: 4,
 		origin: 0,
 		type: 1,
-		keywords: 'reptile; fang titan drake ()',
+		keywords: 'reptile; fang titan drake',
 		level: 21,
 		role: {
 			type: 3,
@@ -2368,7 +2368,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 21 Solo Controller',
-		phenotype: 'Huge aberrant beast (reptile; fang titan drake ())'
+		phenotype: 'Huge aberrant beast (reptile; fang titan drake)'
 	},
 	{
 		id: 'ce62296b-cc2a-403c-99c9-66c46215f747',
@@ -2377,7 +2377,7 @@ const monsters: Monster[] = [
 		size: 3,
 		origin: 4,
 		type: 2,
-		keywords: 'shapechanger; troll ()',
+		keywords: 'shapechanger; troll',
 		level: 12,
 		role: {
 			type: 2,
@@ -2560,7 +2560,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 12 Elite Brute',
-		phenotype: 'Large natural humanoid (shapechanger; troll ())'
+		phenotype: 'Large natural humanoid (shapechanger; troll)'
 	},
 	{
 		id: 'f2c8f2ca-9bcf-4e9f-abf2-edbdc7674beb',
@@ -3199,7 +3199,7 @@ const monsters: Monster[] = [
 		size: 4,
 		origin: 1,
 		type: 1,
-		keywords: 'reptile; hydra ()',
+		keywords: 'reptile; hydra',
 		level: 14,
 		role: {
 			type: 2,
@@ -3389,7 +3389,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 14 Solo Brute',
-		phenotype: 'Huge elemental beast (reptile; hydra ())'
+		phenotype: 'Huge elemental beast (reptile; hydra)'
 	},
 	{
 		id: '90b0ce85-bc3d-4382-a166-36eacf047545',
@@ -8006,7 +8006,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 21,
 			modifier: 5,
@@ -8680,7 +8680,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Nature +9',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 13,
 			modifier: 1,
@@ -13013,7 +13013,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 24,
 			modifier: 7,
@@ -13333,7 +13333,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Nature +14, Stealth +16',
 		equipment: '',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -13496,7 +13496,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Stealth +9',
 		equipment: 'leather armor',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 14,
 			modifier: 2,
@@ -15727,7 +15727,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Deep Speech, Draconic',
 		skills: 'Acrobatics +18, Bluff +18, Stealth +18, Thievery +18',
 		equipment: 'longsword',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 19,
 			modifier: 4,
@@ -28778,7 +28778,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 7,
 		role: {
 			type: 2,
@@ -28933,7 +28933,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 7 Brute',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: 'f740e7bd-dc67-4148-a4b0-45cf62e04aae',
@@ -28942,7 +28942,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 5,
 		role: {
 			type: 3,
@@ -29106,7 +29106,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 5 Controller',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: '059f2f95-0798-4fb4-956c-1d0c1d57d674',
@@ -29115,7 +29115,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 5,
 		role: {
 			type: 4,
@@ -29295,7 +29295,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 5 Lurker',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: '8938e019-0ea0-4815-bd4e-49b4d6f119e3',
@@ -34815,7 +34815,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 10,
 		role: {
 			type: 0,
@@ -35006,7 +35006,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 10 Elite Artillery',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: '92d10f1c-a027-4806-bad5-80d0278d1edd',
@@ -35642,7 +35642,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 9,
 		role: {
 			type: 0,
@@ -35820,7 +35820,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 9 Artillery',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: '0a8132c0-ce13-45b3-bed3-61b0d967aa31',
@@ -35829,7 +35829,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'reptile; Kobold ()',
+		keywords: 'reptile; Kobold',
 		level: 7,
 		role: {
 			type: 7,
@@ -35976,7 +35976,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 7 Soldier',
-		phenotype: 'Small natural humanoid (reptile; kobold ())'
+		phenotype: 'Small natural humanoid (reptile; kobold)'
 	},
 	{
 		id: '7c8b0897-ef54-4b72-b992-2668c0eb1bb6',
@@ -48290,7 +48290,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Supernal',
 		skills: 'Diplomacy +24, Intimidate +24',
 		equipment: 'fullblade',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 26,
 			modifier: 8,

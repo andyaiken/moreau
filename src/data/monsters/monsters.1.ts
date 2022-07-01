@@ -6955,7 +6955,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'cold; human ()',
+		keywords: 'cold; human',
 		level: 10,
 		role: {
 			type: 0,
@@ -7147,7 +7147,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 10 Elite Artillery (L)',
-		phenotype: 'Medium natural humanoid (cold; human ())'
+		phenotype: 'Medium natural humanoid (cold; human)'
 	},
 	{
 		id: '8838c764-617f-47a5-adf6-617a639c85f0',
@@ -15781,7 +15781,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -15943,7 +15943,7 @@ const monsters: Monster[] = [
 		languages: 'Deep Speech',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 38,
 			modifier: 14,
@@ -18717,7 +18717,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'living construct; Warforged ()',
+		keywords: 'living construct; Warforged',
 		level: 17,
 		role: {
 			type: 2,
@@ -18860,7 +18860,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 17 Brute',
-		phenotype: 'Medium natural humanoid (living construct; warforged ())'
+		phenotype: 'Medium natural humanoid (living construct; warforged)'
 	},
 	{
 		id: 'a358c311-d4ad-4689-abf7-76d264fcad6f',
@@ -19269,7 +19269,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'fire; human ()',
+		keywords: 'fire; human',
 		level: 15,
 		role: {
 			type: 0,
@@ -19499,7 +19499,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 15 Elite Artillery',
-		phenotype: 'Medium natural humanoid (fire; human ())'
+		phenotype: 'Medium natural humanoid (fire; human)'
 	},
 	{
 		id: 'e638304a-caa3-4140-af96-e5c530333ec3',
@@ -20741,7 +20741,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'air; Genasi ()',
+		keywords: 'air; Genasi',
 		level: 9,
 		role: {
 			type: 6,
@@ -20978,7 +20978,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 9 Elite Skirmisher',
-		phenotype: 'Medium elemental humanoid (air; genasi ())'
+		phenotype: 'Medium elemental humanoid (air; genasi)'
 	},
 	{
 		id: '6e60ddf2-8383-4fcf-a469-d2ff1302cdfb',
@@ -21146,7 +21146,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 1,
 		type: 2,
-		keywords: 'air, water; Genasi ()',
+		keywords: 'air, water; Genasi',
 		level: 12,
 		role: {
 			type: 4,
@@ -21395,7 +21395,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 12 Elite Lurker',
-		phenotype: 'Medium elemental humanoid (air, water; genasi ())'
+		phenotype: 'Medium elemental humanoid (air, water; genasi)'
 	},
 	{
 		id: '1f34a9b2-718f-4f28-9aee-556b619d8870',
@@ -24299,7 +24299,7 @@ const monsters: Monster[] = [
 		size: 3,
 		origin: 4,
 		type: 1,
-		keywords: 'dragon; red ()',
+		keywords: 'dragon; red',
 		level: 11,
 		role: {
 			type: 7,
@@ -24517,7 +24517,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 11 Solo Soldier',
-		phenotype: 'Large natural beast (dragon; red ())'
+		phenotype: 'Large natural beast (dragon; red)'
 	},
 	{
 		id: 'aa17af59-7336-4047-9341-13a7f78eb458',
@@ -24830,7 +24830,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'vampire; human ()',
+		keywords: 'vampire; human',
 		level: 13,
 		role: {
 			type: 4,
@@ -24999,7 +24999,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 13 Elite Lurker',
-		phenotype: 'Medium natural humanoid (vampire; human ())'
+		phenotype: 'Medium natural humanoid (vampire; human)'
 	},
 	{
 		id: 'ea56cbde-0cd2-4a11-8edf-1747f581fe9d',
@@ -25008,7 +25008,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 4,
 		type: 2,
-		keywords: 'vampire; eladrin ()',
+		keywords: 'vampire; eladrin',
 		level: 17,
 		role: {
 			type: 3,
@@ -25195,7 +25195,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 17 Elite Controller',
-		phenotype: 'Medium natural humanoid (vampire; eladrin ())'
+		phenotype: 'Medium natural humanoid (vampire; eladrin)'
 	},
 	{
 		id: '91d8fbee-5e96-4ad4-84a9-ba7fab0d973f',
@@ -34450,7 +34450,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: '',
 		equipment: 'greatsword; heavy shield',
-		category: '',
+		category: 'Dragonspawn',
 		strength: {
 			score: 28,
 			modifier: 9,
@@ -35276,7 +35276,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: '',
 		equipment: 'light shield; plate armor',
-		category: '',
+		category: 'Death Knight',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -40026,7 +40026,7 @@ const monsters: Monster[] = [
 		languages: 'Supernal',
 		skills: 'Bluff +27, Insight +26',
 		equipment: 'longsword; plate armor',
-		category: '',
+		category: 'Angel',
 		strength: {
 			score: 30,
 			modifier: 10,
@@ -40859,7 +40859,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Beholder',
 		strength: {
 			score: 21,
 			modifier: 5,
@@ -44559,7 +44559,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Stealth +17',
 		equipment: '',
-		category: '',
+		category: 'Abyssal Ghoul',
 		strength: {
 			score: 24,
 			modifier: 7,

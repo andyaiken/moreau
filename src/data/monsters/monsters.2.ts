@@ -8203,7 +8203,7 @@ const monsters: Monster[] = [
 	},
 	{
 		id: '56fd9ec4-327b-42a6-ae3a-affacaebe4d3',
-		name: 'Water Archon Wavecrashers',
+		name: 'Water Archon Wavecrasher',
 		details: '',
 		size: 2,
 		origin: 1,
@@ -8221,7 +8221,7 @@ const monsters: Monster[] = [
 		languages: 'Primordial',
 		skills: '',
 		equipment: 'plate armor',
-		category: '',
+		category: 'Archon',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -8733,7 +8733,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'cold; goblin ()',
+		keywords: 'cold; goblin',
 		level: 1,
 		role: {
 			type: 9,
@@ -8843,7 +8843,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 1 Minion',
-		phenotype: 'Small natural humanoid (cold; goblin ())'
+		phenotype: 'Small natural humanoid (cold; goblin)'
 	},
 	{
 		id: 'f178c8be-1075-45d4-a556-326b0073ed58',
@@ -8852,7 +8852,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'cold; goblin ()',
+		keywords: 'cold; goblin',
 		level: 3,
 		role: {
 			type: 3,
@@ -9073,7 +9073,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 3 Elite Controller (L)',
-		phenotype: 'Small natural humanoid (cold; goblin ())'
+		phenotype: 'Small natural humanoid (cold; goblin)'
 	},
 	{
 		id: '5d598f3e-db65-4dd4-8e2c-75214e12584e',
@@ -9082,7 +9082,7 @@ const monsters: Monster[] = [
 		size: 1,
 		origin: 4,
 		type: 2,
-		keywords: 'cold; goblin ()',
+		keywords: 'cold; goblin',
 		level: 2,
 		role: {
 			type: 0,
@@ -9237,7 +9237,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 2 Artillery',
-		phenotype: 'Small natural humanoid (cold; goblin ())'
+		phenotype: 'Small natural humanoid (cold; goblin)'
 	},
 	{
 		id: '9cd35217-a7ac-415b-8fd0-aceb2b25ff03',
@@ -29751,7 +29751,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Acrobatics +14, Stealth +14',
 		equipment: 'leather armor; magic weapon; spiked chain',
-		category: 'Shadar-kai',
+		category: 'Shadar-Kai',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -39954,7 +39954,7 @@ const monsters: Monster[] = [
 		size: 2,
 		origin: 5,
 		type: 2,
-		keywords: 'undead; dragonborn ()',
+		keywords: 'undead; dragonborn',
 		level: 4,
 		role: {
 			type: 4,
@@ -40094,7 +40094,7 @@ const monsters: Monster[] = [
 		tactics: '',
 
 		info: 'Level 4 Lurker',
-		phenotype: 'Medium shadow humanoid (undead; dragonborn ())'
+		phenotype: 'Medium shadow humanoid (undead; dragonborn)'
 	},
 	{
 		id: '9887167d-55ad-4974-b003-a504d31f49bb',

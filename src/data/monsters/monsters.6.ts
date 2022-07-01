@@ -21,7 +21,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +18, Insight +19, Intimidate +23, Perception +19',
 		equipment: '',
-		category: 'Dragon, Chromatic (Red)',
+		category: 'Dragon',
 		strength: {
 			score: 28,
 			modifier: 9,
@@ -272,7 +272,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Bluff +24, Insight +26, Intimidate +29, Perception +26',
 		equipment: '',
-		category: 'Dragon, Chromatic (Red)',
+		category: 'Dragon',
 		strength: {
 			score: 34,
 			modifier: 12,
@@ -523,7 +523,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Athletics +15, Perception +7',
 		equipment: '',
-		category: 'Dragon, Chromatic (White)',
+		category: 'Dragon',
 		strength: {
 			score: 18,
 			modifier: 4,
@@ -730,7 +730,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: 'Athletics +19, Perception +11',
 		equipment: '',
-		category: 'Dragon, Chromatic (White)',
+		category: 'Dragon',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -937,7 +937,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +24, Perception +16',
 		equipment: '',
-		category: 'Dragon, Chromatic (White)',
+		category: 'Dragon',
 		strength: {
 			score: 22,
 			modifier: 6,
@@ -1166,7 +1166,7 @@ const monsters: Monster[] = [
 		languages: 'Common, Draconic',
 		skills: 'Athletics +29, Perception +21',
 		equipment: '',
-		category: 'Dragon, Chromatic (White)',
+		category: 'Dragon',
 		strength: {
 			score: 25,
 			modifier: 7,
@@ -11485,7 +11485,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Intimidate +18, Perception +19',
 		equipment: 'chainmail, greataxe',
-		category: 'Giant, Death',
+		category: 'Giant',
 		strength: {
 			score: 28,
 			modifier: 9,
@@ -11643,7 +11643,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Intimidate +20, Perception +20',
 		equipment: 'plate armor, greataxe',
-		category: 'Giant, Death',
+		category: 'Giant',
 		strength: {
 			score: 31,
 			modifier: 10,
@@ -11845,7 +11845,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Athletics +16',
 		equipment: 'hide armor, greatclub',
-		category: 'Giant, Earth',
+		category: 'Giant',
 		strength: {
 			score: 21,
 			modifier: 5,
@@ -11981,7 +11981,7 @@ const monsters: Monster[] = [
 		languages: 'Giant, Primordial',
 		skills: 'Athletics +19',
 		equipment: '',
-		category: 'Giant, Earth',
+		category: 'Giant',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -12139,7 +12139,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Intimidate +14, Perception +14',
 		equipment: 'plate armor, greatsword, 4 javelins',
-		category: 'Giant, Fire',
+		category: 'Giant',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -12280,7 +12280,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Intimidate +14, Perception +17',
 		equipment: 'dragonhide armor, mace',
-		category: 'Giant, Fire',
+		category: 'Giant',
 		strength: {
 			score: 23,
 			modifier: 6,
@@ -12421,7 +12421,7 @@ const monsters: Monster[] = [
 		languages: 'Giant, Primordial',
 		skills: 'Intimidate +20, Perception +21',
 		equipment: 'greatsword',
-		category: 'Giant, Fire',
+		category: 'Giant',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -12584,7 +12584,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: 'Diplomacy +23, Intimidate +23, Perception +21',
 		equipment: 'greatsword',
-		category: 'Giant, Storm',
+		category: 'Giant',
 		strength: {
 			score: 30,
 			modifier: 10,
@@ -12758,7 +12758,7 @@ const monsters: Monster[] = [
 		languages: 'Giant, Primordial',
 		skills: 'Diplomacy +24, Intimidate +24, Perception +22',
 		equipment: 'greatsword',
-		category: 'Giant, Storm',
+		category: 'Giant',
 		strength: {
 			score: 33,
 			modifier: 11,
@@ -34351,7 +34351,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Arcana +28, History +28, Intimidate +31, Perception +28, Religion +28',
 		equipment: 'Wand of Orcus',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 35,
 			modifier: 12,
@@ -34544,7 +34544,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Arcana +23, History +23, Intimidate +24, Perception +21, Religion +23',
 		equipment: 'skull mace',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 30,
 			modifier: 10,
@@ -34674,7 +34674,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Bluff +25, Insight +24, Perception +24, Religion +23',
 		equipment: 'Toothlust (staff ), Cloak of Mouths',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 29,
 			modifier: 9,
@@ -34842,7 +34842,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Religion +17',
 		equipment: 'plate armor, mace, censer',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -34990,7 +34990,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Arcana +10, Perception +12, Religion +10',
 		equipment: 'chainmail, skull-headed mace',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 13,
 			modifier: 1,
@@ -35133,7 +35133,7 @@ const monsters: Monster[] = [
 		languages: 'Abyssal, Common',
 		skills: 'Acrobatics +11, Perception +9, Religion +8',
 		equipment: 'leather armor, scythe',
-		category: 'Demon, Orcus',
+		category: 'Demon',
 		strength: {
 			score: 14,
 			modifier: 2,
