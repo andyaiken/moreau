@@ -27774,7 +27774,7 @@ const monsters: Monster[] = [
 		languages: 'Draconic',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Drakkensteed',
 		strength: {
 			score: 28,
 			modifier: 9,
@@ -29317,7 +29317,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Drakkensteed',
 		strength: {
 			score: 24,
 			modifier: 7,
@@ -32474,7 +32474,7 @@ const monsters: Monster[] = [
 		languages: '',
 		skills: '',
 		equipment: '',
-		category: '',
+		category: 'Drakkensteed',
 		strength: {
 			score: 26,
 			modifier: 8,

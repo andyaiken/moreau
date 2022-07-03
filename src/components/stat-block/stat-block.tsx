@@ -151,6 +151,19 @@ export class StatBlock extends Component<Props, State> {
 			);
 		}
 
+		let skills = null;
+		if (this.props.monster.skills) {
+			skills = (
+				<div className='row dark'>
+					<div className='cell'>
+						<div className='value'>
+							<b>Skills</b> {this.props.monster.skills}
+						</div>
+					</div>
+				</div>
+			);
+		}
+
 		let equip = null;
 		if (this.props.monster.equipment) {
 			equip = (
@@ -246,13 +259,7 @@ export class StatBlock extends Component<Props, State> {
 				{minorActions}
 				{freeActions}
 				{triggeredActions}
-				<div className='row dark'>
-					<div className='cell'>
-						<div className='value'>
-							<b>Skills</b> {this.props.monster.skills}
-						</div>
-					</div>
-				</div>
+				{skills}
 				<div className='row dark'>
 					<div className='cell'>
 						<div className='value'>
