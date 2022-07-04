@@ -1,0 +1,52 @@
+.monsters-page {
+	display: flex;
+	flex: 1 1 0;
+	overflow: hidden;
+}
+
+.monsters-page .filter-column,
+.monsters-page .group-list,
+.monsters-page .monster-list {
+	height: 100%;
+	padding: 10px;
+	flex: 1 1 0;
+	overflow-y: auto;
+}
+
+.monsters-page .filter-column .filter-level {
+	display: block;
+}
+
+.monsters-page .filter-column .filter-level .filter-level-slider {
+	padding: 0 10px;
+}
+
+.monsters-page .filter-column .filter-control-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.monsters-page .monster-list {
+	flex: 3 3 0;
+}
+
+.monsters-page .monster-list .category-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.monsters-page .monster-list .monster-name {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.monsters-page .monster-list .empty {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	opacity: 0.6;
+}

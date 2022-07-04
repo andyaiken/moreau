@@ -5,6 +5,7 @@ import './info-panel.css';
 interface Props {
 	content: React.ReactNode;
 	info: React.ReactNode;
+	outlined: boolean;
 	selected: boolean;
 	onClick: (() => void) | null;
 }
@@ -16,6 +17,7 @@ export class InfoPanel extends React.Component<Props, State> {
 	public static defaultProps = {
 		content: null,
 		info: null,
+		outlined: false,
 		selected: false,
 		onClick: null
 	};
@@ -28,6 +30,9 @@ export class InfoPanel extends React.Component<Props, State> {
 
 	public render() {
 		let style = 'info-panel';
+		if (this.props.outlined) {
+			style += ' outlined';
+		}
 		if (this.props.onClick) {
 			style += ' clickable';
 		}

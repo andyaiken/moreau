@@ -4,58 +4,45 @@
 	flex-direction: column;
 }
 
-.moreau .toolbar {
-	justify-content: space-between;
-}
-
-.moreau .page-content {
-	flex: 1 1 0;
-	padding: 10px;
-	overflow-y: hidden;
+.moreau .header-panel,
+.moreau .footer-panel {
+	flex: 0 0 auto;
 	display: flex;
-}
-
-.moreau .page-content .filter-column {
-	height: 100%;
-	padding: 10px;
-	flex: 1 1 0;
-	overflow-y: auto;
-}
-
-.moreau .page-content .filter-column .filter-control-row {
-	display: flex;
-	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	background-color: rgba(0, 0, 0, 0.23);
+	border: 0 solid rgba(0, 0, 0, 0.3);
 }
 
-.moreau .page-content .group-list {
-	height: 100%;
-	padding: 10px;
-	flex: 1 1 0;
-	overflow-y: auto;
+.moreau .header-panel {
+	border-bottom-width: 1px;
+	font-size: 1.5rem;
+	padding: 5px 15px;
 }
 
-.moreau .page-content .monster-list {
-	height: 100%;
-	padding: 10px;
-	flex: 3 3 0;
-	overflow-y: auto;
-}
-
-.moreau .page-content .monster-list .category-header {
-	font-size: 2rem;
-	font-weight: bold;
-	letter-spacing: 1px;
+.moreau .header-panel .app-title {
 	text-transform: uppercase;
-	margin-bottom: 10px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	padding-top: 2px;
 }
 
-.moreau .page-content .monster-list .empty {
+.moreau .footer-panel {
+	border-top-width: 1px;
+}
+
+.moreau .footer-panel .footer-tab {
+	flex: 1 1 0;
 	display: flex;
+	align-items: center;
 	justify-content: center;
-	margin-top: 20px;
-	opacity: 0.6;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.moreau .footer-panel .footer-tab.selected {
+	pointer-events: none;
+	background-color: rgba(0, 0, 0, 0.1);
+	font-weight: bold;
 }
 
 .moreau .drawer-content {

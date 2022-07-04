@@ -3,6 +3,10 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.info-panel.outlined,
+.info-panel.clickable {
 	border: 1px solid rgba(0, 0, 0, 0.23);
 	border-radius: 4px;
 	padding: 5px 10px;

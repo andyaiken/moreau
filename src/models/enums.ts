@@ -102,6 +102,11 @@ export enum DamageType {
 	Thunder = 10
 };
 
+export enum ThreatType {
+	Monster = 0,
+	Trap = 1
+};
+
 export class EnumHelper {
 	public static monsterSize(value: MonsterSize) {
 		switch (value) {
@@ -222,6 +227,13 @@ export class EnumHelper {
 		case DamageType.Psychic: return 'Psychic';
 		case DamageType.Radiant: return 'Radiant';
 		case DamageType.Thunder: return 'Thunder';
+		}
+	};
+
+	public static threatType(value: ThreatType) {
+		switch (value) {
+		case ThreatType.Monster: return 'Monster';
+		case ThreatType.Trap: return 'Trap';
 		}
 	};
 };
