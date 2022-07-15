@@ -1,17 +1,17 @@
-import { Button, Divider, IconButton, MenuItem, Select, Slider, Stack, Switch } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { Close, Delete, Edit, ExpandMore } from '@mui/icons-material';
+import { Accordion, AccordionDetails, AccordionSummary, Button, ButtonGroup, Divider, IconButton, Slider, Stack, Typography } from '@mui/material';
 import { Component, ReactElement } from 'react';
 
+import { BooleanField } from '../../controls/boolean-field';
+import { EnumField } from '../../controls/enum-field';
+import { StringField } from '../../controls/string-field';
 import { InfoPanel } from '../../info-panel';
-import { TextField } from '../../text-field';
-
-import { monsters } from '../../../data/monsters';
 
 import { EnumHelper, MonsterOrigin, MonsterSize, MonsterType, RoleFlag, RoleType } from '../../../models/enums';
 import { Monster } from '../../../models/monster';
 
+import { CommonUtils } from '../../../utils/common-utils';
 import { MonsterUtils } from '../../../utils/monster-utils';
-import { GeneralUtils } from '../../../utils/general-utils';
 
 import './monsters-page.css';
 
@@ -21,10 +21,13 @@ class MonsterFilter {
 	level: number[] = [1, 40];
 	roleType: RoleType = RoleType.Any;
 	roleFlag: RoleFlag = RoleFlag.Any;
-	roleLeader: boolean = false;
+	roleLeader: boolean = true;
+	roleNonLeader: boolean = true;
 	monsterSize: MonsterSize = MonsterSize.Any;
 	monsterOrigin: MonsterOrigin = MonsterOrigin.Any;
 	monsterType: MonsterType = MonsterType.Any;
+	showCustom: boolean = true;
+	showOfficial: boolean = true;
 
 	isActive = () => {
 		if (this.text) {
@@ -47,7 +50,11 @@ class MonsterFilter {
 			return true;
 		}
 
-		if (this.roleLeader) {
+		if (!this.roleLeader) {
+			return true;
+		}
+
+		if (!this.roleNonLeader) {
 			return true;
 		}
 
@@ -63,6 +70,14 @@ class MonsterFilter {
 			return true;
 		}
 
+		if (!this.showCustom) {
+			return true;
+		}
+
+		if (!this.showOfficial) {
+			return true;
+		}
+
 		return false;
 	};
 
@@ -71,14 +86,18 @@ class MonsterFilter {
 		this.level = [1, 40];
 		this.roleType = RoleType.Any;
 		this.roleFlag = RoleFlag.Any;
-		this.roleLeader = false;
+		this.roleLeader = true;
+		this.roleNonLeader = true;
 		this.monsterSize = MonsterSize.Any;
 		this.monsterOrigin = MonsterOrigin.Any;
 		this.monsterType = MonsterType.Any;
+		this.showCustom = true;
+		this.showOfficial = true;
 	};
 
-	execute = (monsters: Monster[]) => {
-		return monsters
+	execute = (customMonsters: Monster[], officialMonsters: Monster[]) => {
+		const customIDs = customMonsters.map(m => m.id);
+		return [...customMonsters, ...officialMonsters]
 			.filter(m => {
 				if (!this.text) {
 					return true;
@@ -118,11 +137,14 @@ class MonsterFilter {
 				return m.role.flag === this.roleFlag;
 			})
 			.filter(m => {
-				if (this.roleLeader && !m.role.leader) {
-					return false;
+				if (m.role.leader && this.roleLeader) {
+					return true;
+				}
+				if (!m.role.leader && this.roleNonLeader) {
+					return true;
 				}
 
-				return true;
+				return false;
 			})
 			.filter(m => {
 				if (this.monsterSize === MonsterSize.Any) {
@@ -144,16 +166,30 @@ class MonsterFilter {
 				}
 
 				return m.type === this.monsterType;
+			})
+			.filter(m => {
+				if (customIDs.includes(m.id) && this.showCustom) {
+					return true;
+				}
+				if (!customIDs.includes(m.id) && this.showOfficial) {
+					return true;
+				}
+
+				return false;
 			});
 	};
-}
+};
 
 interface Props {
-	onSelectMonster: (monster: Monster) => void;
+	monsters: Monster[];
+	officialMonsters: Monster[];
+	selectMonster: (monster: Monster) => void;
+	createMonster: (category: string) => void;
+	deleteMonster: (monster: Monster) => void;
+	editMonster: (monster: Monster) => void;
 };
 
 interface State {
-	monsters: Monster[];
 	filter: MonsterFilter;
 	selectedCategory: string | null;
 };
@@ -163,7 +199,6 @@ export class MonstersPage extends Component<Props, State> {
 		super(props);
 
 		this.state = {
-			monsters: monsters,
 			filter: new MonsterFilter(),
 			selectedCategory: null
 		};
@@ -214,6 +249,15 @@ export class MonstersPage extends Component<Props, State> {
 		});
 	};
 
+	setFilterNonLeader = (value: boolean) => {
+		const filter = this.state.filter;
+		filter.roleNonLeader = value;
+
+		this.setState({
+			filter: filter
+		});
+	};
+
 	setFilterMonsterSize = (value: MonsterSize) => {
 		const filter = this.state.filter;
 		filter.monsterSize = value;
@@ -241,6 +285,24 @@ export class MonstersPage extends Component<Props, State> {
 		});
 	};
 
+	setFilterCustom = (value: boolean) => {
+		const filter = this.state.filter;
+		filter.showCustom = value;
+
+		this.setState({
+			filter: filter
+		});
+	};
+
+	setFilterOfficial = (value: boolean) => {
+		const filter = this.state.filter;
+		filter.showOfficial = value;
+
+		this.setState({
+			filter: filter
+		});
+	};
+
 	resetFilter = () => {
 		const filter = this.state.filter;
 		filter.reset();
@@ -257,41 +319,55 @@ export class MonstersPage extends Component<Props, State> {
 	};
 
 	render = () => {
-		const filteredMonsters = this.state.filter.execute(this.state.monsters);
-		const monsters = GeneralUtils.sort(filteredMonsters.filter(m => m.category === this.state.selectedCategory));
+		const filteredMonsters = this.state.filter.execute(this.props.monsters, this.props.officialMonsters);
 
-		const groupList = GeneralUtils.distinct(filteredMonsters.map(m => m.category))
-			.sort()
-			.map(category => {
-				const count = filteredMonsters.filter(m => m.category === category).length;
-				return (
-					<InfoPanel
-						key={category}
-						content={category || 'Uncategorised'}
-						info={count}
-						selected={category === this.state.selectedCategory}
-						onClick={() => this.setSelectedCategory(category)}
-					/>
-				);
-			});
-
-		let monsterList: ReactElement | ReactElement[] = monsters.map(m => (
+		const categories = CommonUtils.distinct(filteredMonsters.map(m => m.category)).sort();
+		let categoryList: ReactElement | ReactElement[] = categories.map(category => (
 			<InfoPanel
-				key={m.id}
-				content={(
-					<div className='monster-name'>
-						{m.name}
-					</div>
-				)}
-				info={(
-					<div>
-						<div>Level {m.level} {MonsterUtils.getRole(m.role)}</div>
-						<div>{MonsterUtils.getPhenotype(m)}</div>
-					</div>
-				)}
-				onClick={() => this.props.onSelectMonster(m)}
+				key={category}
+				content={category || 'Uncategorised'}
+				info={filteredMonsters.filter(m => m.category === category).length}
+				selected={category === this.state.selectedCategory}
+				onClick={() => this.setSelectedCategory(category)}
 			/>
 		));
+		if (categories.length === 0) {
+			categoryList = (
+				<div className='empty'>There are no monsters in any category that match the filter.</div>
+			);
+		}
+
+		const monstersInCategory = CommonUtils.sort(filteredMonsters.filter(m => m.category === this.state.selectedCategory));
+		let monsterList: ReactElement | ReactElement[] = monstersInCategory.map(m => {
+			let actions = null;
+			if (this.props.monsters.includes(m)) {
+				actions = (
+					<ButtonGroup orientation='vertical'>
+						<IconButton onClick={e => { e.stopPropagation(); this.props.editMonster(m); }}><Edit /></IconButton>
+						<IconButton onClick={e => { e.stopPropagation(); this.props.deleteMonster(m); }}><Delete /></IconButton>
+					</ButtonGroup>
+				);
+			}
+
+			return (
+				<InfoPanel
+					key={m.id}
+					content={(
+						<div className='monster-name'>
+							{m.name || 'Unnamed Monster'}
+						</div>
+					)}
+					info={(
+						<div>
+							<div>Level {m.level} {MonsterUtils.getRole(m.role)}</div>
+							<div>{MonsterUtils.getPhenotype(m)}</div>
+						</div>
+					)}
+					actions={actions}
+					onClick={() => this.props.selectMonster(m)}
+				/>
+			);
+		});
 		if (this.state.selectedCategory === null) {
 			monsterList = (
 				<div className='empty'>Select a category from the list.</div>
@@ -301,16 +377,16 @@ export class MonstersPage extends Component<Props, State> {
 				<Divider key='divider' />
 			);
 
-			if (monsters.length === 0) {
+			if (monstersInCategory.length === 0) {
 				monsterList = (
 					<div className='empty'>There are no monsters in this category that match the filter.</div>
 				);
 			}
 		}
 
-		let monsterColumnHeading = null;
+		let monsterListHeading = null;
 		if (this.state.selectedCategory !== null) {
-			monsterColumnHeading = (
+			monsterListHeading = (
 				<InfoPanel
 					content={(
 						<div className='category-header'>
@@ -329,71 +405,78 @@ export class MonstersPage extends Component<Props, State> {
 		return (
 			<div className='monsters-page'>
 				<div className='filter-column'>
-					<Stack spacing={2}>
-						<TextField placeholder='Search...' text={this.state.filter.text} onChange={value => this.setFilterText(value)} />
+					<Stack spacing={1}>
+						<Button variant='contained' fullWidth={true} onClick={() => this.props.createMonster(this.state.selectedCategory || '')}>Create A Monster</Button>
 						<Divider />
-						<div className='filter-level'>
-							<InfoPanel content='Show Levels' info={Math.min(...this.state.filter.level) + ' to ' + Math.max(...this.state.filter.level)} />
-							<div className='filter-level-slider'>
-								<Slider min={1} max={40} value={this.state.filter.level} onChange={(e, value) => this.setFilterLevel(value as number[])} />
-							</div>
-						</div>
+						<StringField label='' placeholder='Search...' value={this.state.filter.text} onChange={value => this.setFilterText(value)} />
 						<Divider />
-						<Select value={this.state.filter.roleType} onChange={e => this.setFilterRoleType(e.target.value as RoleType)}>
-							<MenuItem value={RoleType.Any}>Any Role</MenuItem>
-							<MenuItem value={RoleType.Artillery}>{EnumHelper.roleType(RoleType.Artillery)}</MenuItem>
-							<MenuItem value={RoleType.Brute}>{EnumHelper.roleType(RoleType.Brute)}</MenuItem>
-							<MenuItem value={RoleType.Controller}>{EnumHelper.roleType(RoleType.Controller)}</MenuItem>
-							<MenuItem value={RoleType.Lurker}>{EnumHelper.roleType(RoleType.Lurker)}</MenuItem>
-							<MenuItem value={RoleType.Skirmisher}>{EnumHelper.roleType(RoleType.Skirmisher)}</MenuItem>
-							<MenuItem value={RoleType.Soldier}>{EnumHelper.roleType(RoleType.Soldier)}</MenuItem>
-						</Select>
-						<Select value={this.state.filter.roleFlag} onChange={e => this.setFilterRoleFlag(e.target.value as RoleFlag)}>
-							<MenuItem value={RoleFlag.Any}>Any Role Modifier</MenuItem>
-							<MenuItem value={RoleFlag.Standard}>{EnumHelper.roleFlag(RoleFlag.Standard)}</MenuItem>
-							<MenuItem value={RoleFlag.Elite}>{EnumHelper.roleFlag(RoleFlag.Elite)}</MenuItem>
-							<MenuItem value={RoleFlag.Solo}>{EnumHelper.roleFlag(RoleFlag.Solo)}</MenuItem>
-							<MenuItem value={RoleFlag.Minion}>{EnumHelper.roleFlag(RoleFlag.Minion)}</MenuItem>
-						</Select>
-						<div className='filter-control-row'>
-							<div>Leaders Only</div>
-							<Switch checked={this.state.filter.roleLeader} onChange={e => this.setFilterLeader(e.target.checked)} />
-						</div>
-						<Divider />
-						<Select value={this.state.filter.monsterSize} onChange={e => this.setFilterMonsterSize(e.target.value as MonsterSize)}>
-							<MenuItem value={MonsterSize.Any}>Any Size</MenuItem>
-							<MenuItem value={MonsterSize.Tiny}>{EnumHelper.monsterSize(MonsterSize.Tiny)}</MenuItem>
-							<MenuItem value={MonsterSize.Small}>{EnumHelper.monsterSize(MonsterSize.Small)}</MenuItem>
-							<MenuItem value={MonsterSize.Medium}>{EnumHelper.monsterSize(MonsterSize.Medium)}</MenuItem>
-							<MenuItem value={MonsterSize.Large}>{EnumHelper.monsterSize(MonsterSize.Large)}</MenuItem>
-							<MenuItem value={MonsterSize.Huge}>{EnumHelper.monsterSize(MonsterSize.Huge)}</MenuItem>
-							<MenuItem value={MonsterSize.Gargantuan}>{EnumHelper.monsterSize(MonsterSize.Gargantuan)}</MenuItem>
-						</Select>
-						<Select value={this.state.filter.monsterOrigin} onChange={e => this.setFilterMonsterOrigin(e.target.value as MonsterOrigin)}>
-							<MenuItem value={MonsterOrigin.Any}>Any Origin</MenuItem>
-							<MenuItem value={MonsterOrigin.Aberrant}>{EnumHelper.monsterOrigin(MonsterOrigin.Aberrant)}</MenuItem>
-							<MenuItem value={MonsterOrigin.Elemental}>{EnumHelper.monsterOrigin(MonsterOrigin.Elemental)}</MenuItem>
-							<MenuItem value={MonsterOrigin.Fey}>{EnumHelper.monsterOrigin(MonsterOrigin.Fey)}</MenuItem>
-							<MenuItem value={MonsterOrigin.Immortal}>{EnumHelper.monsterOrigin(MonsterOrigin.Immortal)}</MenuItem>
-							<MenuItem value={MonsterOrigin.Natural}>{EnumHelper.monsterOrigin(MonsterOrigin.Natural)}</MenuItem>
-							<MenuItem value={MonsterOrigin.Shadow}>{EnumHelper.monsterOrigin(MonsterOrigin.Shadow)}</MenuItem>
-						</Select>
-						<Select value={this.state.filter.monsterType} onChange={e => this.setFilterMonsterType(e.target.value as MonsterType)}>
-							<MenuItem value={MonsterType.Any}>Any Type</MenuItem>
-							<MenuItem value={MonsterType.Animate}>{EnumHelper.monsterType(MonsterType.Animate)}</MenuItem>
-							<MenuItem value={MonsterType.Beast}>{EnumHelper.monsterType(MonsterType.Beast)}</MenuItem>
-							<MenuItem value={MonsterType.Humanoid}>{EnumHelper.monsterType(MonsterType.Humanoid)}</MenuItem>
-							<MenuItem value={MonsterType.MagicalBeast}>{EnumHelper.monsterType(MonsterType.MagicalBeast)}</MenuItem>
-						</Select>
-						<Divider />
-						<Button variant='outlined' fullWidth={true} disabled={!this.state.filter.isActive()} onClick={() => this.resetFilter()}>Reset Filter</Button>
+						<Accordion>
+							<AccordionSummary expandIcon={<ExpandMore />}>
+								<Typography>Filter Monsters</Typography>
+							</AccordionSummary>
+							<AccordionDetails>
+								<Stack spacing={1}>
+									<div className='filter-level'>
+										<InfoPanel content='Show Levels' info={Math.min(...this.state.filter.level) + ' to ' + Math.max(...this.state.filter.level)} />
+										<div className='filter-level-slider'>
+											<Slider min={1} max={40} value={this.state.filter.level} onChange={(e, value) => this.setFilterLevel(value as number[])} />
+										</div>
+									</div>
+									<Divider />
+									<EnumField
+										label='Role'
+										options={[RoleType.Any, RoleType.Artillery, RoleType.Brute, RoleType.Controller, RoleType.Lurker, RoleType.Skirmisher, RoleType.Soldier]}
+										value={this.state.filter.roleType}
+										format={value => EnumHelper.roleType(value as RoleType)}
+										onChange={value => this.setFilterRoleType(value as RoleType)}
+									/>
+									<EnumField
+										label='Role Modifier'
+										options={[RoleFlag.Any, RoleFlag.Standard, RoleFlag.Elite, RoleFlag.Solo, RoleFlag.Minion]}
+										value={this.state.filter.roleFlag}
+										format={value => EnumHelper.roleFlag(value as RoleFlag)}
+										onChange={value => this.setFilterRoleFlag(value as RoleFlag)}
+									/>
+									<Divider />
+									<BooleanField label='Show Leaders' value={this.state.filter.roleLeader} onChange={value => this.setFilterLeader(value)} />
+									<BooleanField label='Show Non-Leaders' value={this.state.filter.roleNonLeader} onChange={value => this.setFilterNonLeader(value)} />
+									<Divider />
+									<EnumField
+										label='Size'
+										options={[MonsterSize.Any, MonsterSize.Tiny, MonsterSize.Small, MonsterSize.Medium, MonsterSize.Large, MonsterSize.Huge, MonsterSize.Gargantuan]}
+										value={this.state.filter.monsterSize}
+										format={value => EnumHelper.monsterSize(value as MonsterSize)}
+										onChange={value => this.setFilterMonsterSize(value as MonsterSize)}
+									/>
+									<EnumField
+										label='Origin'
+										options={[MonsterOrigin.Any, MonsterOrigin.Aberrant, MonsterOrigin.Elemental, MonsterOrigin.Fey, MonsterOrigin.Immortal, MonsterOrigin.Natural, MonsterOrigin.Shadow]}
+										value={this.state.filter.monsterOrigin}
+										format={value => EnumHelper.monsterOrigin(value as MonsterOrigin)}
+										onChange={value => this.setFilterMonsterOrigin(value as MonsterOrigin)}
+									/>
+									<EnumField
+										label='Type'
+										options={[MonsterType.Any, MonsterType.Animate, MonsterType.Beast, MonsterType.Humanoid, MonsterType.MagicalBeast]}
+										value={this.state.filter.monsterType}
+										format={value => EnumHelper.monsterType(value as MonsterType)}
+										onChange={value => this.setFilterMonsterType(value as MonsterType)}
+									/>
+									<Divider />
+									<BooleanField label='Show Custom Monsters' value={this.state.filter.showCustom} onChange={value => this.setFilterCustom(value)} />
+									<BooleanField label='Show Official Monsters' value={this.state.filter.showOfficial} onChange={value => this.setFilterOfficial(value)} />
+									<Divider />
+									<Button variant='outlined' fullWidth={true} disabled={!this.state.filter.isActive()} onClick={() => this.resetFilter()}>Reset Filter</Button>
+								</Stack>
+							</AccordionDetails>
+						</Accordion>
 					</Stack>
 				</div>
-				<div className='group-list'>
-					<Stack spacing={1}>{groupList}</Stack>
+				<div className='category-list'>
+					<Stack spacing={1}>{categoryList}</Stack>
 				</div>
 				<div className='monster-list'>
-					{monsterColumnHeading}
+					{monsterListHeading}
 					<Stack spacing={1}>{monsterList}</Stack>
 				</div>
 			</div>

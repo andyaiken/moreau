@@ -108,7 +108,7 @@ export enum ThreatType {
 };
 
 export class EnumHelper {
-	public static monsterSize(value: MonsterSize) {
+	static monsterSize(value: MonsterSize) {
 		switch (value) {
 		case MonsterSize.Tiny: return 'Tiny';
 		case MonsterSize.Small: return 'Small';
@@ -117,11 +117,11 @@ export class EnumHelper {
 		case MonsterSize.Huge: return 'Huge';
 		case MonsterSize.Gargantuan: return 'Gargantuan';
 		case MonsterSize.None: return 'None';
-		case MonsterSize.Any: return 'Any';
+		case MonsterSize.Any: return 'Any Size';
 		}
 	};
 
-	public static monsterOrigin(value: MonsterOrigin) {
+	static monsterOrigin(value: MonsterOrigin) {
 		switch (value) {
 		case MonsterOrigin.Aberrant: return 'Aberrant';
 		case MonsterOrigin.Elemental: return 'Elemental';
@@ -130,22 +130,22 @@ export class EnumHelper {
 		case MonsterOrigin.Natural: return 'Natural';
 		case MonsterOrigin.Shadow: return 'Shadow';
 		case MonsterOrigin.None: return 'None';
-		case MonsterOrigin.Any: return 'Any';
+		case MonsterOrigin.Any: return 'Any Origin';
 		}
 	};
 
-	public static monsterType(value: MonsterType) {
+	static monsterType(value: MonsterType) {
 		switch (value) {
 		case MonsterType.Animate: return 'Animate';
 		case MonsterType.Beast: return 'Beast';
 		case MonsterType.Humanoid: return 'Humanoid';
 		case MonsterType.MagicalBeast: return 'Magical Beast';
 		case MonsterType.None: return 'None';
-		case MonsterType.Any: return 'Any';
+		case MonsterType.Any: return 'Any Type';
 		}
 	};
 
-	public static roleType(value: RoleType) {
+	static roleType(value: RoleType) {
 		switch (value) {
 		case RoleType.Artillery: return 'Artillery';
 		case RoleType.Blaster: return 'Blaster';
@@ -157,22 +157,22 @@ export class EnumHelper {
 		case RoleType.Soldier: return 'Soldier';
 		case RoleType.Warder: return 'Warder';
 		case RoleType.None: return 'None';
-		case RoleType.Any: return 'Any';
+		case RoleType.Any: return 'Any Role';
 		}
 	};
 
-	public static roleFlag(value: RoleFlag) {
+	static roleFlag(value: RoleFlag) {
 		switch (value) {
 		case RoleFlag.Standard: return 'Standard';
 		case RoleFlag.Elite: return 'Elite';
 		case RoleFlag.Solo: return 'Solo';
 		case RoleFlag.Minion: return 'Minion';
 		case RoleFlag.None: return 'None';
-		case RoleFlag.Any: return 'Any';
+		case RoleFlag.Any: return 'Any Role Modifier';
 		}
 	};
 
-	public static powerCategory(value: PowerCategory) {
+	static powerCategory(value: PowerCategory) {
 		switch (value) {
 		case PowerCategory.Trait: return 'Trait';
 		case PowerCategory.Standard: return 'Standard Action';
@@ -183,7 +183,7 @@ export class EnumHelper {
 		}
 	};
 
-	public static defenceType(value: DefenceType) {
+	static defenceType(value: DefenceType) {
 		switch (value) {
 		case DefenceType.AC: return 'AC';
 		case DefenceType.Fortitude: return 'Fortitude';
@@ -192,7 +192,7 @@ export class EnumHelper {
 		}
 	};
 
-	public static actionType(value: ActionType) {
+	static actionType(value: ActionType) {
 		switch (value) {
 		case ActionType.None: return 'None';
 		case ActionType.Standard: return 'Standard Action';
@@ -205,7 +205,7 @@ export class EnumHelper {
 		}
 	};
 
-	public static useType(value: UseType) {
+	static useType(value: UseType) {
 		switch (value) {
 		case UseType.Encounter: return 'Encounter';
 		case UseType.AtWill: return 'At Will';
@@ -214,7 +214,7 @@ export class EnumHelper {
 		}
 	};
 
-	public static damageType(value: DamageType) {
+	static damageType(value: DamageType) {
 		switch (value) {
 		case DamageType.Untyped: return 'Untyped';
 		case DamageType.Acid: return 'Acid';
@@ -230,7 +230,7 @@ export class EnumHelper {
 		}
 	};
 
-	public static threatType(value: ThreatType) {
+	static threatType(value: ThreatType) {
 		switch (value) {
 		case ThreatType.Monster: return 'Monster';
 		case ThreatType.Trap: return 'Trap';

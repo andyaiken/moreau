@@ -1,0 +1,19 @@
+.editable-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.editable-panel.outlined {
+	border: 1px solid rgba(0, 0, 0, 0.23);
+	border-radius: 4px;
+}
+
+.editable-panel .editable-panel-content {
+	width: 100%;
+}
+
+.editable-panel .editable-panel-actions {
+	margin-left: 5px;
+}

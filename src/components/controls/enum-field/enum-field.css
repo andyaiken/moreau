@@ -1,0 +1,18 @@
+.enum-field {
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+	font-size: 1rem;
+	font-weight: normal;
+	text-align: left;
+}
+
+.enum-field .MuiOutlinedInput-root {
+	width: 60%;
+	flex: 0 0 auto;
+	margin-left: 5px;
+}
+
+.enum-field .MuiSelect-outlined {
+    background: white;
+}

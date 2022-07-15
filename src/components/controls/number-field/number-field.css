@@ -1,0 +1,18 @@
+.number-field {
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+.number-field>input {
+	font-size: 1rem;
+    padding: 16.5px 14px;
+    margin-left: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    height: 56px;
+    width: 60%;
+	flex: 0 0 auto;
+}

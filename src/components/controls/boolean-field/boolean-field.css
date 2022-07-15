@@ -1,0 +1,8 @@
+.boolean-field {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 1rem;
+	font-weight: normal;
+	height: 56px;
+}

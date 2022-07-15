@@ -1,2 +1,2 @@
-import { AuraPanel, PowerPanel, RegenerationPanel } from './power-panel';
-export { AuraPanel, PowerPanel, RegenerationPanel };
+import { AuraPanel, AuraEditorPanel, PowerPanel, PowerEditorPanel, RegenerationPanel, RegenerationEditorPanel } from './power-panel';
+export { AuraPanel, AuraEditorPanel, PowerPanel, PowerEditorPanel, RegenerationPanel, RegenerationEditorPanel };

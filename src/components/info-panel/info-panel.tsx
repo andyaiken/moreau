@@ -5,18 +5,20 @@ import './info-panel.css';
 interface Props {
 	content: React.ReactNode;
 	info: React.ReactNode;
+	actions: React.ReactNode;
 	outlined: boolean;
 	selected: boolean;
 	onClick: (() => void) | null;
-}
+};
 
 interface State {
-}
+};
 
 export class InfoPanel extends React.Component<Props, State> {
-	public static defaultProps = {
+	static defaultProps = {
 		content: null,
 		info: null,
+		actions: null,
 		outlined: false,
 		selected: false,
 		onClick: null
@@ -28,7 +30,7 @@ export class InfoPanel extends React.Component<Props, State> {
 		};
 	};
 
-	public render() {
+	render() {
 		let style = 'info-panel';
 		if (this.props.outlined) {
 			style += ' outlined';
@@ -58,10 +60,20 @@ export class InfoPanel extends React.Component<Props, State> {
 			);
 		}
 
+		let actions = null;
+		if (this.props.actions) {
+			actions = (
+				<div className='info-panel-actions'>
+					{this.props.actions}
+				</div>
+			);
+		}
+
 		return (
 			<div className={style} onClick={() => this.props.onClick ? this.props.onClick() : null}>
 				{content}
 				{info}
+				{actions}
 			</div>
 		);
 	}

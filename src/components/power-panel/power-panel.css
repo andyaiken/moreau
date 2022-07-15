@@ -1,13 +1,28 @@
 .power-panel {
-	background-color: rgb(231, 228, 209);
-	padding: 5px 10px;
+	display: block;
 }
 
 .power-panel .top-line {
-	display: block;
+	display: flex;
+	align-items: center;
+}
+
+.power-panel .top-line>* {
+	margin-left: 4px;
+}
+
+.power-panel .power-icon {
+	height: 20px;
+	width: 20px;
 }
 
 .power-panel .description,
 .power-panel .content {
-	padding-left: 15px;
+	padding-left: 28px;
+}
+
+.power-editor-panel,
+.aura-editor-panel,
+.regeneration-editor-panel {
+	flex: 1 1 0;
 }

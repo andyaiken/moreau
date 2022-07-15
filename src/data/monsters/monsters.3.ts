@@ -30034,7 +30034,7 @@ const monsters: Monster[] = [
 		languages: 'Giant',
 		skills: '',
 		equipment: 'maul; scale armor',
-		category: '',
+		category: 'Azer',
 		strength: {
 			score: 29,
 			modifier: 9,

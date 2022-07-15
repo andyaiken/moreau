@@ -39,14 +39,34 @@
 	cursor: pointer;
 }
 
+.moreau .footer-panel .footer-tab:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
 .moreau .footer-panel .footer-tab.selected {
 	pointer-events: none;
 	background-color: rgba(0, 0, 0, 0.1);
 	font-weight: bold;
 }
 
-.moreau .drawer-content {
+.moreau .drawer-container {
+	height: 100%;
+	width: 900px;
+	display: flex;
+	flex-direction: column;
+}
+
+.moreau .drawer-container .drawer-content {
+	flex: 1 1 0;
 	padding: 10px;
-	overflow-y: auto;
-	width: 750px;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+.moreau .drawer-container .drawer-footer {
+	flex: 0 0 auto;
+	padding: 10px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }

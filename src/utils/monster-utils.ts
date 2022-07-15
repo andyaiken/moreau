@@ -2,7 +2,7 @@ import { EnumHelper, RoleFlag, RoleType } from '../models/enums';
 import { Monster, Role } from '../models/monster';
 
 export class MonsterUtils {
-	public static getRole(role: Role) {
+	static getRole = (role: Role) => {
 		let str = EnumHelper.roleType(role.type);
 
 		switch (role.flag) {
@@ -24,15 +24,15 @@ export class MonsterUtils {
 		return str;
 	};
 
-	public static getPhenotype(monster: Monster) {
+	static getPhenotype = (monster: Monster) => {
 		let str = `${EnumHelper.monsterSize(monster.size)} ${EnumHelper.monsterOrigin(monster.origin)} ${EnumHelper.monsterType(monster.type)}`;
 		if (monster.keywords) {
 			str += ` (${monster.keywords})`;
 		}
 		return str;
-	}
+	};
 
-	public static getXP(level: number, flag: RoleFlag) {
+	static getXP = (level: number, flag: RoleFlag) => {
 		let xp = 0;
 
 		switch (level) {
@@ -171,5 +171,5 @@ export class MonsterUtils {
 		}
 
 		return xp;
-	}
+	};
 }

@@ -7,17 +7,19 @@ export interface Role {
 	leader: boolean;
 };
 
-export interface Regeneration {
-	value: number;
-	details: string;
-};
-
 export interface Ability {
 	score: number;
+
+	// TODO: Remove the modifier field - it's not used
 	modifier: number;
 
 	// TODO: Remove the cost field - it's not used
 	cost: number;
+};
+
+export interface Regeneration {
+	value: number;
+	details: string;
 };
 
 export interface Aura {

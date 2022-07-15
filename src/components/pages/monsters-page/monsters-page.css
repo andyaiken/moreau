@@ -5,7 +5,7 @@
 }
 
 .monsters-page .filter-column,
-.monsters-page .group-list,
+.monsters-page .category-list,
 .monsters-page .monster-list {
 	height: 100%;
 	padding: 10px;
@@ -19,13 +19,6 @@
 
 .monsters-page .filter-column .filter-level .filter-level-slider {
 	padding: 0 10px;
-}
-
-.monsters-page .filter-column .filter-control-row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
 }
 
 .monsters-page .monster-list {
@@ -44,6 +37,7 @@
 	font-weight: bold;
 }
 
+.monsters-page .category-list .empty,
 .monsters-page .monster-list .empty {
 	display: flex;
 	justify-content: center;

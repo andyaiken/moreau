@@ -786,7 +786,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Athletics +13, Endurance +11, Intimidate +8',
 		equipment: 'hide armor; maul',
-		category: '',
+		category: 'Lycanthrope',
 		strength: {
 			score: 20,
 			modifier: 5,
@@ -948,7 +948,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Acrobatics +12, Bluff +11, Insight +12, Stealth +12',
 		equipment: 'katar; leather armor',
-		category: '',
+		category: 'Lycanthrope',
 		strength: {
 			score: 17,
 			modifier: 3,
@@ -1144,7 +1144,7 @@ const monsters: Monster[] = [
 		languages: 'Common',
 		skills: 'Athletics +17, Bluff +14, Endurance +14, Intimidate +14',
 		equipment: 'falchion',
-		category: '',
+		category: 'Lycanthrope',
 		strength: {
 			score: 22,
 			modifier: 6,

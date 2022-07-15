@@ -24,23 +24,34 @@
 	background-color: rgb(193, 192, 174);
 }
 
+.stat-block .row.vcenter {
+	align-items: center;
+}
+
 .stat-block .row .cell {
 	flex: 1 1 0;
 }
 
 .stat-block .row .cell.two {
-	flex: 2 3 0;
+	flex: 2 2 0;
+}
+
+.stat-block .row .cell.center {
+	text-align: center;
 }
 
 .stat-block .row .cell.right {
 	text-align: right;
 }
 
-.stat-block .row .cell .value {
-	padding: 5px 10px;
-}
-
-.stat-block .row .cell .value.big {
+.stat-block .row .cell.big {
 	font-size: 1.3rem;
 	font-weight: bold;
+}
+
+.stat-block .level-role-editor-panel,
+.stat-block .phenotype-editor-panel,
+.stat-block .damage-mods-editor-panel,
+.stat-block .defences-editor-panel {
+	flex: 1 1 0;
 }
