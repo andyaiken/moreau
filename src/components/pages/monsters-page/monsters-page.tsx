@@ -1,5 +1,5 @@
-import { Close, Delete, Edit, ExpandMore } from '@mui/icons-material';
-import { Accordion, AccordionDetails, AccordionSummary, Button, ButtonGroup, Divider, IconButton, Slider, Stack, Typography } from '@mui/material';
+import { Close, Delete, Edit } from '@mui/icons-material';
+import { Button, ButtonGroup, IconButton, Slider } from '@mui/material';
 import { Component, ReactElement } from 'react';
 
 import { BooleanField } from '../../controls/boolean-field';
@@ -14,6 +14,7 @@ import { CommonUtils } from '../../../utils/common-utils';
 import { MonsterUtils } from '../../../utils/monster-utils';
 
 import './monsters-page.css';
+import { Expander } from '../../controls/expander';
 
 class MonsterFilter {
 
@@ -374,7 +375,7 @@ export class MonstersPage extends Component<Props, State> {
 			);
 		} else {
 			monsterList.unshift(
-				<Divider key='divider' />
+				<hr key='divider' />
 			);
 
 			if (monstersInCategory.length === 0) {
@@ -405,79 +406,72 @@ export class MonstersPage extends Component<Props, State> {
 		return (
 			<div className='monsters-page'>
 				<div className='filter-column'>
-					<Stack spacing={1}>
+					<div>
 						<Button variant='contained' fullWidth={true} onClick={() => this.props.createMonster(this.state.selectedCategory || '')}>Create A Monster</Button>
-						<Divider />
-						<StringField label='' placeholder='Search...' value={this.state.filter.text} onChange={value => this.setFilterText(value)} />
-						<Divider />
-						<Accordion>
-							<AccordionSummary expandIcon={<ExpandMore />}>
-								<Typography>Filter Monsters</Typography>
-							</AccordionSummary>
-							<AccordionDetails>
-								<Stack spacing={1}>
-									<div className='filter-level'>
-										<InfoPanel content='Show Levels' info={Math.min(...this.state.filter.level) + ' to ' + Math.max(...this.state.filter.level)} />
-										<div className='filter-level-slider'>
-											<Slider min={1} max={40} value={this.state.filter.level} onChange={(e, value) => this.setFilterLevel(value as number[])} />
-										</div>
-									</div>
-									<Divider />
-									<EnumField
-										label='Role'
-										options={[RoleType.Any, RoleType.Artillery, RoleType.Brute, RoleType.Controller, RoleType.Lurker, RoleType.Skirmisher, RoleType.Soldier]}
-										value={this.state.filter.roleType}
-										format={value => EnumHelper.roleType(value as RoleType)}
-										onChange={value => this.setFilterRoleType(value as RoleType)}
-									/>
-									<EnumField
-										label='Role Modifier'
-										options={[RoleFlag.Any, RoleFlag.Standard, RoleFlag.Elite, RoleFlag.Solo, RoleFlag.Minion]}
-										value={this.state.filter.roleFlag}
-										format={value => EnumHelper.roleFlag(value as RoleFlag)}
-										onChange={value => this.setFilterRoleFlag(value as RoleFlag)}
-									/>
-									<Divider />
-									<BooleanField label='Show Leaders' value={this.state.filter.roleLeader} onChange={value => this.setFilterLeader(value)} />
-									<BooleanField label='Show Non-Leaders' value={this.state.filter.roleNonLeader} onChange={value => this.setFilterNonLeader(value)} />
-									<Divider />
-									<EnumField
-										label='Size'
-										options={[MonsterSize.Any, MonsterSize.Tiny, MonsterSize.Small, MonsterSize.Medium, MonsterSize.Large, MonsterSize.Huge, MonsterSize.Gargantuan]}
-										value={this.state.filter.monsterSize}
-										format={value => EnumHelper.monsterSize(value as MonsterSize)}
-										onChange={value => this.setFilterMonsterSize(value as MonsterSize)}
-									/>
-									<EnumField
-										label='Origin'
-										options={[MonsterOrigin.Any, MonsterOrigin.Aberrant, MonsterOrigin.Elemental, MonsterOrigin.Fey, MonsterOrigin.Immortal, MonsterOrigin.Natural, MonsterOrigin.Shadow]}
-										value={this.state.filter.monsterOrigin}
-										format={value => EnumHelper.monsterOrigin(value as MonsterOrigin)}
-										onChange={value => this.setFilterMonsterOrigin(value as MonsterOrigin)}
-									/>
-									<EnumField
-										label='Type'
-										options={[MonsterType.Any, MonsterType.Animate, MonsterType.Beast, MonsterType.Humanoid, MonsterType.MagicalBeast]}
-										value={this.state.filter.monsterType}
-										format={value => EnumHelper.monsterType(value as MonsterType)}
-										onChange={value => this.setFilterMonsterType(value as MonsterType)}
-									/>
-									<Divider />
-									<BooleanField label='Show Custom Monsters' value={this.state.filter.showCustom} onChange={value => this.setFilterCustom(value)} />
-									<BooleanField label='Show Official Monsters' value={this.state.filter.showOfficial} onChange={value => this.setFilterOfficial(value)} />
-									<Divider />
-									<Button variant='outlined' fullWidth={true} disabled={!this.state.filter.isActive()} onClick={() => this.resetFilter()}>Reset Filter</Button>
-								</Stack>
-							</AccordionDetails>
-						</Accordion>
-					</Stack>
+						<hr />
+						<Expander title='Filter Monsters'>
+							<StringField label='' placeholder='Name, keywords...' value={this.state.filter.text} onChange={value => this.setFilterText(value)} />
+							<hr />
+							<div className='filter-level'>
+								<InfoPanel content='Show Levels' info={Math.min(...this.state.filter.level) + ' to ' + Math.max(...this.state.filter.level)} />
+								<div className='filter-level-slider'>
+									<Slider min={1} max={40} value={this.state.filter.level} onChange={(e, value) => this.setFilterLevel(value as number[])} />
+								</div>
+							</div>
+							<hr />
+							<EnumField
+								label='Role'
+								options={[RoleType.Any, RoleType.Artillery, RoleType.Brute, RoleType.Controller, RoleType.Lurker, RoleType.Skirmisher, RoleType.Soldier]}
+								value={this.state.filter.roleType}
+								format={value => EnumHelper.roleType(value as RoleType)}
+								onChange={value => this.setFilterRoleType(value as RoleType)}
+							/>
+							<EnumField
+								label='Modifier'
+								options={[RoleFlag.Any, RoleFlag.Standard, RoleFlag.Elite, RoleFlag.Solo, RoleFlag.Minion]}
+								value={this.state.filter.roleFlag}
+								format={value => EnumHelper.roleFlag(value as RoleFlag)}
+								onChange={value => this.setFilterRoleFlag(value as RoleFlag)}
+							/>
+							<hr />
+							<BooleanField label='Show Leaders' value={this.state.filter.roleLeader} onChange={value => this.setFilterLeader(value)} />
+							<BooleanField label='Show Non-Leaders' value={this.state.filter.roleNonLeader} onChange={value => this.setFilterNonLeader(value)} />
+							<hr />
+							<EnumField
+								label='Size'
+								options={[MonsterSize.Any, MonsterSize.Tiny, MonsterSize.Small, MonsterSize.Medium, MonsterSize.Large, MonsterSize.Huge, MonsterSize.Gargantuan]}
+								value={this.state.filter.monsterSize}
+								format={value => EnumHelper.monsterSize(value as MonsterSize)}
+								onChange={value => this.setFilterMonsterSize(value as MonsterSize)}
+							/>
+							<EnumField
+								label='Origin'
+								options={[MonsterOrigin.Any, MonsterOrigin.Aberrant, MonsterOrigin.Elemental, MonsterOrigin.Fey, MonsterOrigin.Immortal, MonsterOrigin.Natural, MonsterOrigin.Shadow]}
+								value={this.state.filter.monsterOrigin}
+								format={value => EnumHelper.monsterOrigin(value as MonsterOrigin)}
+								onChange={value => this.setFilterMonsterOrigin(value as MonsterOrigin)}
+							/>
+							<EnumField
+								label='Type'
+								options={[MonsterType.Any, MonsterType.Animate, MonsterType.Beast, MonsterType.Humanoid, MonsterType.MagicalBeast]}
+								value={this.state.filter.monsterType}
+								format={value => EnumHelper.monsterType(value as MonsterType)}
+								onChange={value => this.setFilterMonsterType(value as MonsterType)}
+							/>
+							<hr />
+							<BooleanField label='Show Custom Monsters' value={this.state.filter.showCustom} onChange={value => this.setFilterCustom(value)} />
+							<BooleanField label='Show Official Monsters' value={this.state.filter.showOfficial} onChange={value => this.setFilterOfficial(value)} />
+							<hr />
+							<Button variant='outlined' fullWidth={true} disabled={!this.state.filter.isActive()} onClick={() => this.resetFilter()}>Reset Filter</Button>
+						</Expander>
+					</div>
 				</div>
 				<div className='category-list'>
-					<Stack spacing={1}>{categoryList}</Stack>
+					{categoryList}
 				</div>
 				<div className='monster-list'>
 					{monsterListHeading}
-					<Stack spacing={1}>{monsterList}</Stack>
+					{monsterList}
 				</div>
 			</div>
 		);

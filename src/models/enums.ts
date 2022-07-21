@@ -168,7 +168,7 @@ export class EnumHelper {
 		case RoleFlag.Solo: return 'Solo';
 		case RoleFlag.Minion: return 'Minion';
 		case RoleFlag.None: return 'None';
-		case RoleFlag.Any: return 'Any Role Modifier';
+		case RoleFlag.Any: return 'Any Modifier';
 		}
 	};
 

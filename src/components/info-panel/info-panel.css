@@ -3,20 +3,18 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+	margin: 5px 0;
 }
 
 .info-panel.outlined,
 .info-panel.clickable {
 	border: 1px solid rgba(0, 0, 0, 0.23);
-	border-radius: 4px;
 	padding: 5px 10px;
-	margin: 10px 0;
 }
 
 .info-panel.clickable {
 	cursor: pointer;
 	border-color: rgba(25, 118, 210, 0.5);
-	color: rgb(25, 118, 210);
 }
 
 .info-panel.clickable:hover,
@@ -38,10 +36,14 @@
 	flex: 0 0 auto;
 	padding-left: 5px;
 	text-align: right;
-	opacity: 0.7;
+	font-size: 0.9rem;
+	opacity: 0.6;
 }
 
 .info-panel .info-panel-actions {
 	flex: 0 0 auto;
+	margin-left: 10px;
+	margin-right: -5px;
+	border-left: 1px solid rgba(0, 0, 0, 0.23);
 	padding-left: 5px;
 }

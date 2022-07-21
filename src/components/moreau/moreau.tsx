@@ -1,6 +1,7 @@
 import { Backdrop, Button, ButtonGroup, Drawer } from '@mui/material';
 import { Component } from 'react';
 
+import { CommandBar } from '../command-bar';
 import { MonsterEditor } from '../monster-editor';
 import { EncountersPage } from '../pages/encounters-page';
 import { MonstersPage } from '../pages/monsters-page';
@@ -215,27 +216,38 @@ export class Moreau extends Component<Props, State> {
 			);
 		}
 
+		let fullWidth = false;
+		let drawerHeader = null;
 		let drawerContent = null;
-		let drawerFooter = null;
 		let drawerClosable = false;
 		if (this.state.drawer) {
 			switch (this.state.drawer.mode) {
 			case 'view-monster': {
 					const monster = this.state.drawer.data as Monster;
 					if (this.state.monsters.includes(monster)) {
-						drawerFooter = (
-							<ButtonGroup variant='text'>
-								<Button onClick={() => this.editMonster(monster)}>Edit</Button>
-								<Button onClick={() => this.deleteMonster(monster)}>Delete</Button>
-								<Button onClick={() => this.setDrawer(null)}>Close</Button>
-							</ButtonGroup>
+						drawerHeader = (
+							<CommandBar
+								left={
+									<ButtonGroup variant='text'>
+										<Button onClick={() => this.editMonster(monster)}>Edit</Button>
+										<Button onClick={() => this.deleteMonster(monster)}>Delete</Button>
+									</ButtonGroup>
+								}
+								right={
+									<Button onClick={() => this.setDrawer(null)}>Close</Button>
+								}
+							/>
 						);
 					} else {
-						drawerFooter = (
-							<ButtonGroup variant='text'>
-								<Button onClick={() => this.copyMonster(monster)}>Create A Copy</Button>
-								<Button onClick={() => this.setDrawer(null)}>Close</Button>
-							</ButtonGroup>
+						drawerHeader = (
+							<CommandBar
+								left={
+									<Button onClick={() => this.copyMonster(monster)}>Create A Copy</Button>
+								}
+								right={
+									<Button onClick={() => this.setDrawer(null)}>Close</Button>
+								}
+							/>
 						);
 					}
 					drawerContent = (
@@ -248,14 +260,19 @@ export class Moreau extends Component<Props, State> {
 				break;
 			case 'edit-monster': {
 					const monster = this.state.drawer.data.monster as Monster;
+					fullWidth = true;
 					drawerContent = (
 						<MonsterEditor monster={monster} changeValue={(source, field, value) => this.changeValue(source, field, value)} />
 					);
-					drawerFooter = (
-						<ButtonGroup variant='text'>
-							<Button onClick={() => (this.state.drawer as DrawerInfo).data.accept()}>Save Changes</Button>
-							<Button onClick={() => (this.state.drawer as DrawerInfo).data.cancel()}>Cancel</Button>
-						</ButtonGroup>
+					drawerHeader = (
+						<CommandBar
+							left={
+								<Button onClick={() => (this.state.drawer as DrawerInfo).data.accept()}>Save Changes</Button>
+							}
+							right={
+								<Button onClick={() => (this.state.drawer as DrawerInfo).data.cancel()}>Cancel</Button>
+							}
+						/>
 					);
 					drawerClosable = false;
 				}
@@ -269,14 +286,12 @@ export class Moreau extends Component<Props, State> {
 				{content}
 				<FooterPanel selectedPage={this.state.selectedPage} onSelect={page => this.setSelectedPage(page)} />
 				<Backdrop open={this.state.drawer !== null} onClick={() => drawerClosable ? this.setDrawer(null) : null} />
-				<Drawer anchor='right' variant='persistent' open={this.state.drawer !== null}>
-					<div className='drawer-container'>
-						<div className='drawer-content'>
-							{drawerContent}
-						</div>
-						<div className='drawer-footer'>
-							{drawerFooter}
-						</div>
+				<Drawer className={fullWidth ? 'drawer-container full-width' : 'drawer-container'} anchor='right' variant='persistent' open={this.state.drawer !== null}>
+					<div className='drawer-header'>
+						{drawerHeader}
+					</div>
+					<div className='drawer-content'>
+						{drawerContent}
 					</div>
 				</Drawer>
 			</div>

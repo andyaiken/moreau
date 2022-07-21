@@ -7,7 +7,6 @@
 
 .editable-panel.outlined {
 	border: 1px solid rgba(0, 0, 0, 0.23);
-	border-radius: 4px;
 }
 
 .editable-panel .editable-panel-content {

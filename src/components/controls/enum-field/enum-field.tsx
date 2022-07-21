@@ -25,7 +25,7 @@ export class EnumField extends React.Component<Props, State> {
 		return (
 			<div className='enum-field'>
 				<div>{this.props.label}</div>
-				<Select value={this.props.value} onChange={e => this.props.onChange(e.target.value)}>
+				<Select className='dropdown' value={this.props.value} onChange={e => this.props.onChange(e.target.value)}>
 					{this.props.options.map(option => <MenuItem key={option} value={option}>{this.props.format(option)}</MenuItem>)}
 				</Select>
 			</div>

@@ -49,24 +49,23 @@
 	font-weight: bold;
 }
 
-.moreau .drawer-container {
-	height: 100%;
-	width: 900px;
-	display: flex;
-	flex-direction: column;
+.moreau .drawer-container > * {
+	width: 50%;
+	transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms, width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms !important;
+}
+
+.moreau .drawer-container.full-width > * {
+	width: 100%;
+}
+
+.moreau .drawer-container .drawer-header {
+	flex: 0 0 auto;
+	padding: 10px 10px 5px 10px;
 }
 
 .moreau .drawer-container .drawer-content {
 	flex: 1 1 0;
-	padding: 10px;
+	padding: 5px 10px 10px 10px;
 	height: 100%;
 	overflow-y: hidden;
-}
-
-.moreau .drawer-container .drawer-footer {
-	flex: 0 0 auto;
-	padding: 10px;
-	display: flex;
-    align-items: center;
-    justify-content: center;
 }

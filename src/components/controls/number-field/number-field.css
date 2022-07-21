@@ -4,13 +4,13 @@
 	justify-content: space-between;
 	font-size: 1rem;
 	font-weight: normal;
+	margin: 5px 0;
 }
 
 .number-field>input {
 	font-size: 1rem;
     padding: 16.5px 14px;
     margin-left: 5px;
-    border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.23);
     height: 56px;
     width: 60%;

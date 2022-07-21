@@ -581,7 +581,7 @@ class DamageModsEditorPanel extends Component<DamageModsEditorPanelProps, Damage
 					outlined={true}
 					content={(
 						<div>
-							<div>{typeSection}</div>
+							<div><b>{typeSection}</b></div>
 							<EnumField
 								label='Damage Type'
 								options={[DamageType.Acid, DamageType.Cold, DamageType.Fire, DamageType.Force, DamageType.Lightning, DamageType.Necrotic, DamageType.Poison, DamageType.Psychic, DamageType.Radiant, DamageType.Thunder]}

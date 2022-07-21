@@ -5,14 +5,13 @@
 	font-size: 1rem;
 	font-weight: normal;
 	text-align: left;
+	margin: 5px 0;
 }
 
-.enum-field .MuiOutlinedInput-root {
+.enum-field .dropdown {
 	width: 60%;
 	flex: 0 0 auto;
 	margin-left: 5px;
-}
-
-.enum-field .MuiSelect-outlined {
     background: white;
+	border-radius: 0;
 }
