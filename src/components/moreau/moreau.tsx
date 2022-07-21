@@ -1,4 +1,5 @@
-import { Backdrop, Button, ButtonGroup, Drawer } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import { Backdrop, Button, ButtonGroup, Drawer, IconButton } from '@mui/material';
 import { Component } from 'react';
 
 import { CommandBar } from '../command-bar';
@@ -234,7 +235,9 @@ export class Moreau extends Component<Props, State> {
 									</ButtonGroup>
 								}
 								right={
-									<Button onClick={() => this.setDrawer(null)}>Close</Button>
+									<IconButton onClick={() => this.setDrawer(null)}>
+										<Close />
+									</IconButton>
 								}
 							/>
 						);
@@ -245,7 +248,9 @@ export class Moreau extends Component<Props, State> {
 									<Button onClick={() => this.copyMonster(monster)}>Create A Copy</Button>
 								}
 								right={
-									<Button onClick={() => this.setDrawer(null)}>Close</Button>
+									<IconButton onClick={() => this.setDrawer(null)}>
+										<Close />
+									</IconButton>
 								}
 							/>
 						);
@@ -260,6 +265,26 @@ export class Moreau extends Component<Props, State> {
 				break;
 			case 'edit-monster': {
 					const monster = this.state.drawer.data.monster as Monster;
+					const addAura = () => {
+						const aura = Factory.createAura();
+						monster.auras.push(aura);
+						this.changeValue(monster, 'auras', monster.auras);
+					};
+			
+					const addPower = (hasAction: boolean) => {
+						const power = Factory.createPower();
+						if (hasAction) {
+							power.action = Factory.createPowerAction();
+						}
+						monster.powers.push(power);
+						this.changeValue(monster, 'powers', monster.powers);
+					};
+			
+					const addRegen = () => {
+						const regen = Factory.createRegeneration();
+						this.changeValue(monster, 'regeneration', regen);
+					};
+			
 					fullWidth = true;
 					drawerContent = (
 						<MonsterEditor monster={monster} changeValue={(source, field, value) => this.changeValue(source, field, value)} />
@@ -267,7 +292,13 @@ export class Moreau extends Component<Props, State> {
 					drawerHeader = (
 						<CommandBar
 							left={
-								<Button onClick={() => (this.state.drawer as DrawerInfo).data.accept()}>Save Changes</Button>
+								<ButtonGroup variant='text'>
+									<Button variant='contained' onClick={() => (this.state.drawer as DrawerInfo).data.accept()}>Save Changes</Button>
+									<Button onClick={() => addAura()}>Add an Aura</Button>
+									<Button onClick={() => addPower(false)}>Add a Trait</Button>
+									<Button onClick={() => addPower(true)}>Add an Action</Button>
+									{monster.regeneration ? null : <Button onClick={() => addRegen()}>Add regeneration</Button>}
+								</ButtonGroup>
 							}
 							right={
 								<Button onClick={() => (this.state.drawer as DrawerInfo).data.cancel()}>Cancel</Button>

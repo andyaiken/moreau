@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from '@mui/material';
 import { Component } from 'react';
 
 import { BooleanField } from '../controls/boolean-field';
@@ -13,11 +14,10 @@ import { DamageModifier, Monster } from '../../models/monster';
 import { Power } from '../../models/power';
 
 import { CommonUtils } from '../../utils/common-utils';
+import { Factory } from '../../utils/factory';
 import { MonsterUtils } from '../../utils/monster-utils';
 
 import './stat-block.css';
-import { Button, ButtonGroup } from '@mui/material';
-import { Factory } from '../../utils/factory';
 
 interface Props {
 	mode: 'view' | 'edit';
@@ -134,45 +134,6 @@ export class StatBlock extends Component<Props, State> {
 						viewer={this.props.monster.senses}
 						editor={<StringField label='Senses' placeholder='Senses' value={this.props.monster.senses} onChange={value => this.props.changeValue(this.props.monster, 'senses', value)} />}
 					/>
-				</div>
-			</div>
-		);
-	};
-
-	getPowerAddSection = () => {
-		if (this.props.mode === 'view') {
-			return null;
-		}
-
-		const addAura = () => {
-			const aura = Factory.createAura();
-			this.props.monster.auras.push(aura);
-			this.props.changeValue(this.props.monster, 'auras', this.props.monster.auras);
-		};
-
-		const addPower = (hasAction: boolean) => {
-			const power = Factory.createPower();
-			if (hasAction) {
-				power.action = Factory.createPowerAction();
-			}
-			this.props.monster.powers.push(power);
-			this.props.changeValue(this.props.monster, 'powers', this.props.monster.powers);
-		};
-
-		const addRegen = () => {
-			const regen = Factory.createRegeneration();
-			this.props.changeValue(this.props.monster, 'regeneration', regen);
-		};
-
-		return (
-			<div className='row'>
-				<div className='cell center'>
-					<ButtonGroup variant='text'>
-						<Button onClick={() => addAura()}>Add an Aura</Button>
-						<Button onClick={() => addPower(false)}>Add a Trait</Button>
-						<Button onClick={() => addPower(true)}>Add an Action</Button>
-						{this.props.monster.regeneration ? null : <Button onClick={() => addRegen()}>Add regeneration</Button>}
-					</ButtonGroup>
 				</div>
 			</div>
 		);
@@ -374,7 +335,6 @@ export class StatBlock extends Component<Props, State> {
 					</div>
 				</div>
 				{this.getCombatSection()}
-				{this.getPowerAddSection()}
 				{this.getPowerSection(PowerCategory.Trait)}
 				{this.getPowerSection(PowerCategory.Standard)}
 				{this.getPowerSection(PowerCategory.Move)}

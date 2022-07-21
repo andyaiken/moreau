@@ -1,11 +1,15 @@
 import { Component } from 'react';
 
+import { BooleanField } from '../controls/boolean-field';
+import { EnumField } from '../controls/enum-field';
 import { NumberField } from '../controls/number-field';
 import { StringField } from '../controls/string-field';
 
 import { ActionType, DefenceType, EnumHelper, UseType } from '../../models/enums';
 import { Aura, Regeneration } from '../../models/monster';
 import { Power, PowerAction, PowerAttack } from '../../models/power';
+
+import { Factory } from '../../utils/factory';
 
 import './power-panel.css';
 
@@ -17,9 +21,6 @@ import iconBurst from '../../resources/power-icons/burst.png';
 import iconBurstBasic from '../../resources/power-icons/burst-basic.png';
 import iconBlast from '../../resources/power-icons/blast.png';
 import iconBlastBasic from '../../resources/power-icons/blast-basic.png';
-import { BooleanField } from '../controls/boolean-field';
-import { Factory } from '../../utils/factory';
-import { EnumField } from '../controls/enum-field';
 
 const sanitiseText = (text: string) => {
 	// Capitalise the first character
@@ -297,7 +298,8 @@ export class RegenerationPanel extends Component<RegenerationPanelProps, Regener
 		return (
 			<div className='power-panel'>
 				<div className='top-line'>
-					<b>Regeneration {this.props.regeneration.value}</b> (healing)
+					<b>Regeneration {this.props.regeneration.value}</b>
+					<span>(Healing)</span>
 				</div>
 				<div className='content'>
 					<div>{sanitiseText(this.props.regeneration.details)}</div>
