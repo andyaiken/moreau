@@ -40,6 +40,24 @@ export class StatBlock extends Component<Props, State> {
 		};
 	};
 
+	getCategorySection = () => {
+		if (this.props.mode === 'view') {
+			return null;
+		}
+
+		return (
+			<div className='row monster-top-section'>
+				<div className='cell'>
+					<EditablePanel
+						editable={this.props.mode === 'edit'}
+						viewer={<div><b>Category</b> {this.props.monster.category || 'Uncategorized'}</div>}
+						editor={<StringField label='Category' placeholder='Category' value={this.props.monster.category} onChange={value => this.props.changeValue(this.props.monster, 'category', value)} />}
+					/>
+				</div>
+			</div>
+		);
+	};
+
 	getCombatSection = () => {
 		let hp = null;
 		if (this.props.monster.role.flag === RoleFlag.Minion) {
@@ -317,6 +335,7 @@ export class StatBlock extends Component<Props, State> {
 						/>
 					</div>
 				</div>
+				{this.getCategorySection()}
 				<div className='row monster-top-section'>
 					<div className='cell two'>
 						<EditablePanel

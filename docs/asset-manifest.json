@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moreau/static/css/main.7aa13ce1.css",
-    "main.js": "/moreau/static/js/main.9512e37c.js",
+    "main.js": "/moreau/static/js/main.092e65a9.js",
     "static/media/ranged-basic.png": "/moreau/static/media/ranged-basic.77672c3c47e081d5f980.png",
     "static/media/burst-basic.png": "/moreau/static/media/burst-basic.b98b76da12f8b101074e.png",
     "static/media/melee-basic.png": "/moreau/static/media/melee-basic.a7470fb7b64667c21259.png",
@@ -12,10 +12,10 @@
     "static/media/melee.png": "/moreau/static/media/melee.e59c9edc06a07ccf1e42.png",
     "index.html": "/moreau/index.html",
     "main.7aa13ce1.css.map": "/moreau/static/css/main.7aa13ce1.css.map",
-    "main.9512e37c.js.map": "/moreau/static/js/main.9512e37c.js.map"
+    "main.092e65a9.js.map": "/moreau/static/js/main.092e65a9.js.map"
   },
   "entrypoints": [
     "static/css/main.7aa13ce1.css",
-    "static/js/main.9512e37c.js"
+    "static/js/main.092e65a9.js"
   ]
 }
