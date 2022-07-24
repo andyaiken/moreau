@@ -9,8 +9,6 @@ import { MonstersPage } from '../pages/monsters-page';
 import { WelcomePage } from '../pages/welcome-page';
 import { StatBlock } from '../stat-block';
 
-import { monsters as officialMonsters } from '../../data/monsters';
-
 import { Encounter } from '../../models/encounter';
 import { Monster } from '../../models/monster';
 
@@ -28,6 +26,7 @@ interface Props {
 };
 
 interface State {
+	officialMonsters: Monster[];
 	monsters: Monster[];
 	encounters: Encounter[];
 	selectedPage: string | null;
@@ -59,6 +58,7 @@ export class Moreau extends Component<Props, State> {
 		}
 
 		this.state = {
+			officialMonsters: [],
 			monsters: monsters,
 			encounters: encounters,
 			selectedPage: 'monsters', // TODO: Make this null when we have another page ready
@@ -168,6 +168,27 @@ export class Moreau extends Component<Props, State> {
 
 	//#region Saving
 
+	componentDidMount = () => {
+		// Get and parse official monsters
+		Promise.all(
+			[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+				.map(n => `/moreau/data/monsters/monsters.${n}.json`)
+				.map(url => fetch(url))
+			).then((responses => {
+				Promise.all(responses.map(response => response.json()))
+					.then(arrays => {
+						const officialMonsters: Monster[] = [];
+						arrays.forEach(array => {
+							const monsters = array as Monster[];
+							officialMonsters.push(...monsters);
+						});
+						this.setState({
+							officialMonsters: officialMonsters
+						});
+					});
+			}));
+	};
+
 	componentDidUpdate = () => {
 		this.saveAfterDelay();
 	};
@@ -195,7 +216,7 @@ export class Moreau extends Component<Props, State> {
 			content = (
 				<MonstersPage
 					monsters={this.state.monsters}
-					officialMonsters={officialMonsters}
+					officialMonsters={this.state.officialMonsters}
 					selectMonster={monster => this.viewMonster(monster)}
 					createMonster={category => this.createMonster(category)}
 					deleteMonster={monster => this.deleteMonster(monster)}
