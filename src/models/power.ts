@@ -1,17 +1,17 @@
-import { ActionType, DefenceType, PowerCategory, UseType } from './enums';
+import { ActionType, DefenceType, PowerCategory, UsageType } from '../enums/enums';
 
 export interface PowerAction {
 	action: ActionType;
 	trigger: string;
 	sustainAction: ActionType;
-	use: UseType;
+	use: UsageType;
 	recharge: string;
-};
+}
 
 export interface PowerAttack {
 	bonus: number;
 	defence: DefenceType;
-};
+}
 
 export interface Power {
 	id: string;
@@ -29,4 +29,4 @@ export interface Power {
 
 	// TODO: Remove the category field - it's not used
 	category: PowerCategory;
-};
+}

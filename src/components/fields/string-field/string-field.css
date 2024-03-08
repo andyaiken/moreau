@@ -1,0 +1,28 @@
+.string-field {
+	margin: 5px 0;
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+	font-size: 14px;
+	font-weight: normal;
+
+	.string-field-label {
+		flex: 1 1 0;
+	}
+
+	.string-field-control {
+		flex: 2 2 0;
+	}
+}
+
+.multiline-field {
+	margin: 5px 0;
+    display: flex;
+	flex-direction: column;
+    align-items: flex-start;
+	justify-content: space-between;
+	gap: 2px;
+	font-size: 14px;
+	font-weight: normal;
+}

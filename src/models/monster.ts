@@ -1,26 +1,20 @@
-import { DamageType, MonsterSize, MonsterOrigin, MonsterType, RoleType, RoleFlag } from './enums';
+import { DamageType, MonsterSize, MonsterOrigin, MonsterType, RoleType, RoleFlag } from '../enums/enums';
 import { Power } from './power';
 
 export interface Role {
 	type: RoleType;
 	flag: RoleFlag;
 	leader: boolean;
-};
+}
 
 export interface Ability {
 	score: number;
-
-	// TODO: Remove the modifier field - it's not used
-	modifier: number;
-
-	// TODO: Remove the cost field - it's not used
-	cost: number;
-};
+}
 
 export interface Regeneration {
 	value: number;
 	details: string;
-};
+}
 
 export interface Aura {
 	id: string;
@@ -32,7 +26,7 @@ export interface Aura {
 export interface DamageModifier {
 	type: DamageType;
 	value: number;
-};
+}
 
 export interface Monster {
 	id: string;
@@ -80,10 +74,4 @@ export interface Monster {
 	resist: string;
 	vulnerable: string;
 	immune: string;
-
-	// TODO: Remove the info field - it's not used
-	info: string;
-
-	// TODO: Remove the phenotype field - it's not used
-	phenotype: string;
-};
+}

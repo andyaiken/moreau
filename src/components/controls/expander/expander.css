@@ -1,23 +1,3 @@
-.expander-container {
-	margin: 5px 0 !important;
-	border-radius: 0 !important;
-	box-shadow: none !important;
-	border: 1px solid rgba(0, 0, 0, 0.23);
-}
-
-.expander-container:hover {
-	border-color: rgb(25, 118, 210);
-	background-color: rgba(25, 118, 210, 0.04);
-}
-
-.expander-container .expander-title {
-	min-height: unset !important;
-}
-
-.expander-container .expander-title .Mui-expanded {
-	margin: 12px 0 !important;
-}
-
-.expander-container .expander-content {
+.expander {
 	display: block;
 }

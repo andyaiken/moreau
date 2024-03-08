@@ -1,4 +1,4 @@
-import { ThreatType } from './enums';
+import { ThreatType } from '../enums/enums';
 
 export interface Encounter {
 	id: string;

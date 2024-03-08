@@ -1,0 +1,9 @@
+.monster-editor {
+	display: flex;
+	height: 100%;
+}
+
+.monster-editor .stat-block-section,
+.monster-editor .editor-section {
+	flex: 1 1 0;
+}

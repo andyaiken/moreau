@@ -1,19 +1,24 @@
-import { CssBaseline } from '@mui/material';
+import localforage from 'localforage';
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+
+import { Monster } from './models/monster.ts';
+
+import { Main } from './components/main/main.tsx';
 
 import './index.css';
 
-import { Moreau } from './components/moreau';
+import monsters from './data/monsters';
 
-const element = document.getElementById('root');
-if (element) {
-	ReactDOM
-		.createRoot(element)
-		.render(
+localforage
+	.getItem<Monster[]>('moreau-homebrew-monsters')
+	.then(homebrewMonsters => {
+		createRoot(document.getElementById('root')!).render(
 			<StrictMode>
-				<CssBaseline />
-				<Moreau />
+				<Main
+					officialMonsters={monsters}
+					homebrewMonsters={homebrewMonsters ?? []}
+				/>
 			</StrictMode>
 		);
-}
+	});
