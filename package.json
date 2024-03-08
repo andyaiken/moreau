@@ -1,7 +1,6 @@
 {
 	"name": "moreau",
 	"version": "0.0.0",
-	"type": "module",
 	"repository": "https://github.com/andyaiken/moreau.git",
 	"homepage": "https://andyaiken.github.io/moreau/",
 	"dependencies": {
@@ -14,12 +13,8 @@
 		"@ant-design/icons": "^5.3.1",
 		"@types/react": "^18.2.64",
 		"@types/react-dom": "^18.2.21",
-		"@typescript-eslint/eslint-plugin": "^7.1.1",
-		"@typescript-eslint/parser": "^7.1.1",
 		"@vitejs/plugin-react": "^4.2.1",
 		"eslint": "^8.57.0",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-refresh": "^0.4.5",
 		"gh-pages": "^6.1.1",
 		"typescript": "^5.4.2",
 		"vite": "^5.1.5"
@@ -28,130 +23,7 @@
 		"update": "npx npm-check-updates --interactive --format group",
 		"start": "vite",
 		"build": "tsc && vite build",
-		"lint": "npx eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"predeploy": "tsc && vite build",
 		"deploy": "gh-pages -d dist"
-	},
-	"eslintConfig": {
-		"extends": [
-			"eslint:recommended",
-			"plugin:react/recommended",
-			"plugin:@typescript-eslint/recommended",
-			"react-app"
-		],
-		"parser": "@typescript-eslint/parser",
-		"parserOptions": {
-			"project": "./tsconfig.json"
-		},
-		"plugins": [
-			"react",
-			"@typescript-eslint"
-		],
-		"root": true,
-		"rules": {
-			"semi": [
-				"error",
-				"always"
-			],
-			"comma-dangle": [
-				"error",
-				"never"
-			],
-			"quotes": [
-				"error",
-				"single"
-			],
-			"@typescript-eslint/quotes": [
-				"error",
-				"single"
-			],
-			"object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"@typescript-eslint/object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"indent": [
-				"error",
-				"tab",
-				{
-					"SwitchCase": 1
-				}
-			],
-			"@typescript-eslint/indent": [
-				"error",
-				"tab",
-				{
-					"SwitchCase": 1
-				}
-			],
-			"no-tabs": [
-				"error",
-				{
-					"allowIndentationTabs": true
-				}
-			],
-			"@typescript-eslint/non-nullable-type-assertion-style": "off",
-			"arrow-parens": [
-				"error",
-				"as-needed"
-			],
-			"no-trailing-spaces": [
-				"error"
-			],
-			"array-bracket-spacing": [
-				"error",
-				"always"
-			],
-			"array-element-newline": [
-				"error",
-				"consistent"
-			],
-			"array-bracket-newline": [
-				"error",
-				"consistent"
-			],
-			"jsx-quotes": [
-				"error",
-				"prefer-single"
-			],
-			"sort-imports": [
-				"warn",
-				{
-					"allowSeparatedGroups": true,
-					"memberSyntaxSortOrder": [
-						"all",
-						"multiple",
-						"single",
-						"none"
-					]
-				}
-			],
-			"no-warning-comments": "warn",
-			"no-debugger": "warn",
-			"no-console": [
-				"warn",
-				{
-					"allow": [
-						"warn",
-						"error"
-					]
-				}
-			],
-			"max-len": [
-				"warn",
-				{
-					"code": 200
-				}
-			],
-			"react/react-in-jsx-scope": "off",
-			"@typescript-eslint/no-unsafe-call": "off",
-			"@typescript-eslint/no-unsafe-member-access": "off",
-			"@typescript-eslint/no-unsafe-member-argument": "off",
-			"@typescript-eslint/no-unsafe-return": "off"
-		}
 	}
 }
