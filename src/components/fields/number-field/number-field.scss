@@ -1,0 +1,18 @@
+.number-field {
+	margin: 5px 0;
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: left;
+
+	.number-field-label {
+		flex: 0 0 110px;
+	}
+
+	.number-field-control {
+		flex: 1 1 0;
+	}
+}

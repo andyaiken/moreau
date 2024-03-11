@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 
-import './enum-field.css';
+import './enum-field.scss';
 
 interface Props {
 	label: string;

@@ -1,22 +1,12 @@
-import './info-panel.css';
+import './info-panel.scss';
 
 interface Props {
 	content: React.ReactNode;
 	info?: React.ReactNode;
 	actions?: React.ReactNode;
-	outlined?: boolean;
-	selected?: boolean;
 }
 
 const InfoPanel = (props: Props) => {
-	let style = 'info-panel';
-	if (props.outlined) {
-		style += ' outlined';
-	}
-	if (props.selected) {
-		style += ' selected';
-	}
-
 	let content = null;
 	if (props.content) {
 		content = (
@@ -45,7 +35,7 @@ const InfoPanel = (props: Props) => {
 	}
 
 	return (
-		<div className={style}>
+		<div className='info-panel'>
 			{content}
 			{info}
 			{actions}

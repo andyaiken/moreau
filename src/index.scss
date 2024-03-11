@@ -1,0 +1,21 @@
+:root {
+	font-size: 14px;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	--highlight: #4096ff;
+	--highlight-light: #91caff;
+}
+
+html, body, #root {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+svg {
+	stroke-width: 1.2 !important;
+}

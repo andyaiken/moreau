@@ -6,7 +6,7 @@ import { Monster } from './models/monster.ts';
 
 import { Main } from './components/main/main.tsx';
 
-import './index.css';
+import './index.scss';
 
 import monsters from './data/monsters';
 

@@ -1,6 +1,6 @@
 import { Collapse } from 'antd';
 
-import './expander.css';
+import './expander.scss';
 
 interface Props {
 	title: string;

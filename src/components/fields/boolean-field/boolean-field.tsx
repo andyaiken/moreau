@@ -1,6 +1,6 @@
 import { Switch } from 'antd';
 
-import './boolean-field.css';
+import './boolean-field.scss';
 
 interface Props {
 	label: string;

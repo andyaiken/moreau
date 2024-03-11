@@ -1,12 +1,11 @@
-import { CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { IconCircleCheck, IconEdit, IconTrash } from '@tabler/icons-react';
 import { Button } from 'antd';
-import {  useState } from 'react';
+import { useState } from 'react';
 
-import './editable-panel.css';
+import './editable-panel.scss';
 
 interface Props {
 	editable: boolean;
-	outlined: boolean;
 	viewer: React.ReactNode;
 	editor: React.ReactNode;
 	onDelete: (() => void) | null;
@@ -20,8 +19,8 @@ const EditablePanel = (props: Props) => {
 	};
 
 	let style = 'editable-panel';
-	if (editing && props.outlined) {
-		style += ' outlined';
+	if (editing) {
+		style += ' highlighted';
 	}
 
 	return (
@@ -35,9 +34,9 @@ const EditablePanel = (props: Props) => {
 			{
 				props.editable ?
 					<div className='editable-panel-actions'>
-						{!editing ? <Button onClick={() => toggleEditing()}><EditOutlined /></Button> : null}
-						{editing ? <Button onClick={() => toggleEditing()}><CheckCircleOutlined /></Button> : null}
-						{editing && props.onDelete ? <Button onClick={() => props.onDelete ? props.onDelete() : null}><DeleteOutlined /></Button> : null}
+						{!editing ? <Button icon={<IconEdit />} onClick={() => toggleEditing()} /> : null}
+						{editing ? <Button icon={<IconCircleCheck />} onClick={() => toggleEditing()} /> : null}
+						{editing && props.onDelete ? <Button icon={<IconTrash />} onClick={() => props.onDelete ? props.onDelete() : null} /> : null}
 					</div>
 					:
 					null

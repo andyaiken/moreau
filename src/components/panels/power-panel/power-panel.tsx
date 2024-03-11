@@ -10,7 +10,7 @@ import { Format } from '../../../utils/format';
 
 import { BooleanField, EnumField, NumberField, StringField, MultilineField } from '../../fields';
 
-import './power-panel.css';
+import './power-panel.scss';
 
 import iconMelee from '../../../assets/power-icons/melee.png';
 import iconMeleeBasic from '../../../assets/power-icons/melee-basic.png';
@@ -185,7 +185,6 @@ interface AuraPanelProps {
 }
 
 const AuraPanel = (props: AuraPanelProps) => {
-	// TODO: Set the icon (aura)
 	const icon = null;
 
 	let keywords = '';

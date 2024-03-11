@@ -1,6 +1,6 @@
 import { Input } from 'antd';
 
-import './string-field.css';
+import './string-field.scss';
 
 interface Props {
 	label?: string;

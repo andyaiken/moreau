@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Flex } from 'antd';
 
 import { RoleFlag, PowerCategory, ActionType, RoleType, MonsterSize, MonsterOrigin, MonsterType, DamageType } from '../../../enums/enums';
 
@@ -16,7 +16,8 @@ import { BooleanField, EnumField, NumberField, StringField } from '../../fields'
 import { AuraPanel, AuraEditorPanel, RegenerationPanel, RegenerationEditorPanel, PowerPanel, PowerEditorPanel } from '../power-panel/power-panel';
 import { EditablePanel, InfoPanel } from '..';
 
-import './stat-block.css';
+import './stat-block.scss';
+import { IconTrash } from '@tabler/icons-react';
 
 interface Props {
 	mode: 'view' | 'edit';
@@ -31,7 +32,6 @@ const StatBlock = (props: Props) => {
 			hp = (
 				<EditablePanel
 					editable={false}
-					outlined={false}
 					viewer={<div><b>HP</b> 1; a missed attack never damages a minion.</div>}
 					editor={null}
 					onDelete={null}
@@ -41,7 +41,6 @@ const StatBlock = (props: Props) => {
 			hp = (
 				<EditablePanel
 					editable={props.mode === 'edit'}
-					outlined={false}
 					viewer={<div><b>HP</b> {props.monster.hp}, <b>bloodied</b> {Math.floor(props.monster.hp / 2)}</div>}
 					editor={<NumberField label='HP' value={props.monster.hp} validate={value => value > 0} onChange={value => props.changeValue(props.monster, 'hp', value)} />}
 					onDelete={null}
@@ -72,7 +71,6 @@ const StatBlock = (props: Props) => {
 			damageModifiers = (
 				<EditablePanel
 					editable={props.mode === 'edit'}
-					outlined={true}
 					viewer={<div>{immuneSection} {resistSection} {vulnSection}</div>}
 					editor={<DamageModsEditorPanel monster={props.monster} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 					onDelete={null}
@@ -95,18 +93,16 @@ const StatBlock = (props: Props) => {
 
 		return (
 			<div className='row'>
-				<div className='cell two'>
+				<div className='cell wide'>
 					{hp}
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={true}
 						viewer={<div><b>AC</b> {props.monster.ac}, <b>Fortitude</b> {props.monster.fortitude}, <b>Reflex</b> {props.monster.reflex}, <b>Will</b> {props.monster.will}</div>}
 						editor={<DefencesEditorPanel monster={props.monster} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 						onDelete={null}
 					/>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Speed</b> {props.monster.movement || '0'}</div>}
 						editor={<StringField label='Speed' value={props.monster.movement} onChange={value => props.changeValue(props.monster, 'movement', value)} />}
 						onDelete={null}
@@ -115,7 +111,6 @@ const StatBlock = (props: Props) => {
 					<div className={savesMod > 0 ? '' : 'hidden'}>
 						<EditablePanel
 							editable={props.mode === 'edit'}
-							outlined={false}
 							viewer={<div><b>Saving Throws</b> {Format.toSigned(savesMod)}, <b>Action Points</b> {ap}</div>}
 							editor={<div>Saving throws and action points are set by the monster's role.</div>}
 							onDelete={null}
@@ -125,14 +120,12 @@ const StatBlock = (props: Props) => {
 				<div className='cell right'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Initiative</b> {Format.toSigned(props.monster.initiative)}</div>}
 						editor={<NumberField label='Initiative' value={props.monster.initiative} onChange={value => props.changeValue(props.monster, 'initiative', value)} />}
 						onDelete={null}
 					/>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={props.monster.senses}
 						editor={<StringField label='Senses' value={props.monster.senses} onChange={value => props.changeValue(props.monster, 'senses', value)} />}
 						onDelete={null}
@@ -187,7 +180,6 @@ const StatBlock = (props: Props) => {
 				<EditablePanel
 					key={aura.id}
 					editable={props.mode === 'edit'}
-					outlined={true}
 					viewer={<AuraPanel aura={aura} />}
 					editor={<AuraEditorPanel aura={aura} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 					onDelete={() => props.changeValue(props.monster, 'auras', props.monster.auras.filter(a => a.id !== aura.id))}
@@ -198,7 +190,6 @@ const StatBlock = (props: Props) => {
 				regen = (
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={true}
 						viewer={<RegenerationPanel regeneration={props.monster.regeneration} />}
 						editor={<RegenerationEditorPanel regeneration={props.monster.regeneration} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 						onDelete={() => props.changeValue(props.monster, 'regeneration', null)}
@@ -211,7 +202,6 @@ const StatBlock = (props: Props) => {
 			<EditablePanel
 				key={power.id}
 				editable={props.mode === 'edit'}
-				outlined={true}
 				viewer={<PowerPanel power={power} />}
 				editor={<PowerEditorPanel power={power} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 				onDelete={() => props.changeValue(props.monster, 'powers', props.monster.powers.filter(p => p.id !== power.id))}
@@ -238,7 +228,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Skills</b> {props.monster.skills}</div>}
 						editor={<StringField label='Skills' value={props.monster.skills} onChange={value => props.changeValue(props.monster, 'skills', value)} />}
 						onDelete={null}
@@ -258,7 +247,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Equipment</b> {props.monster.equipment}</div>}
 						editor={<StringField label='Equipment' value={props.monster.equipment} onChange={value => props.changeValue(props.monster, 'equipment', value)} />}
 						onDelete={null}
@@ -278,7 +266,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Details</b> {props.monster.details}</div>}
 						editor={<StringField label='Details' value={props.monster.details} onChange={value => props.changeValue(props.monster, 'details', value)} />}
 						onDelete={null}
@@ -298,7 +285,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Tactics</b> {props.monster.tactics}</div>}
 						editor={<StringField label='Tactics' value={props.monster.tactics} onChange={value => props.changeValue(props.monster, 'tactics', value)} />}
 						onDelete={null}
@@ -311,10 +297,9 @@ const StatBlock = (props: Props) => {
 	return (
 		<div className='stat-block'>
 			<div className='row monster-top-section'>
-				<div className='cell two big'>
+				<div className='cell wide big'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={props.monster.name || 'Unnamed Monster'}
 						editor={<StringField label='Name' value={props.monster.name} onChange={value => props.changeValue(props.monster, 'name', value)} />}
 						onDelete={null}
@@ -323,7 +308,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell right big'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={true}
 						viewer={<div>Level {props.monster.level} {MonsterLogic.getRole(props.monster.role)}</div>}
 						editor={<LevelRoleEditorPanel monster={props.monster} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 						onDelete={null}
@@ -331,10 +315,9 @@ const StatBlock = (props: Props) => {
 				</div>
 			</div>
 			<div className='row monster-top-section'>
-				<div className='cell two'>
+				<div className='cell wide'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={true}
 						viewer={MonsterLogic.getPhenotype(props.monster)}
 						editor={<PhenotypeEditorPanel monster={props.monster} changeValue={(source, field, value) => props.changeValue(source, field, value)} />}
 						onDelete={null}
@@ -343,7 +326,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell right'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>XP </b> {MonsterLogic.getXP(props.monster.level, props.monster.role.flag)}</div>}
 						onDelete={null}
 						editor={<div>XP is set by the monster's level.</div>}
@@ -362,7 +344,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Str</b> {props.monster.strength.score} ({Format.toSigned(Format.toModifier(props.monster.strength.score))})</div>}
 						editor={<NumberField label='Str' value={props.monster.strength.score} onChange={value => props.changeValue(props.monster.strength, 'score', value)} />}
 						onDelete={null}
@@ -371,7 +352,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Dex</b> {props.monster.dexterity.score} ({Format.toSigned(Format.toModifier(props.monster.dexterity.score))})</div>}
 						editor={<NumberField label='Dex' value={props.monster.dexterity.score} onChange={value => props.changeValue(props.monster.dexterity, 'score', value)} />}
 						onDelete={null}
@@ -380,7 +360,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Wis</b> {props.monster.wisdom.score} ({Format.toSigned(Format.toModifier(props.monster.wisdom.score))})</div>}
 						editor={<NumberField label='Wis' value={props.monster.wisdom.score} onChange={value => props.changeValue(props.monster.wisdom, 'score', value)} />}
 						onDelete={null}
@@ -391,7 +370,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Con</b> {props.monster.constitution.score} ({Format.toSigned(Format.toModifier(props.monster.constitution.score))})</div>}
 						editor={<NumberField label='Con' value={props.monster.constitution.score} onChange={value => props.changeValue(props.monster.constitution, 'score', value)} />}
 						onDelete={null}
@@ -400,7 +378,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Int</b> {props.monster.intelligence.score} ({Format.toSigned(Format.toModifier(props.monster.intelligence.score))})</div>}
 						editor={<NumberField label='Int' value={props.monster.intelligence.score} onChange={value => props.changeValue(props.monster.intelligence, 'score', value)} />}
 						onDelete={null}
@@ -409,7 +386,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Cha</b> {props.monster.charisma.score} ({Format.toSigned(Format.toModifier(props.monster.charisma.score))})</div>}
 						editor={<NumberField label='Cha' value={props.monster.charisma.score} onChange={value => props.changeValue(props.monster.charisma, 'score', value)} />}
 						onDelete={null}
@@ -420,7 +396,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Alignment</b> {props.monster.alignment || 'Unaligned'}</div>}
 						editor={<StringField label='Alignment' value={props.monster.alignment} onChange={value => props.changeValue(props.monster, 'alignment', value)} />}
 						onDelete={null}
@@ -429,7 +404,6 @@ const StatBlock = (props: Props) => {
 				<div className='cell'>
 					<EditablePanel
 						editable={props.mode === 'edit'}
-						outlined={false}
 						viewer={<div><b>Languages</b> {props.monster.languages || 'None'}</div>}
 						editor={<StringField label='Languages' value={props.monster.languages} onChange={value => props.changeValue(props.monster, 'languages', value)} />}
 						onDelete={null}
@@ -540,37 +514,37 @@ const DamageModsEditorPanel = (props: DamageModsEditorPanelProps) => {
 		}
 
 		return (
-			<InfoPanel
-				key={Utils.guid()}
-				content={(
-					<div>
-						<div><b>{typeSection}</b></div>
-						<EnumField
-							label='Damage Type'
-							options={[DamageType.Acid, DamageType.Cold, DamageType.Fire, DamageType.Force, DamageType.Lightning, DamageType.Necrotic, DamageType.Poison, DamageType.Psychic, DamageType.Radiant, DamageType.Thunder]}
-							value={mod.type}
-							format={value => EnumHelper.damageType(value as DamageType)}
-							isDisabled={() => false}
-							onChange={value => props.changeValue(mod, 'type', value)}
-						/>
-						{valueSection}
-					</div>
+			<div key={Utils.guid()} className='damage-mod'>
+				<InfoPanel
+					content={(
+						<div>
+							<div><b>{typeSection}</b></div>
+							<EnumField
+								label='Damage Type'
+								options={[DamageType.Acid, DamageType.Cold, DamageType.Fire, DamageType.Force, DamageType.Lightning, DamageType.Necrotic, DamageType.Poison, DamageType.Psychic, DamageType.Radiant, DamageType.Thunder]}
+								value={mod.type}
+								format={value => EnumHelper.damageType(value as DamageType)}
+								isDisabled={() => false}
+								onChange={value => props.changeValue(mod, 'type', value)}
+							/>
+							{valueSection}
+						</div>
+						)}
+					actions={(
+						<Button icon={<IconTrash />} onClick={() => removeDamageMod(mod)} />
 					)}
-				actions={(
-					<Button onClick={() => removeDamageMod(mod)}>Remove</Button>
-				)}
-				outlined={true}
-			/>
+				/>
+			</div>
 		);
 	});
 
 	return (
 		<div className='damage-mods-editor-panel'>
-			<div>
+			<Flex gap='small'>
 				<Button onClick={() => addDamageMod(0)}>Add Damage Immunity</Button>
 				<Button onClick={() => addDamageMod(-5)}>Add Damage Resistance</Button>
 				<Button onClick={() => addDamageMod(5)}>Add Damage Vulnerability</Button>
-			</div>
+			</Flex>
 			{list}
 			<StringField label='Other Immunities' value={props.monster.immune} onChange={value => props.changeValue(props.monster, 'immune', value)} />
 			<StringField label='Other Resistances' value={props.monster.resist} onChange={value => props.changeValue(props.monster, 'resist', value)} />

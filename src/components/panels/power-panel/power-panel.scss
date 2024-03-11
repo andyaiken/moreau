@@ -1,0 +1,24 @@
+.power-panel {
+	display: block;
+
+	.top-line {
+		display: flex;
+		align-items: center;
+	}
+
+	.power-icon {
+		height: 16px;
+		width: 16px;
+		margin-right: 4px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.description,
+	.content {
+		padding-left: 20px;
+	}
+}

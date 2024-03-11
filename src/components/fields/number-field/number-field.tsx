@@ -1,4 +1,4 @@
-import './number-field.css';
+import './number-field.scss';
 import { InputNumber } from 'antd';
 
 interface Props {
