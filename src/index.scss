@@ -6,8 +6,23 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	--highlight: #4096ff;
+	--highlight: #1677ff;
 	--highlight-light: #91caff;
+
+	--monster: rgb(74, 82, 49);
+	--monster-background: rgb(231, 228, 209);
+	--monster-background-dark: rgb(193, 192, 174);
+	--monster-heading: rgb(106, 112, 79);
+
+	--trap: rgb(68, 34, 44);
+	--trap-background: rgb(255, 255, 255);
+	--trap-background-dark: rgb(255, 255, 255);
+	--trap-heading: rgb(220, 218, 201);
+
+	--encounter: rgb(35, 52, 74);
+	--encounter-background: rgb(255, 255, 255);
+	--encounter-background-dark: rgb(255, 255, 255);
+	--encounter-heading: rgb(220, 218, 201);
 }
 
 html, body, #root {

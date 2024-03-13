@@ -6,29 +6,32 @@
 
 	.monsters-page-column {
 		height: 100%;
-		overflow-y: auto;
 
-		&.monster-filter {
+		&.monster-tools {
 			flex: 0 0 280px;
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
+			overflow-y: auto;
 		}
 
 		&.monster-list {
-			flex: 0 0 400px;
+			flex: 0 0 280px;
+			overflow-y: auto;
 
 			.list-item {
 				width: 100%;
-				padding: 5px;
+				border: 2px solid transparent;
+				padding: 5px 10px;
 				cursor: pointer;
 
 				&:hover {
-					border-color: var(--highlight);
+					border-color: var(--highlight-light);
 				}
 
 				&.selected {
-					background-color: var(--highlight-light);
+					border-color: var(--highlight);
+					cursor: default;
 				}
 			}
 		}
@@ -40,6 +43,11 @@
 				display: flex;
 				flex-direction: column;
 				gap: 10px;
+				height: 100%;
+
+				.stat-block-container {
+					overflow-y: auto;
+				}
 			}
 		}
 	}

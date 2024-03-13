@@ -87,11 +87,30 @@ export class Factory {
 		};
 	};
 
-	static createPower: () => Power = () => {
+	static createPower: (category: PowerCategory) => Power = (category: PowerCategory) => {
+		let action = ActionType.Standard;
+		switch (category) {
+			case PowerCategory.Trait:
+				action = ActionType.None;
+				break;
+			case PowerCategory.Move:
+				action = ActionType.Move;
+				break;
+			case PowerCategory.Minor:
+				action = ActionType.Minor;
+				break;
+			case PowerCategory.Free:
+				action = ActionType.Free;
+				break;
+			case PowerCategory.Triggered:
+				action = ActionType.Reaction;
+				break;
+		}
+
 		return {
 			id: Utils.guid(),
 			name: '',
-			action: null,
+			action: Factory.createPowerAction(action),
 			keywords: '',
 			condition: '',
 			range: '',
@@ -99,13 +118,13 @@ export class Factory {
 			description: '',
 			details: '',
 			damage: '',
-			category: PowerCategory.Standard
+			category: category
 		};
 	};
 
-	static createPowerAction: () => PowerAction = () => {
+	static createPowerAction: (type: ActionType) => PowerAction = (type: ActionType) => {
 		return {
-			action: ActionType.Standard,
+			action: type,
 			trigger: '',
 			sustainAction: ActionType.None,
 			use: UsageType.AtWill,
@@ -124,7 +143,7 @@ export class Factory {
 		return {
 			id: Utils.guid(),
 			name: '',
-			waves: []
+			waves: [ Factory.createEncounterWave() ]
 		};
 	};
 

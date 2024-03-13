@@ -1,4 +1,4 @@
 export interface View {
-	type: 'monster-list' | 'monster-editor';
+	type: 'home' | 'monsters' | 'encounters';
 	data: unknown;
 }

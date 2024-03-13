@@ -1,0 +1,60 @@
+.monster-stat-block {
+	background-color: var(--monster-background);
+
+	.sticky-header {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background-color: var(--monster);
+		color: white;
+	}
+
+	.row {
+		display: flex;
+		flex-direction: row;
+
+		&.top-section {
+			font-size: 15px;
+		}
+
+		&.subheading {
+			background-color: var(--monster-heading);
+			color: white;
+			padding: 0 10px;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		&.dark {
+			background-color: var(--monster-background-dark);
+		}
+
+		&.vcenter {
+			align-items: center;
+		}
+
+		.cell {
+			flex: 1 1 0;
+
+			&.wide {
+				flex: 2 2 0;
+			}
+
+			&.right {
+				text-align: right;
+			}
+
+			&.big {
+				font-size: 22px;
+				font-weight: 700;
+			}
+		}
+	}
+
+	.damage-mods-editor-panel .damage-mod,
+	.power-editor-panel {
+		border: 2px solid black;
+		padding: 0 10px;
+		margin: 10px 0;
+	}
+}

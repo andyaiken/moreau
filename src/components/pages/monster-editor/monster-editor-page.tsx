@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Monster } from '../../../models/monster';
 
-import { StatBlock } from '../../panels';
+import { MonsterStatBlock } from '../../stat-blocks';
 
 import './monster-editor-page.scss';
 
@@ -30,7 +30,9 @@ const MonsterEditorPage = (props: Props) => {
 				<Button icon={<IconCircleCheck />} onClick={() => props.save(monster)} />
 				<Button icon={<IconCircleX />} onClick={() => props.cancel()} />
 			</Flex>
-			<StatBlock mode='edit' monster={monster} changeValue={changeMonsterValue} />
+			<div className='stat-block-container'>
+				<MonsterStatBlock mode='edit' monster={monster} changeValue={changeMonsterValue} />
+			</div>
 		</div>
 	);
 };

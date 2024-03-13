@@ -12,14 +12,16 @@ import { Collections } from '../../../utils/collections';
 import { EnumHelper } from '../../../utils/enum-helper';
 
 import { Expander } from '../../controls';
-import { InfoPanel, StatBlock } from '../../panels';
+import { InfoPanel } from '../../panels';
 import { StringField, EnumField, BooleanField } from '../../fields';
+import { MonsterStatBlock } from '../../stat-blocks';
 
 import './monsters-page.scss';
 
 interface Props {
 	officialMonsters: Monster[];
 	homebrewMonsters: Monster[];
+	createMonster: () => Monster;
 	copyMonster: (monster: Monster) => Monster;
 	editMonster: (monster: Monster) => void;
 	deleteMonster: (monster: Monster) => void;
@@ -193,10 +195,15 @@ const MonstersPage = (props: Props) => {
 
 	//#endregion
 
+	const createMonster = () => {
+		const monster = props.createMonster();
+		setSelectedMonster(monster);
+	}
+
 	const copyMonster = () => {
 		if (selectedMonster) {
-			const copy = props.copyMonster(selectedMonster);
-			setSelectedMonster(copy);
+			const monster = props.copyMonster(selectedMonster);
+			setSelectedMonster(monster);
 		}
 	}
 
@@ -213,99 +220,94 @@ const MonstersPage = (props: Props) => {
 		}
 	}
 
-	const getMonsters = () => {
-		const monsters = ([] as Monster[])
-			.concat(props.officialMonsters)
-			.concat(props.homebrewMonsters)
-			.filter(m => {
-				if (!monsterFilter.text) {
-					return true;
-				}
+	const monsters = ([] as Monster[])
+		.concat(Collections.sort(props.homebrewMonsters, m => m.name))
+		.concat(Collections.sort(props.officialMonsters, m => m.name))
+		.filter(m => {
+			if (!monsterFilter.text) {
+				return true;
+			}
 
-				if (m.name.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
-					return true;
-				}
+			if (m.name.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
+				return true;
+			}
 
-				if (m.category.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
-					return true;
-				}
+			if (m.category.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
+				return true;
+			}
 
-				if (m.keywords.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
-					return true;
-				}
+			if (m.keywords.toLowerCase().includes(monsterFilter.text.toLowerCase())) {
+				return true;
+			}
 
-				return false;
-			})
-			.filter(m => {
-				const min = Math.min(...monsterFilter.level);
-				const max = Math.max(...monsterFilter.level);
-				return (m.level >= min) && (m.level <= max);
-			})
-			.filter(m => {
-				if (monsterFilter.roleType === RoleType.Any) {
-					return true;
-				}
+			return false;
+		})
+		.filter(m => {
+			const min = Math.min(...monsterFilter.level);
+			const max = Math.max(...monsterFilter.level);
+			return (m.level >= min) && (m.level <= max);
+		})
+		.filter(m => {
+			if (monsterFilter.roleType === RoleType.Any) {
+				return true;
+			}
 
-				return m.role.type === monsterFilter.roleType;
-			})
-			.filter(m => {
-				if (monsterFilter.roleFlag === RoleFlag.Any) {
-					return true;
-				}
+			return m.role.type === monsterFilter.roleType;
+		})
+		.filter(m => {
+			if (monsterFilter.roleFlag === RoleFlag.Any) {
+				return true;
+			}
 
-				return m.role.flag === monsterFilter.roleFlag;
-			})
-			.filter(m => {
-				if (m.role.leader && monsterFilter.roleLeader) {
-					return true;
-				}
-				if (!m.role.leader && monsterFilter.roleNonLeader) {
-					return true;
-				}
+			return m.role.flag === monsterFilter.roleFlag;
+		})
+		.filter(m => {
+			if (m.role.leader && monsterFilter.roleLeader) {
+				return true;
+			}
+			if (!m.role.leader && monsterFilter.roleNonLeader) {
+				return true;
+			}
 
-				return false;
-			})
-			.filter(m => {
-				if (monsterFilter.monsterSize === MonsterSize.Any) {
-					return true;
-				}
+			return false;
+		})
+		.filter(m => {
+			if (monsterFilter.monsterSize === MonsterSize.Any) {
+				return true;
+			}
 
-				return m.size === monsterFilter.monsterSize;
-			})
-			.filter(m => {
-				if (monsterFilter.monsterOrigin === MonsterOrigin.Any) {
-					return true;
-				}
+			return m.size === monsterFilter.monsterSize;
+		})
+		.filter(m => {
+			if (monsterFilter.monsterOrigin === MonsterOrigin.Any) {
+				return true;
+			}
 
-				return m.origin === monsterFilter.monsterOrigin;
-			})
-			.filter(m => {
-				if (monsterFilter.monsterType === MonsterType.Any) {
-					return true;
-				}
+			return m.origin === monsterFilter.monsterOrigin;
+		})
+		.filter(m => {
+			if (monsterFilter.monsterType === MonsterType.Any) {
+				return true;
+			}
 
-				return m.type === monsterFilter.monsterType;
-			})
-			.filter(m => {
-				if (!m.category && monsterFilter.showOfficial) {
-					return true;
-				}
-				if (!!m.category && monsterFilter.showHomebrew) {
-					return true;
-				}
+			return m.type === monsterFilter.monsterType;
+		})
+		.filter(m => {
+			if (!m.category && monsterFilter.showOfficial) {
+				return true;
+			}
+			if (!!m.category && monsterFilter.showHomebrew) {
+				return true;
+			}
 
-				return false;
-			});
-
-		return Collections.sort(monsters, m => m.name);
-	}
-
-	const monsters = getMonsters();
+			return false;
+		});
 
 	return (
 		<div className='monsters-page'>
-			<div className='monsters-page-column monster-filter'>
-				<InfoPanel content='Monsters shown' info={monsters.length} />
+			<div className='monsters-page-column monster-tools'>
+				<Button block={true} type='primary' onClick={createMonster}>Create Monster</Button>
+				<InfoPanel content='Monsters' info={monsters.length} />
 				<Expander title='Filter Monsters'>
 					<StringField placeholder='Name, keywords, etc' value={monsterFilter.text} onChange={value => setFilterText(value)} />
 					<hr />
@@ -364,7 +366,7 @@ const MonstersPage = (props: Props) => {
 					<BooleanField label='Show Official Monsters' value={monsterFilter.showOfficial} onChange={value => setFilterOfficial(value)} />
 					<BooleanField label='Show Homebrew Monsters' value={monsterFilter.showHomebrew} onChange={value => setFilterHomebrew(value)} />
 					<hr />
-					<Button block={true} disabled={!getFilterIsActive()} onClick={() => resetFilter()}>Reset Filter</Button>
+					<Button block={true} disabled={!getFilterIsActive()} onClick={resetFilter}>Reset Filter</Button>
 				</Expander>
 			</div>
 			<div className='monsters-page-column monster-list'>
@@ -373,8 +375,8 @@ const MonstersPage = (props: Props) => {
 					renderItem={(monster: Monster) => (
 						<List.Item key={monster.id} onClick={() => setSelectedMonster(monster)}>
 							<div className={`list-item ${!!selectedMonster && (selectedMonster.id === monster.id) ? 'selected' : ''}`}>
-								<Flex gap='small'>
-									<b>{monster.name}</b>
+								<Flex gap='small' align='center'>
+									<b>{monster.name || 'Unnamed Monster'}</b>
 									{monster.category ? <Tag>Homebrew</Tag> : null}
 								</Flex>
 								<div>
@@ -397,7 +399,9 @@ const MonstersPage = (props: Props) => {
 								{selectedMonster.category ? <Button icon={<IconEdit />} onClick={editMonster} /> : null}
 								{selectedMonster.category ? <Button icon={<IconTrash />} onClick={deleteMonster} /> : null}
 							</Flex>
-							<StatBlock mode='view' monster={selectedMonster} changeValue={() => null} />
+							<div className='stat-block-container'>
+								<MonsterStatBlock mode='view' monster={selectedMonster} changeValue={() => null} />
+							</div>
 						</div>
 						: null
 				}

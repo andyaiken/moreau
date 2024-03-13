@@ -8,7 +8,7 @@ interface Props {
 
 const InfoPanel = (props: Props) => {
 	let content = null;
-	if (props.content) {
+	if (props.content !== undefined) {
 		content = (
 			<div className='info-panel-content'>
 				{props.content}
@@ -17,7 +17,7 @@ const InfoPanel = (props: Props) => {
 	}
 
 	let info = null;
-	if (props.info) {
+	if (props.info !== undefined) {
 		info = (
 			<div className='info-panel-info'>
 				{props.info}
@@ -26,7 +26,7 @@ const InfoPanel = (props: Props) => {
 	}
 
 	let actions = null;
-	if (props.actions) {
+	if (props.actions !== undefined) {
 		actions = (
 			<div className='info-panel-actions'>
 				{props.actions}

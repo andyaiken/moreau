@@ -6,6 +6,7 @@ interface Props {
 	label?: string;
 	placeholder?: string;
 	value: string;
+	disabled?: boolean;
 	onChange: (value: string) => void;
 }
 
@@ -17,6 +18,7 @@ const StringField = (props: Props) => {
 				className='string-field-control'
 				placeholder={props.placeholder}
 				value={props.value}
+				disabled={props.disabled}
 				allowClear={true}
 				onChange={e => props.onChange(e.target.value)}
 			/>
@@ -32,6 +34,7 @@ const MultilineField = (props: Props) => {
 				className='multiline-field-control'
 				placeholder={props.placeholder}
 				value={props.value}
+				disabled={props.disabled}
 				rows={5}
 				onChange={e => props.onChange(e.target.value)}
 			/>

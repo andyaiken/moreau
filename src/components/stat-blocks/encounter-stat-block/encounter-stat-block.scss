@@ -1,0 +1,48 @@
+.encounter-stat-block {
+	background-color: var(--encounter-background);
+
+	.sticky-header {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background-color: var(--encounter);
+		color: white;
+	}
+
+	.row {
+		display: flex;
+		flex-direction: row;
+
+		.cell {
+			flex: 1 1 0;
+
+			&.wide {
+				flex: 2 2 0;
+			}
+
+			&.right {
+				text-align: right;
+			}
+
+			&.big {
+				font-size: 22px;
+				font-weight: 700;
+			}
+		}
+	}
+
+	.subheading {
+		background-color: var(--encounter-heading);
+		padding: 2px 10px;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+
+	.wave-section {
+		border: 2px solid var(--encounter-heading);
+	}
+
+	.slot-section {
+		display: block;
+	}
+}

@@ -6,6 +6,7 @@ interface Props {
 	label: string;
 	options: unknown[];
 	value: unknown;
+	disabled?: boolean;
 	format: (value: unknown) => string;
 	isDisabled: (value: unknown) => boolean;
 	onChange: (value: unknown) => void;
@@ -28,6 +29,7 @@ const EnumField = (props: Props) => {
 				defaultValue="Select..."
 				options={options}
 				value={props.value}
+				disabled={props.disabled}
 				onChange={props.onChange}
 			/>
 		</div>

@@ -4,6 +4,7 @@ import { InputNumber } from 'antd';
 interface Props {
 	label: string;
 	value: number;
+	disabled?: boolean;
 	validate?: (value: number) => boolean;
 	onChange: (value: number) => void;
 }
@@ -23,6 +24,7 @@ const NumberField = (props: Props) => {
 			<InputNumber
 				className='number-field-control'
 				value={props.value}
+				disabled={props.disabled}
 				onChange={value => onChange(value)}
 			/>
 		</div>

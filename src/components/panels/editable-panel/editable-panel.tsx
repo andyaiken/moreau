@@ -8,7 +8,7 @@ interface Props {
 	editable: boolean;
 	viewer: React.ReactNode;
 	editor: React.ReactNode;
-	onDelete: (() => void) | null;
+	onDelete?: () => void;
 }
 
 const EditablePanel = (props: Props) => {
@@ -16,6 +16,12 @@ const EditablePanel = (props: Props) => {
 
 	const toggleEditing = () => {
 		setEditing(!editing);
+	};
+
+	const onDelete = () => {
+		if (props.onDelete) {
+			props.onDelete();
+		}
 	};
 
 	let style = 'editable-panel';
@@ -34,9 +40,9 @@ const EditablePanel = (props: Props) => {
 			{
 				props.editable ?
 					<div className='editable-panel-actions'>
-						{!editing ? <Button icon={<IconEdit />} onClick={() => toggleEditing()} /> : null}
-						{editing ? <Button icon={<IconCircleCheck />} onClick={() => toggleEditing()} /> : null}
-						{editing && props.onDelete ? <Button icon={<IconTrash />} onClick={() => props.onDelete ? props.onDelete() : null} /> : null}
+						{!editing ? <Button icon={<IconEdit />} onClick={toggleEditing} /> : null}
+						{editing ? <Button icon={<IconCircleCheck />} onClick={toggleEditing} /> : null}
+						{editing && props.onDelete ? <Button icon={<IconTrash />} onClick={onDelete} /> : null}
 					</div>
 					:
 					null

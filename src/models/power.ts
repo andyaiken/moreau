@@ -1,4 +1,4 @@
-import { ActionType, DefenceType, PowerCategory, UsageType } from '../enums/enums';
+import { ActionType, DefenceType, UsageType } from '../enums/enums';
 
 export interface PowerAction {
 	action: ActionType;
@@ -23,10 +23,4 @@ export interface Power {
 	attack: PowerAttack | null;
 	description: string;
 	details: string;
-
-	// TODO: Remove the damage field - it's not used
-	damage: string;
-
-	// TODO: Remove the category field - it's not used
-	category: PowerCategory;
 }

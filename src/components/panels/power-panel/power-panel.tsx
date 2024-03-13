@@ -1,4 +1,6 @@
-import { ActionType, DefenceType, UsageType } from '../../../enums/enums';
+import { Divider, Flex, Tag } from 'antd';
+
+import { ActionType, DefenceType, PowerCategory, UsageType } from '../../../enums/enums';
 
 import { Factory } from '../../../logic/factory';
 
@@ -49,11 +51,6 @@ const PowerPanel = (props: PowerPanelProps) => {
 		);
 	}
 
-	let keywords = null;
-	if (props.power.keywords) {
-		keywords = <span>({props.power.keywords})</span>;
-	}
-
 	let usage = null;
 	let sustain = null;
 	if (props.power.action) {
@@ -70,6 +67,19 @@ const PowerPanel = (props: PowerPanelProps) => {
 		if (props.power.action.sustainAction !== ActionType.None) {
 			sustain = <span>◆ Sustain: {EnumHelper.actionType(props.power.action.sustainAction)}</span>;
 		}
+	}
+
+	let keywords = null;
+	if (props.power.keywords) {
+		keywords = (
+			<div>
+				{
+					props.power.keywords
+						.split(', ')
+						.map((keyword, n) => <Tag key={n}>{keyword.trim()}</Tag>)
+				}
+			</div>
+		);
 	}
 
 	let requirement = null;
@@ -101,17 +111,25 @@ const PowerPanel = (props: PowerPanelProps) => {
 		attack = (
 			<div><i>{start}</i>: {roll}</div>
 		);
+	} else {
+		if (props.power.action) {
+			if ((props.power.action.action === ActionType.Reaction) || (props.power.action.action === ActionType.Interrupt) || (props.power.action.action === ActionType.Opportunity)) {
+				attack = (
+					<div><i>{EnumHelper.actionType(props.power.action.action)}</i></div>
+				);
+			}
+		}
 	}
 
 	return (
 		<div className='power-panel'>
-			<div className='top-line'>
+			<Flex gap='small' className='top-line'>
 				<div className='power-icon'>{icon}</div>
-				<b>{props.power.name}</b>
-				{keywords}
+				<div className='power-name'>{props.power.name || 'Unnamed Power'}</div>
 				{usage}
 				{sustain}
-			</div>
+				{keywords}
+			</Flex>
 			<div className='description'>
 				<i>{Format.sanitize(props.power.description)}</i>
 			</div>
@@ -119,7 +137,7 @@ const PowerPanel = (props: PowerPanelProps) => {
 				{requirement}
 				{trigger}
 				{attack}
-				<div>{Format.sanitize(props.power.details)}</div>
+				<div>{Format.sanitize(props.power.details || 'No details')}</div>
 			</div>
 		</div>
 	);
@@ -127,54 +145,99 @@ const PowerPanel = (props: PowerPanelProps) => {
 
 interface PowerEditorPanelProps {
 	power: Power;
+	category: PowerCategory;
 	changeValue: (source: object, field: string, value: unknown) => void;
 }
 
 const PowerEditorPanel = (props: PowerEditorPanelProps) => {
+	const getAction = () => {
+		if (!props.power.action) {
+			return null;
+		}
+
+		return (
+			<div>
+				{
+					props.category === PowerCategory.Triggered ?
+						<EnumField
+							label='Action Type'
+							options={[ ActionType.Reaction, ActionType.Interrupt, ActionType.Opportunity ]}
+							value={props.power.action.action}
+							format={value => EnumHelper.actionType(value as ActionType)}
+							isDisabled={() => false}
+							onChange={value => props.changeValue(props.power.action as PowerAction, 'action', value)}
+						/>
+						: null
+				}
+				{
+					props.category === PowerCategory.Triggered ?
+						<StringField label='Trigger' value={props.power.action.trigger} onChange={value => props.changeValue(props.power.action as PowerAction, 'trigger', value)} />
+						: null
+				}
+				<EnumField
+					label='Sustain Action'
+					options={[ ActionType.None, ActionType.Standard, ActionType.Move, ActionType.Minor, ActionType.Reaction, ActionType.Interrupt, ActionType.Opportunity, ActionType.Free ]}
+					value={props.power.action.sustainAction}
+					format={value => EnumHelper.actionType(value as ActionType)}
+					isDisabled={() => false}
+					onChange={value => props.changeValue(props.power.action as PowerAction, 'sustainAction', value)}
+				/>
+				<Divider />
+				<EnumField
+					label='Use'
+					options={[ UsageType.Basic, UsageType.AtWill, UsageType.Encounter, UsageType.Daily ]}
+					value={props.power.action.use}
+					disabled={props.power.action.recharge !== ''}
+					format={value => EnumHelper.usageType(value as UsageType)}
+					isDisabled={() => false}
+					onChange={value => props.changeValue(props.power.action as PowerAction, 'use', value)}
+				/>
+				<StringField label='Recharge' value={props.power.action.recharge} onChange={value => props.changeValue(props.power.action as PowerAction, 'recharge', value)} />
+			</div>
+		);
+	};
+
+	const getAttack = () => {
+		return (
+			<div>
+				<BooleanField label='Attack' value={props.power.attack !== null} onChange={value => props.changeValue(props.power, 'attack', value ? Factory.createPowerAttack() : null)} />
+				{
+					props.power.attack !== null ?
+						<StringField label='Range' value={props.power.range} onChange={value => props.changeValue(props.power, 'range', value)} />
+						: null
+				}
+				{
+					props.power.attack !== null ?
+						<NumberField label='Bonus' value={props.power.attack.bonus} onChange={value => props.changeValue(props.power.attack as PowerAttack, 'bonus', value)} />
+						: null
+				}
+				{
+					props.power.attack !== null ?
+						<EnumField
+							label='Defence'
+							options={[ DefenceType.AC, DefenceType.Fortitude, DefenceType.Reflex, DefenceType.Will ]}
+							value={props.power.attack.defence}
+							format={value => EnumHelper.defenceType(value as DefenceType)}
+							isDisabled={() => false}
+							onChange={value => props.changeValue(props.power.attack as PowerAttack, 'defence', value)}
+						/>
+						: null
+				}
+			</div>
+		);
+	};
+
 	return (
 		<div className='power-editor-panel'>
 			<StringField label='Name' value={props.power.name} onChange={value => props.changeValue(props.power, 'name', value)} />
 			<StringField label='Keywords' value={props.power.keywords} onChange={value => props.changeValue(props.power, 'keywords', value)} />
 			<StringField label='Description' value={props.power.description} onChange={value => props.changeValue(props.power, 'description', value)} />
 			<StringField label='Requirements' value={props.power.condition} onChange={value => props.changeValue(props.power, 'condition', value)} />
-			<BooleanField label='Action' value={props.power.action !== null} onChange={value => props.changeValue(props.power, 'action', value ? Factory.createPowerAction() : null)} />
-			{props.power.action !== null ? <EnumField
-				label='Action Type'
-				options={[ActionType.None, ActionType.Standard, ActionType.Move, ActionType.Minor, ActionType.Reaction, ActionType.Interrupt, ActionType.Opportunity, ActionType.Free]}
-				value={props.power.action.action}
-				format={value => EnumHelper.actionType(value as ActionType)}
-				isDisabled={() => false}
-				onChange={value => props.changeValue(props.power.action as PowerAction, 'action', value)}
-			/> : null}
-			{props.power.action !== null ? <StringField label='Trigger' value={props.power.action.trigger} onChange={value => props.changeValue(props.power.action as PowerAction, 'trigger', value)} /> : null}
-			{props.power.action !== null ? <EnumField
-				label='Sustain Action'
-				options={[ActionType.None, ActionType.Standard, ActionType.Move, ActionType.Minor, ActionType.Reaction, ActionType.Interrupt, ActionType.Opportunity, ActionType.Free]}
-				value={props.power.action.sustainAction}
-				format={value => EnumHelper.actionType(value as ActionType)}
-				isDisabled={() => false}
-				onChange={value => props.changeValue(props.power.action as PowerAction, 'sustainAction', value)}
-			/> : null}
-			{props.power.action !== null ? <EnumField
-				label='Use'
-				options={[UsageType.Encounter, UsageType.AtWill, UsageType.Basic, UsageType.Daily]}
-				value={props.power.action.use}
-				format={value => EnumHelper.usageType(value as UsageType)}
-				isDisabled={() => false}
-				onChange={value => props.changeValue(props.power.action as PowerAction, 'use', value)}
-			/> : null}
-			{props.power.action !== null ? <StringField label='Recharge' value={props.power.action.recharge} onChange={value => props.changeValue(props.power.attack as PowerAttack, 'recharge', value)} /> : null}
-			<BooleanField label='Attack' value={props.power.attack !== null} onChange={value => props.changeValue(props.power, 'attack', value ? Factory.createPowerAttack() : null)} />
-			{props.power.attack !== null ? <StringField label='Range' value={props.power.range} onChange={value => props.changeValue(props.power, 'range', value)} /> : null}
-			{props.power.attack !== null ? <NumberField label='Bonus' value={props.power.attack.bonus} onChange={value => props.changeValue(props.power.attack as PowerAttack, 'bonus', value)} /> : null}
-			{props.power.attack !== null ? <EnumField
-				label='Defence'
-				options={[DefenceType.AC, DefenceType.Fortitude, DefenceType.Reflex, DefenceType.Will]}
-				value={props.power.attack.defence}
-				format={value => EnumHelper.defenceType(value as DefenceType)}
-				isDisabled={() => false}
-				onChange={value => props.changeValue(props.power.attack as PowerAttack, 'defence', value)}
-			/> : null}
+			<Divider />
+			{getAction()}
+			<Divider />
+			{getAttack()}
+			<Divider />
 			<MultilineField label='Details' value={props.power.details} onChange={value => props.changeValue(props.power, 'details', value)} />
 		</div>
 	);
@@ -185,11 +248,9 @@ interface AuraPanelProps {
 }
 
 const AuraPanel = (props: AuraPanelProps) => {
-	const icon = null;
-
-	let keywords = '';
+	let keywords = null;
 	if (props.aura.keywords) {
-		keywords = `(${props.aura.keywords})`;
+		keywords = <Tag>{props.aura.keywords}</Tag>;
 	}
 
 	let details = Format.sanitize(props.aura.details);
@@ -199,10 +260,11 @@ const AuraPanel = (props: AuraPanelProps) => {
 
 	return (
 		<div className='power-panel'>
-			<div className='top-line'>
-				<div className='power-icon'>{icon}</div>
-				<b>{props.aura.name}</b> {keywords}
-			</div>
+			<Flex gap='small' className='top-line'>
+				<div className='power-icon'></div>
+				<div className='power-name'>{props.aura.name}</div>
+				{keywords}
+			</Flex>
 			<div className='content'>
 				<div>{details}</div>
 			</div>
@@ -232,11 +294,11 @@ interface RegenerationPanelProps {
 const RegenerationPanel = (props: RegenerationPanelProps) => {
 	return (
 		<div className='power-panel'>
-			<div className='top-line'>
+			<Flex gap='small' className='top-line'>
 				<div className='power-icon'></div>
-				<b>Regeneration {props.regeneration.value}</b>
-				<span>(Healing)</span>
-			</div>
+				<div className='power-name'>Regeneration {props.regeneration.value}</div>
+				<Tag>Healing</Tag>
+			</Flex>
 			<div className='content'>
 				<div>{Format.sanitize(props.regeneration.details)}</div>
 			</div>
