@@ -1,14 +1,23 @@
-Need to create a 'monster summary' component and use it in monster list and encounter builder
-* probably need a 'encounter summary' component too
+Monster Creation Help
+* show suggested values when creating a monster
+  * average damage: +(25-50)% encounter; -25% multiple targets
+* show similar monsters
 
-Create a random monster based on existing
-Create a random encounter based on templates
+Encounter Creation Help
+* show encounter difficulty (based on given party size / level)
 
-Show encounter difficulty based on a particular party size / level
+Random Monsters
+* select level, role, flag, origin, type; create a random monster based on existing data
 
-Add a traps tab with official / homebrew
+Encounter Templates
+* create an encounter with a template
+* create a random encounter based on templates
+
+Traps
+* add a traps tab with official / homebrew
 * allow traps to be created / edited / deleted etc
 * allow traps to be added to encounters
 
-Allow encounter slots to be foe / ally / neautral
+Encounter Slot Type
+* allow encounter slots to be foe / ally / neautral
 * adjust the XP accordingly

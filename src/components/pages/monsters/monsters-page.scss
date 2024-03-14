@@ -18,22 +18,6 @@
 		&.monster-list {
 			flex: 0 0 280px;
 			overflow-y: auto;
-
-			.list-item {
-				width: 100%;
-				border: 2px solid transparent;
-				padding: 5px 10px;
-				cursor: pointer;
-
-				&:hover {
-					border-color: var(--highlight-light);
-				}
-
-				&.selected {
-					border-color: var(--highlight);
-					cursor: default;
-				}
-			}
 		}
 
 		&.monster-details {

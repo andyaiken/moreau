@@ -1,10 +1,7 @@
 .encounter-stat-block {
 	background-color: var(--encounter-background);
 
-	.sticky-header {
-		position: sticky;
-		top: 0;
-		z-index: 1;
+	.main-header {
 		background-color: var(--encounter);
 		color: white;
 	}
@@ -43,6 +40,6 @@
 	}
 
 	.slot-section {
-		display: block;
+		padding: 0 5px;
 	}
 }

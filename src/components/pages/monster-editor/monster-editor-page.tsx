@@ -1,9 +1,12 @@
 import { IconCircleCheck, IconCircleX } from '@tabler/icons-react';
-import { Button, Flex } from 'antd';
+import { Button, Flex, Typography } from 'antd';
 import { useState } from 'react';
+
+import { MonsterLogic } from '../../../logic/monster-logic';
 
 import { Monster } from '../../../models/monster';
 
+import { InfoPanel } from '../../panels';
 import { MonsterStatBlock } from '../../stat-blocks';
 
 import './monster-editor-page.scss';
@@ -22,7 +25,7 @@ const MonsterEditorPage = (props: Props) => {
 
 		const copy = JSON.parse(JSON.stringify(monster)) as Monster;
 		setMonster(copy);
-	}
+	};
 
 	return (
 		<div className='monster-editor-page'>
@@ -30,8 +33,18 @@ const MonsterEditorPage = (props: Props) => {
 				<Button icon={<IconCircleCheck />} onClick={() => props.save(monster)} />
 				<Button icon={<IconCircleX />} onClick={() => props.cancel()} />
 			</Flex>
-			<div className='stat-block-container'>
-				<MonsterStatBlock mode='edit' monster={monster} changeValue={changeMonsterValue} />
+			<div className='editor-content'>
+				<div className='stat-block-container'>
+					<MonsterStatBlock mode='edit' monster={monster} changeValue={changeMonsterValue} />
+				</div>
+				<div className='editor-sidebar'>
+					<Typography.Title level={4}>Suggested Stats</Typography.Title>
+					<InfoPanel content='Hit Points' info={MonsterLogic.getHP(monster)} />
+					<InfoPanel content='Armor Class' info={MonsterLogic.getAC(monster)} />
+					<InfoPanel content='Fort / Reflex / Will' info={MonsterLogic.getNAD(monster)} />
+					<InfoPanel content='Attack Bonus' info={'+' + MonsterLogic.getAttack(monster)} />
+					<InfoPanel content='Average Damage' info={MonsterLogic.getAverageDamage(monster)} />
+				</div>
 			</div>
 		</div>
 	);

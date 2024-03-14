@@ -3,9 +3,21 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	overflow-y: auto;
 
-	.stat-block-container {
-		overflow-y: auto;
+	.editor-content {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+
+		.stat-block-container {
+			flex: 1 1 0;
+			overflow-y: auto;
+		}
+
+		.editor-sidebar {
+			flex: 1 1 0;
+			overflow-y: auto;
+		}
 	}
 }

@@ -1,5 +1,5 @@
 import { IconCirclePlus, IconTrash } from '@tabler/icons-react';
-import { Button, Flex } from 'antd';
+import { Button, Flex, Tag } from 'antd';
 
 import { RoleFlag, PowerCategory, ActionType, RoleType, MonsterSize, MonsterOrigin, MonsterType, DamageType } from '../../../enums/enums';
 
@@ -318,7 +318,7 @@ const MonsterStatBlock = (props: Props) => {
 
 	return (
 		<div id={props.monster.id} className='monster-stat-block'>
-			<div className='sticky-header'>
+			<div className='main-header'>
 				<div className='row'>
 					<div className='cell wide big'>
 						<EditablePanel
@@ -339,7 +339,22 @@ const MonsterStatBlock = (props: Props) => {
 					<div className='cell wide'>
 						<EditablePanel
 							editable={props.mode === 'edit'}
-							viewer={MonsterLogic.getPhenotype(props.monster)}
+							viewer={
+								<Flex gap='small' align='center'>
+									{MonsterLogic.getPhenotype(props.monster)}
+									{
+										props.monster.keywords ?
+											<div>
+												{
+													props.monster.keywords
+														.split(', ')
+														.map((keyword, n) => <Tag key={n}>{keyword.trim()}</Tag>)
+												}
+											</div>
+											: null
+									}
+								</Flex>
+							}
 							editor={<PhenotypeEditorPanel monster={props.monster} changeValue={props.changeValue} />}
 						/>
 					</div>

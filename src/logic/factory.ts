@@ -1,11 +1,14 @@
-import { Encounter, EncounterSlot, EncounterWave } from '../models/encounter';
 import { ActionType, DamageType, DefenceType, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, RoleFlag, RoleType, ThreatType, UsageType } from '../enums/enums';
+
+import { Encounter, EncounterSlot, EncounterWave } from '../models/encounter';
 import { Ability, Aura, DamageModifier, Monster, Regeneration, Role } from '../models/monster';
+import { MonsterFilter } from '../models/monster-filter';
 import { Power, PowerAction, PowerAttack } from '../models/power';
+
 import { Utils } from '../utils/utils';
 
 export class Factory {
-	static createMonster: () => Monster = () => {
+	static createMonster = (): Monster => {
 		return {
 			id: Utils.guid(),
 			name: '',
@@ -42,13 +45,11 @@ export class Factory {
 			damageModifiers: [],
 			resist: '',
 			vulnerable: '',
-			immune: '',
-			info: '',
-			phenotype: ''
+			immune: ''
 		};
 	};
 
-	static createRole: () => Role = () => {
+	static createRole = (): Role => {
 		return {
 			type: RoleType.Artillery,
 			flag: RoleFlag.Standard,
@@ -56,22 +57,20 @@ export class Factory {
 		};
 	};
 
-	static createAbility: () => Ability = () => {
+	static createAbility = (): Ability => {
 		return {
-			score: 10,
-			modifier: 0,
-			cost: 0
+			score: 10
 		};
 	};
 
-	static createRegeneration: () => Regeneration = () => {
+	static createRegeneration = (): Regeneration => {
 		return {
 			value: 5,
 			details: ''
 		};
 	};
 
-	static createAura: () => Aura = () => {
+	static createAura = (): Aura => {
 		return {
 			id: Utils.guid(),
 			name: '',
@@ -80,14 +79,14 @@ export class Factory {
 		};
 	};
 
-	static createDamageModifier: () => DamageModifier = () => {
+	static createDamageModifier = (): DamageModifier => {
 		return {
 			type: DamageType.Fire,
 			value: 0
 		};
 	};
 
-	static createPower: (category: PowerCategory) => Power = (category: PowerCategory) => {
+	static createPower = (category: PowerCategory): Power => {
 		let action = ActionType.Standard;
 		switch (category) {
 			case PowerCategory.Trait:
@@ -116,13 +115,11 @@ export class Factory {
 			range: '',
 			attack: null,
 			description: '',
-			details: '',
-			damage: '',
-			category: category
+			details: ''
 		};
 	};
 
-	static createPowerAction: (type: ActionType) => PowerAction = (type: ActionType) => {
+	static createPowerAction = (type: ActionType): PowerAction => {
 		return {
 			action: type,
 			trigger: '',
@@ -132,14 +129,30 @@ export class Factory {
 		};
 	};
 
-	static createPowerAttack: () => PowerAttack = () => {
+	static createPowerAttack = (): PowerAttack => {
 		return {
 			bonus: 0,
 			defence: DefenceType.AC
 		};
 	};
 
-	static createEncounter: () => Encounter = () => {
+	static createMonsterFilter = (): MonsterFilter => {
+		return {
+			text: '',
+			level: [1, 10],
+			roleType: RoleType.Any,
+			roleFlag: RoleFlag.Any,
+			roleLeader: true,
+			roleNonLeader: true,
+			monsterSize: MonsterSize.Any,
+			monsterOrigin: MonsterOrigin.Any,
+			monsterType: MonsterType.Any,
+			showOfficial: true,
+			showHomebrew: true
+		};
+	};
+
+	static createEncounter = (): Encounter => {
 		return {
 			id: Utils.guid(),
 			name: '',
@@ -147,7 +160,7 @@ export class Factory {
 		};
 	};
 
-	static createEncounterWave: () => EncounterWave = () => {
+	static createEncounterWave = (): EncounterWave => {
 		return {
 			id: Utils.guid(),
 			name: '',
@@ -155,7 +168,7 @@ export class Factory {
 		};
 	};
 
-	static createEncounterSlot: () => EncounterSlot = () => {
+	static createEncounterSlot = (): EncounterSlot => {
 		return {
 			id: Utils.guid(),
 			threatType: ThreatType.Monster,

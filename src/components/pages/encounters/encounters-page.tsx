@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { Encounter } from '../../../models/encounter';
 import { Monster } from '../../../models/monster';
 
-import { InfoPanel } from '../../panels';
+import { InfoPanel, ListItemPanel } from '../../panels';
 import { EncounterStatBlock } from '../../stat-blocks';
 
 import './encounters-page.scss';
+import { EncounterLogic } from '../../../logic/encounter-logic';
 
 interface Props {
 	encounters: Encounter[];
@@ -48,16 +49,17 @@ const EncountersPage = (props: Props) => {
 			<div className='encounters-page-column encounter-list'>
 				<List
 					dataSource={props.encounters}
+					split={false}
 					renderItem={(encounter: Encounter) => (
 						<List.Item key={encounter.id} onClick={() => setSelectedEncounter(encounter)}>
-							<div className={`list-item ${!!selectedEncounter && (selectedEncounter.id === encounter.id) ? 'selected' : ''}`}>
-								<Flex gap='small' align='center'>
-									<b>{encounter.name || 'Unnamed Encounter'}</b>
-								</Flex>
-								<div>
-									XXX
-								</div>
-							</div>
+							<ListItemPanel
+								title={encounter.name || 'Unnamed Encounter'}
+								info={[
+									`${EncounterLogic.getMonsterCount(encounter)} monsters`,
+									`${EncounterLogic.getXP(encounter, props.monsters)} XP`
+								]}
+								isSelected={(selectedEncounter !== null) && (selectedEncounter.id === encounter.id)}
+							/>
 						</List.Item>
 					)}
 				/>

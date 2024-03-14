@@ -1,5 +1,8 @@
-import { RoleFlag, RoleType } from '../enums/enums';
+import { MonsterOrigin, MonsterSize, MonsterType, RoleFlag, RoleType } from '../enums/enums';
+
 import { Monster, Role } from '../models/monster';
+import { MonsterFilter } from '../models/monster-filter';
+
 import { EnumHelper } from '../utils/enum-helper';
 
 export class MonsterLogic {
@@ -26,11 +29,7 @@ export class MonsterLogic {
 	};
 
 	static getPhenotype = (monster: Monster) => {
-		let str = `${EnumHelper.monsterSize(monster.size)} ${EnumHelper.monsterOrigin(monster.origin)} ${EnumHelper.monsterType(monster.type)}`;
-		if (monster.keywords) {
-			str += ` (${monster.keywords})`;
-		}
-		return str;
+		return `${EnumHelper.monsterSize(monster.size)} ${EnumHelper.monsterOrigin(monster.origin)} ${EnumHelper.monsterType(monster.type)}`;
 	};
 
 	static getXP = (level: number, flag: RoleFlag) => {
@@ -172,5 +171,133 @@ export class MonsterLogic {
 		}
 
 		return xp;
+	};
+
+	static matches = (monster: Monster, filter: MonsterFilter) => {
+		if (filter.text) {
+			if (!monster.name.toLowerCase().includes(filter.text.toLowerCase())) {
+				return false;
+			}
+
+			if (!monster.keywords.toLowerCase().includes(filter.text.toLowerCase())) {
+				return false;
+			}
+		}
+
+		const min = Math.min(...filter.level);
+		const max = Math.max(...filter.level);
+		if ((monster.level < min) || (monster.level > max)) {
+			return false;
+		}
+
+		if ((filter.roleType !== RoleType.Any) && (monster.role.type !== filter.roleType)) {
+			return false;
+		}
+
+		if ((filter.roleFlag !== RoleFlag.Any) && (monster.role.flag !== filter.roleFlag)) {
+			return false;
+		}
+
+		if (!filter.roleLeader && monster.role.leader) {
+			return false;
+		}
+
+		if (!filter.roleNonLeader && !monster.role.leader) {
+			return false;
+		}
+
+		if ((filter.monsterSize !== MonsterSize.Any) && (monster.size !== filter.monsterSize)) {
+			return false;
+		}
+
+		if ((filter.monsterOrigin !== MonsterOrigin.Any) && (monster.origin !== filter.monsterOrigin)) {
+			return false;
+		}
+
+		if ((filter.monsterType !== MonsterType.Any) && (monster.type !== filter.monsterType)) {
+			return false;
+		}
+
+		if (!filter.showOfficial && !monster.category) {
+			return false;
+		}
+
+		if (!filter.showHomebrew && monster.category) {
+			return false;
+		}
+
+		return true;
+	};
+
+	static getHP = (monster: Monster) => {
+		if (monster.role.flag === RoleFlag.Minion) {
+			return 1;
+		}
+
+		let value = 0;
+
+		switch (monster.role.type) {
+			case RoleType.Artillery:
+			case RoleType.Lurker:
+				value = 21 + (6 * monster.level);
+				break;
+			case RoleType.Brute:
+				value = 26 + (10 * monster.level);
+				break;
+			case RoleType.Controller:
+			case RoleType.Skirmisher:
+			case RoleType.Soldier:
+				value = 24 + (8 * monster.level);
+				break;
+		}
+
+		switch (monster.role.flag) {
+			case RoleFlag.Elite:
+				value *= 2;
+				break;
+			case RoleFlag.Solo:
+				value *= 4;
+				break;
+		}
+
+		return value;
+	};
+
+	static getAC = (monster: Monster) => {
+		let value = 14 + monster.level;
+
+		switch (monster.role.type) {
+			case RoleType.Artillery:
+			case RoleType.Brute:
+				value -= 2;
+				break;
+			case RoleType.Soldier:
+				value += 2;
+				break;
+		}
+
+		return value;
+	};
+
+	static getNAD = (monster: Monster) => {
+		return 12 + monster.level;
+	};
+
+	static getAttack = (monster: Monster) => {
+		return 5 + monster.level;
+	};
+
+	static getAverageDamage = (monster: Monster) => {
+		let value = 8 + monster.level;
+
+		if (monster.role.type === RoleType.Brute) {
+			value *= 1.25;
+		}
+
+		if (monster.role.flag === RoleFlag.Minion) {
+			value *= 0.5;
+		}
+
+		return Math.round(value);
 	};
 }

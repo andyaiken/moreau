@@ -1,12 +1,10 @@
-import { IconCircleMinus, IconCirclePlus } from '@tabler/icons-react';
-import { Button, Drawer, Empty, Flex, List, Tag } from 'antd';
-import { useState } from 'react';
+import { IconCircleMinus, IconCirclePlus, IconTrash } from '@tabler/icons-react';
+import { Button, Empty, Flex } from 'antd';
 
 import { ThreatType } from '../../../enums/enums';
 
 import { EncounterLogic } from '../../../logic/encounter-logic';
 import { Factory } from '../../../logic/factory';
-import { MonsterLogic } from '../../../logic/monster-logic';
 
 import { Encounter, EncounterSlot, EncounterWave } from '../../../models/encounter';
 import { Monster } from '../../../models/monster';
@@ -24,8 +22,6 @@ interface Props {
 }
 
 const EncounterStatBlock = (props: Props) => {
-	const [ selectedWave, setSelectedWave ] = useState<EncounterWave | null>(null);
-
 	const addWave = () => {
 		const waves = props.encounter.waves;
 		waves.push(Factory.createEncounterWave());
@@ -35,20 +31,6 @@ const EncounterStatBlock = (props: Props) => {
 	const removeWave = (wave: EncounterWave) => {
 		const waves = props.encounter.waves.filter(w => w.id !== wave.id);
 		props.changeValue(props.encounter, 'waves', waves);
-	};
-
-	const addMonster = (monster: Monster) => {
-		if (selectedWave) {
-			const slot = Factory.createEncounterSlot();
-			slot.threatType = ThreatType.Monster;
-			slot.threatID = monster.id;
-			slot.count = 1;
-
-			selectedWave.slots.push(slot);
-			props.changeValue(selectedWave, 'slots', selectedWave.slots);
-
-			setSelectedWave(null);
-		}
 	};
 
 	const changeCount = (wave: EncounterWave, slot: EncounterSlot, delta: number) => {
@@ -70,8 +52,7 @@ const EncounterStatBlock = (props: Props) => {
 						actions={
 							props.mode === 'edit' ?
 								<Flex gap='small'>
-									<Button icon={<IconCirclePlus />} onClick={() => setSelectedWave(wave)} />
-									<Button icon={<IconCircleMinus />} onClick={() => removeWave(wave)} />
+									{props.encounter.waves.length > 1 ? <Button icon={<IconTrash />} onClick={() => removeWave(wave)} /> : null}
 								</Flex>
 								: null
 						}
@@ -113,7 +94,7 @@ const EncounterStatBlock = (props: Props) => {
 
 	return (
 		<div id={props.encounter.id} className='encounter-stat-block'>
-			<div className='sticky-header'>
+			<div className='main-header'>
 				<div className='row'>
 					<div className='cell wide big'>
 						<EditablePanel
@@ -142,31 +123,6 @@ const EncounterStatBlock = (props: Props) => {
 					</div>
 					: null
 			}
-			<Drawer
-				open={selectedWave !== null}
-				width='50%'
-				onClose={() => setSelectedWave(null)}
-			>
-				<List
-					dataSource={props.monsters}
-					renderItem={(monster: Monster) => (
-						<List.Item key={monster.id} onClick={() => addMonster(monster)}>
-							<div className='list-item'>
-								<Flex gap='small' align='center'>
-									<b>{monster.name || 'Unnamed Monster'}</b>
-									{monster.category ? <Tag>Homebrew</Tag> : null}
-								</Flex>
-								<div>
-									Level {monster.level} {MonsterLogic.getRole(monster.role)}
-								</div>
-								<div>
-									{MonsterLogic.getPhenotype(monster)}
-								</div>
-							</div>
-						</List.Item>
-					)}
-				/>
-			</Drawer>
 		</div>
 	);
 }

@@ -65,7 +65,6 @@ const Main = (props: Props) => {
 							copyMonster={monster => {
 								const copy = JSON.parse(JSON.stringify(monster)) as Monster;
 
-								copy.name = `${copy.name} (copy)`;
 								copy.id = Utils.guid();
 								copy.auras.forEach(a => a.id = Utils.guid());
 								copy.powers.forEach(p => p.id = Utils.guid());

@@ -6,6 +6,12 @@ import { MonsterLogic } from './monster-logic';
 import { Collections } from '../utils/collections';
 
 export class EncounterLogic {
+	static getMonsterCount = (encounter: Encounter) => {
+		return Collections.sum(encounter.waves, wave => {
+			return Collections.sum(wave.slots, slot => slot.count);
+		});
+	};
+
 	static getXP = (encounter: Encounter, monsters: Monster[]) => {
 		return Collections.sum(encounter.waves, wave => {
 			return Collections.sum(wave.slots, slot => {

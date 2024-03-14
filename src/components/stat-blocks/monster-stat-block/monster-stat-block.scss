@@ -1,10 +1,7 @@
 .monster-stat-block {
 	background-color: var(--monster-background);
 
-	.sticky-header {
-		position: sticky;
-		top: 0;
-		z-index: 1;
+	.main-header {
 		background-color: var(--monster);
 		color: white;
 	}
