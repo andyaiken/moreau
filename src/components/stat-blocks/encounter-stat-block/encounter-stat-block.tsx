@@ -112,7 +112,7 @@ const EncounterStatBlock = (props: Props) => {
 	};
 
 	return (
-		<div className='encounter-stat-block'>
+		<div id={props.encounter.id} className='encounter-stat-block'>
 			<div className='sticky-header'>
 				<div className='row'>
 					<div className='cell wide big'>

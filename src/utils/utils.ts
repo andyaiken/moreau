@@ -1,3 +1,5 @@
+import html2canvas from 'html2canvas';
+
 import { Random } from './random';
 
 export class Utils {
@@ -28,5 +30,29 @@ export class Utils {
 			const gamma = ((light.a.y - light.b.y) * (wall.b.x - light.a.x) + (light.b.x - light.a.x) * (wall.b.y - light.a.y)) / det;
 			return (0 <= lambda && lambda <= 1) && (0 <= gamma && gamma <= 1);
 		}
+	};
+
+	public static takeScreenshot = (elementID: string) => {
+		const element = document.getElementById(elementID);
+		if (element) {
+			html2canvas(element).then(canvas => Utils.saveImage('image.png', canvas));
+		}
+	};
+
+	public static saveFile = (filename: string, data: any) => {
+		const json = JSON.stringify(data, null, '\t');
+		const blob = new Blob([json], { type: 'application/json' });
+
+		const a = document.createElement('a');
+		a.download = filename;
+		a.href = window.URL.createObjectURL(blob);
+		a.click();
+	};
+
+	public static saveImage = (filename: string, canvas: HTMLCanvasElement) => {
+		const a = document.createElement('a');
+		a.download = filename;
+		a.href = canvas.toDataURL('image/png').replace(/^data:image\/png/, 'data:application/octet-stream');
+		a.click();
 	};
 }

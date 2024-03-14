@@ -1,5 +1,5 @@
-import { IconEdit, IconTrash } from '@tabler/icons-react';
-import { Button, Flex, List, Slider, Tag } from 'antd';
+import { IconCamera, IconEdit, IconTrash } from '@tabler/icons-react';
+import { Button, Divider, Flex, List, Slider, Tag } from 'antd';
 import { useState } from 'react';
 
 import { RoleType, RoleFlag, MonsterSize, MonsterOrigin, MonsterType } from '../../../enums/enums';
@@ -17,6 +17,7 @@ import { StringField, EnumField, BooleanField } from '../../fields';
 import { MonsterStatBlock } from '../../stat-blocks';
 
 import './monsters-page.scss';
+import { Utils } from '../../../utils/utils';
 
 interface Props {
 	officialMonsters: Monster[];
@@ -375,7 +376,7 @@ const MonstersPage = (props: Props) => {
 					renderItem={(monster: Monster) => (
 						<List.Item key={monster.id} onClick={() => setSelectedMonster(monster)}>
 							<div className={`list-item ${!!selectedMonster && (selectedMonster.id === monster.id) ? 'selected' : ''}`}>
-								<Flex gap='small' align='center'>
+								<Flex gap='small' align='center' justify='space-between'>
 									<b>{monster.name || 'Unnamed Monster'}</b>
 									{monster.category ? <Tag>Homebrew</Tag> : null}
 								</Flex>
@@ -394,10 +395,12 @@ const MonstersPage = (props: Props) => {
 				{
 					selectedMonster ?
 						<div className='monster-details-content'>
-							<Flex gap='small'>
+							<Flex gap='small' align='center'>
 								{selectedMonster.category ? null : <Button onClick={copyMonster}>Create a Homebrew Version</Button>}
 								{selectedMonster.category ? <Button icon={<IconEdit />} onClick={editMonster} /> : null}
 								{selectedMonster.category ? <Button icon={<IconTrash />} onClick={deleteMonster} /> : null}
+								<Divider type='vertical' />
+								<Button icon={<IconCamera />} onClick={() => Utils.takeScreenshot(selectedMonster.id)} />
 							</Flex>
 							<div className='stat-block-container'>
 								<MonsterStatBlock mode='view' monster={selectedMonster} changeValue={() => null} />

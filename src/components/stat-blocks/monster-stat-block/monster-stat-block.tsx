@@ -317,7 +317,7 @@ const MonsterStatBlock = (props: Props) => {
 	};
 
 	return (
-		<div className='monster-stat-block'>
+		<div id={props.monster.id} className='monster-stat-block'>
 			<div className='sticky-header'>
 				<div className='row'>
 					<div className='cell wide big'>

@@ -66,7 +66,7 @@ const EncountersPage = (props: Props) => {
 				{
 					selectedEncounter ?
 						<div className='encounter-details-content'>
-							<Flex gap='small'>
+							<Flex gap='small' align='center'>
 								<Button icon={<IconEdit />} onClick={editEncounter} />
 								<Button icon={<IconTrash />} onClick={deleteEncounter} />
 							</Flex>
