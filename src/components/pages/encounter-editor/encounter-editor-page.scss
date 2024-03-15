@@ -3,12 +3,14 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	overflow: hidden;
 
 	.editor-content {
 		height: 100%;
 		display: flex;
 		flex-direction: row;
 		gap: 10px;
+		overflow-y: hidden;
 
 		.stat-block-container {
 			flex: 1 1 0;

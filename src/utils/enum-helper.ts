@@ -1,4 +1,4 @@
-import { ActionType, DamageType, DefenceType, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, RoleFlag, RoleType, ThreatType, UsageType } from '../enums/enums';
+import { ActionType, DamageType, DefenceType, DifficultyLevel, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, RoleFlag, RoleType, ThreatType, UsageType } from '../enums/enums';
 
 export class EnumHelper {
 	static monsterSize(value: MonsterSize) {
@@ -127,6 +127,16 @@ export class EnumHelper {
 		switch (value) {
 			case ThreatType.Monster: return 'Monster';
 			case ThreatType.Trap: return 'Trap';
+		}
+	}
+
+	static difficultyLevel(value: DifficultyLevel) {
+		switch (value) {
+			case DifficultyLevel.Trivial: return 'Trivial';
+			case DifficultyLevel.Easy: return 'Easy';
+			case DifficultyLevel.Moderate: return 'Moderate';
+			case DifficultyLevel.Hard: return 'Hard';
+			case DifficultyLevel.Extreme: return 'Extreme';
 		}
 	}
 }

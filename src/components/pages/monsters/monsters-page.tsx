@@ -71,15 +71,16 @@ const MonstersPage = (props: Props) => {
 					dataSource={monsters}
 					split={false}
 					renderItem={(monster: Monster) => (
-						<List.Item key={monster.id} onClick={() => setSelectedMonster(monster)}>
+						<List.Item key={monster.id}>
 							<ListItemPanel
 								title={monster.name || 'Unnamed Monster'}
 								tags={monster.category ? [ 'Homebrew' ] : []}
 								info={[
-									`Level ${monster.level} ${MonsterLogic.getRole(monster.role)}`,
+									MonsterLogic.getLevelAndRole(monster),
 									MonsterLogic.getPhenotype(monster)
 								]}
 								isSelected={(selectedMonster !== null) && (selectedMonster.id === monster.id)}
+								onClick={() => setSelectedMonster(monster)}
 							/>
 						</List.Item>
 					)}

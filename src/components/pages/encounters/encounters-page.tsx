@@ -51,7 +51,7 @@ const EncountersPage = (props: Props) => {
 					dataSource={props.encounters}
 					split={false}
 					renderItem={(encounter: Encounter) => (
-						<List.Item key={encounter.id} onClick={() => setSelectedEncounter(encounter)}>
+						<List.Item key={encounter.id}>
 							<ListItemPanel
 								title={encounter.name || 'Unnamed Encounter'}
 								info={[
@@ -59,6 +59,7 @@ const EncountersPage = (props: Props) => {
 									`${EncounterLogic.getXP(encounter, props.monsters)} XP`
 								]}
 								isSelected={(selectedEncounter !== null) && (selectedEncounter.id === encounter.id)}
+								onClick={() => setSelectedEncounter(encounter)}
 							/>
 						</List.Item>
 					)}

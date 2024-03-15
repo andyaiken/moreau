@@ -1,5 +1,5 @@
 import { IconCircleCheck, IconCircleX } from '@tabler/icons-react';
-import { Button, Divider, Flex, List, Tabs } from 'antd';
+import { Button, Divider, Flex, List, Statistic, Tabs } from 'antd';
 import { useState } from 'react';
 
 import { RoleFlag, ThreatType } from '../../../enums/enums';
@@ -9,13 +9,15 @@ import { MonsterLogic } from '../../../logic/monster-logic';
 
 import { Encounter, EncounterWave } from '../../../models/encounter';
 import { Monster } from '../../../models/monster';
+import { MonsterFilter } from '../../../models/monster-filter';
 
+import { EnumField, NumberField } from '../../fields';
 import { ListItemPanel, MonsterFilterPanel } from '../../panels';
 import { EncounterStatBlock } from '../../stat-blocks';
 
 import './encounter-editor-page.scss';
-import { EnumField } from '../../fields';
-import { MonsterFilter } from '../../../models/monster-filter';
+import { EncounterLogic } from '../../../logic/encounter-logic';
+import { EnumHelper } from '../../../utils/enum-helper';
 
 interface Props {
 	encounter: Encounter;
@@ -27,7 +29,16 @@ interface Props {
 const EncounterEditorPage = (props: Props) => {
 	const [ encounter, setEncounter ] = useState(props.encounter);
 	const [ selectedWaveID, setSelectedWaveID ] = useState(props.encounter.waves[0].id);
+	const [ partySize, setPartySize ] = useState(5);
+	const [ partyLevel, setPartyLevel ] = useState(1);
 	const [ monsterFilter, setMonsterFilter ] = useState<MonsterFilter>(Factory.createMonsterFilter());
+
+	const selectedWave = encounter.waves.find(w => w.id === selectedWaveID) as EncounterWave;
+	const monsters = props.monsters.filter(m => !selectedWave.slots.find(slot => (slot.threatType === ThreatType.Monster) && (slot.threatID === m.id)) && MonsterLogic.matches(m, monsterFilter));
+
+	const xp = EncounterLogic.getXP(encounter, props.monsters);
+	const level = EncounterLogic.getLevel(xp, partySize);
+	const diff = EncounterLogic.getDifficulty(level, partyLevel);
 
 	const changeEncounterValue = (source: object, field: string, value: unknown) => {
 		(source as { [field: string]: unknown })[field] = value;
@@ -36,9 +47,8 @@ const EncounterEditorPage = (props: Props) => {
 		setEncounter(copy);
 	};
 
-	const addMonster = (monster: Monster, waveID: string) => {
-		const wave = encounter.waves.find(w => w.id === waveID) as EncounterWave;
-		const slot = wave.slots.find(s => (s.threatType === ThreatType.Monster) && (s.threatID === monster.id));
+	const addMonster = (monster: Monster) => {
+		const slot = selectedWave.slots.find(s => (s.threatType === ThreatType.Monster) && (s.threatID === monster.id));
 		if (slot) {
 			slot.count += (monster.role.flag === RoleFlag.Minion) ? 5 : 1;
 		} else {
@@ -47,7 +57,7 @@ const EncounterEditorPage = (props: Props) => {
 			slot.threatID = monster.id;
 			slot.count = (monster.role.flag === RoleFlag.Minion) ? 5 : 1;
 
-			wave.slots.push(slot);
+			selectedWave.slots.push(slot);
 		}
 
 		const copy = JSON.parse(JSON.stringify(encounter)) as Encounter;
@@ -71,7 +81,16 @@ const EncounterEditorPage = (props: Props) => {
 								key: '1',
 								label: 'Difficulty',
 								children: (
-									null
+									<div>
+										<NumberField label='Party Size' value={partySize} onChange={value => setPartySize(value)} />
+										<NumberField label='Party Level' value={partyLevel} onChange={value => setPartyLevel(value)} />
+										<Divider />
+										<Flex justify='space-evenly'>
+											<Statistic title='XP' value={xp} />
+											<Statistic title='Level' value={level} />
+											<Statistic title='Difficulty' value={EnumHelper.difficultyLevel(diff)} />
+										</Flex>
+									</div>
 								)
 							},
 							{
@@ -97,18 +116,19 @@ const EncounterEditorPage = (props: Props) => {
 										<MonsterFilterPanel filter={monsterFilter} onChange={setMonsterFilter} />
 										<Divider />
 										<List
-											dataSource={props.monsters.filter(m => MonsterLogic.matches(m, monsterFilter))}
+											dataSource={monsters}
 											split={false}
 											renderItem={(monster: Monster) => (
-												<List.Item key={monster.id} onClick={() => addMonster(monster, selectedWaveID)}>
+												<List.Item key={monster.id}>
 													<ListItemPanel
 														title={monster.name || 'Unnamed Monster'}
 														tags={monster.category ? [ 'Homebrew' ] : []}
 														info={[
-															`Level ${monster.level} ${MonsterLogic.getRole(monster.role)}`,
+															MonsterLogic.getLevelAndRole(monster),
 															MonsterLogic.getPhenotype(monster)
 														]}
 														isSelected={false}
+														onClick={() => addMonster(monster)}
 													/>
 												</List.Item>
 											)}

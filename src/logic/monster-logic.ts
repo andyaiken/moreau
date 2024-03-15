@@ -1,31 +1,31 @@
 import { MonsterOrigin, MonsterSize, MonsterType, RoleFlag, RoleType } from '../enums/enums';
 
-import { Monster, Role } from '../models/monster';
+import { Monster } from '../models/monster';
 import { MonsterFilter } from '../models/monster-filter';
 
 import { EnumHelper } from '../utils/enum-helper';
 
 export class MonsterLogic {
-	static getRole = (role: Role) => {
-		let str = EnumHelper.roleType(role.type);
+	static getLevelAndRole = (monster: Monster) => {
+		let str = EnumHelper.roleType(monster.role.type);
 
-		switch (role.flag) {
+		switch (monster.role.flag) {
 			case RoleFlag.Elite:
 			case RoleFlag.Solo:
 			case RoleFlag.Minion:
-				if (role.type === RoleType.None) {
-					str = EnumHelper.roleFlag(role.flag);
+				if (monster.role.type === RoleType.None) {
+					str = EnumHelper.roleFlag(monster.role.flag);
 				} else {
-					str = `${EnumHelper.roleFlag(role.flag)} ${EnumHelper.roleType(role.type)}`;
+					str = `${EnumHelper.roleFlag(monster.role.flag)} ${EnumHelper.roleType(monster.role.type)}`;
 				}
 				break;
 		}
 
-		if (role.leader) {
+		if (monster.role.leader) {
 			str += ' (L)';
 		}
 
-		return str;
+		return `Level ${monster.level} ${str}`;
 	};
 
 	static getPhenotype = (monster: Monster) => {

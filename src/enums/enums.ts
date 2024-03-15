@@ -104,3 +104,11 @@ export enum ThreatType {
 	Monster = 0,
 	Trap = 1
 }
+
+export enum DifficultyLevel {
+	Trivial = 0,
+	Easy = 1,
+	Moderate = 2,
+	Hard = 3,
+	Extreme = 4
+}

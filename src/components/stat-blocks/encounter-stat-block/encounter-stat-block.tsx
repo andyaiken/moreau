@@ -1,18 +1,23 @@
 import { IconCircleMinus, IconCirclePlus, IconTrash } from '@tabler/icons-react';
-import { Button, Empty, Flex } from 'antd';
+import { Button, Drawer, Empty, Flex } from 'antd';
+import { useState } from 'react';
 
 import { ThreatType } from '../../../enums/enums';
 
 import { EncounterLogic } from '../../../logic/encounter-logic';
 import { Factory } from '../../../logic/factory';
+import { MonsterLogic } from '../../../logic/monster-logic';
 
 import { Encounter, EncounterSlot, EncounterWave } from '../../../models/encounter';
 import { Monster } from '../../../models/monster';
 
+import { Collections } from '../../../utils/collections';
+
 import { StringField } from '../../fields';
-import { EditablePanel, InfoPanel } from '../../panels';
+import { EditablePanel, InfoPanel, ListItemPanel } from '../../panels';
 
 import './encounter-stat-block.scss';
+import { MonsterStatBlock } from '..';
 
 interface Props {
 	mode: 'view' | 'edit';
@@ -22,6 +27,8 @@ interface Props {
 }
 
 const EncounterStatBlock = (props: Props) => {
+	const [ selectedMonster, setSelectedMonster ] = useState<Monster | null>(null);
+
 	const addWave = () => {
 		const waves = props.encounter.waves;
 		waves.push(Factory.createEncounterWave());
@@ -48,7 +55,8 @@ const EncounterStatBlock = (props: Props) => {
 			<div key={wave.id} className='wave-section'>
 				<div className='subheading'>
 					<InfoPanel
-						content={wave.name || 'Wave'} 
+						content={wave.name}
+						info={[ `${Collections.sum(wave.slots.filter(slot => slot.threatType === ThreatType.Monster), slot => slot.count)} monsters` ]}
 						actions={
 							props.mode === 'edit' ?
 								<Flex gap='small'>
@@ -66,10 +74,19 @@ const EncounterStatBlock = (props: Props) => {
 
 	const getSlot = (wave: EncounterWave, slot: EncounterSlot) => {
 		let name = '';
+		const info = [];
+		let onClick = undefined;
 		switch (slot.threatType) {
 			case ThreatType.Monster: {
 				const monster = props.monsters.find(m => m.id === slot.threatID);
-				name = monster ? (monster.name || 'Unknown Monster') : 'Monster Not Found';
+				if (monster) {
+					name = monster.name;
+					info.push(MonsterLogic.getLevelAndRole(monster));
+					info.push(MonsterLogic.getPhenotype(monster));
+					onClick = () => setSelectedMonster(monster);
+				} else {
+					name = 'Monster Not Found';
+				}
 				break;
 			}
 		}
@@ -77,7 +94,13 @@ const EncounterStatBlock = (props: Props) => {
 		return (
 			<div key={slot.id} className='slot-section'>
 				<InfoPanel
-					content={name}
+					content={
+						<ListItemPanel
+							title={name}
+							info={info}
+							onClick={onClick}
+						/>
+					}
 					info={`x${slot.count}`}
 					actions={
 						props.mode === 'edit' ?
@@ -117,12 +140,19 @@ const EncounterStatBlock = (props: Props) => {
 				props.mode === 'edit' ?
 					<div className='subheading'>
 						<InfoPanel
-							content={null} 
+							content=''
 							actions={<Button icon={<IconCirclePlus />} onClick={addWave} />}
 						/>
 					</div>
 					: null
 			}
+			<Drawer
+				open={selectedMonster != null}
+				width='50%'
+				onClose={() => setSelectedMonster(null)}
+			>
+				{selectedMonster ? <MonsterStatBlock mode='view' monster={selectedMonster} changeValue={() => null} /> : null}
+			</Drawer>
 		</div>
 	);
 }

@@ -4,6 +4,7 @@ import { Monster } from '../models/monster';
 import { MonsterLogic } from './monster-logic';
 
 import { Collections } from '../utils/collections';
+import { DifficultyLevel, RoleFlag } from '../enums/enums';
 
 export class EncounterLogic {
 	static getMonsterCount = (encounter: Encounter) => {
@@ -21,4 +22,39 @@ export class EncounterLogic {
 			});
 		});
 	};
+
+	static getLevel = (encounterXP: number, partySize: number) => {
+		const budgets: { level: number, budget: number }[] = [];
+		for (let level = 1; level <= 30; ++level) {
+			budgets.push({
+				level: level,
+				budget: MonsterLogic.getXP(level, RoleFlag.Standard) * partySize
+			});
+		}
+
+		const closest = Collections.min(budgets, b => Math.abs(encounterXP - b.budget));
+		return closest ? closest.level : 0;
+	};
+
+	static getDifficulty = (encounterLevel: number, partyLevel: number) => {
+		const diff = encounterLevel - partyLevel;
+
+		if (diff < -2) {
+			return DifficultyLevel.Trivial;
+		}
+
+		if (diff < 0) {
+			return DifficultyLevel.Easy;
+		}
+
+		if (diff < 2) {
+			return DifficultyLevel.Moderate;
+		}
+
+		if (diff < 5) {
+			return DifficultyLevel.Hard;
+		}
+
+		return DifficultyLevel.Extreme
+	}
 }

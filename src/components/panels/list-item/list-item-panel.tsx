@@ -7,16 +7,26 @@ interface Props {
 	tags?: string[];
 	info?: string[];
 	isSelected?: boolean;
+	onClick?: () => void;
 }
 
 const ListItemPanel = (props: Props) => {
+	const onClick = () => {
+		if (props.onClick) {
+			props.onClick();
+		}
+	};
+
 	let className = 'list-item-panel';
+	if (props.onClick) {
+		className += ' selectable';
+	}
 	if (props.isSelected) {
 		className += ' selected';
 	}
 
 	return (
-		<div className={className}>
+		<div className={className} onClick={onClick}>
 			<Flex gap='small' align='center' justify='space-between'>
 				<b>{props.title}</b>
 				{(props.tags || []).map((text, n) => <Tag key={n}>{text}</Tag>)}

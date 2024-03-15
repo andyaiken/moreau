@@ -1,14 +1,16 @@
 .list-item-panel {
-	width: 100%;
 	border: 2px solid transparent;
 	background-color: rgb(245, 245, 245);
 	padding: 5px 10px;
-	cursor: pointer;
 
-	&:hover {
-		border-color: var(--highlight-light);
+	&.selectable {
+		cursor: pointer;
+
+		&:hover {
+			border-color: var(--highlight-light);
+		}
 	}
-
+	
 	&.selected {
 		border-color: var(--highlight);
 		cursor: default;

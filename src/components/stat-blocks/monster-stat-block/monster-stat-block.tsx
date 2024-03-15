@@ -330,7 +330,7 @@ const MonsterStatBlock = (props: Props) => {
 					<div className='cell right big'>
 						<EditablePanel
 							editable={props.mode === 'edit'}
-							viewer={<div>Level {props.monster.level} {MonsterLogic.getRole(props.monster.role)}</div>}
+							viewer={<div>{MonsterLogic.getLevelAndRole(props.monster)}</div>}
 							editor={<LevelRoleEditorPanel monster={props.monster} changeValue={props.changeValue} />}
 						/>
 					</div>

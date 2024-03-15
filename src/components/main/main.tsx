@@ -90,6 +90,7 @@ const Main = (props: Props) => {
 					return (
 						<MonsterEditorPage
 							monster={view.data as Monster}
+							monsters={getAllMonsters()}
 							save={monster => {
 								const index = homebrewMonsters.findIndex(m => m.id === monster.id);
 								if (index !== -1) {
@@ -140,7 +141,7 @@ const Main = (props: Props) => {
 									if (index !== -1) {
 										encounters[index] = encounter;
 										setEncounters(encounters);
-										persistMonsters();
+										persistEncounters();
 									}
 									setView({ type: 'encounters', data: null });
 								}}
