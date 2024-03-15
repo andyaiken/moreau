@@ -159,7 +159,13 @@ const MonsterFilterPanel = (props: Props) => {
 			<div className='filter-level'>
 				<InfoPanel content='Show Levels' info={Math.min(...props.filter.level) + ' to ' + Math.max(...props.filter.level)} />
 				<div className='filter-level-slider'>
-					<Slider range={true} min={1} max={40} value={props.filter.level} onChange={value => setFilterLevel(value as number[])} />
+					<Slider
+						range={{ draggableTrack: true }}
+						min={1}
+						max={40}
+						value={props.filter.level}
+						onChange={(value: number[]) => setFilterLevel(value)}
+					/>
 				</div>
 			</div>
 			<hr />

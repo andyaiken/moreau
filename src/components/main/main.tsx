@@ -26,13 +26,15 @@ const Main = (props: Props) => {
 	const [ homebrewMonsters, setHomebrewMonsters ] = useState<Monster[]>(props.homebrewMonsters);
 	const [ encounters, setEncounters ] = useState<Encounter[]>(props.encounters);
 
-	const persistMonsters = Utils.debounce(() => {
-		localforage.setItem<Monster[]>('moreau-homebrew-monsters', homebrewMonsters);
-	});
+	const persistMonsters = (monsters: Monster[]) => {
+		localforage.setItem<Monster[]>('moreau-homebrew-monsters', monsters);
+		setHomebrewMonsters(monsters);
+	};
 
-	const persistEncounters = Utils.debounce(() => {
+	const persistEncounters = (encounters: Encounter[]) => {
 		localforage.setItem<Encounter[]>('moreau-encounters', encounters);
-	});
+		setEncounters(encounters);
+	};
 
 	const getAllMonsters = () => {
 		return ([] as Monster[])
@@ -57,8 +59,7 @@ const Main = (props: Props) => {
 								monster.category = 'homebrew';
 						
 								homebrewMonsters.push(monster);
-								setHomebrewMonsters(homebrewMonsters);
-								persistMonsters();
+								persistMonsters(homebrewMonsters);
 
 								return monster;
 							}}
@@ -71,8 +72,7 @@ const Main = (props: Props) => {
 								copy.category = 'homebrew';
 						
 								homebrewMonsters.push(copy);
-								setHomebrewMonsters(homebrewMonsters);
-								persistMonsters();
+								persistMonsters(homebrewMonsters);
 						
 								return copy;
 							}}
@@ -81,8 +81,7 @@ const Main = (props: Props) => {
 								setView({ type: 'monsters', data: copy });
 							}}
 							deleteMonster={monster => {
-								setHomebrewMonsters(homebrewMonsters.filter(m => m.id !== monster.id));
-								persistMonsters();
+								persistMonsters(homebrewMonsters.filter(m => m.id !== monster.id));
 							}}
 						/>
 					);
@@ -95,8 +94,7 @@ const Main = (props: Props) => {
 								const index = homebrewMonsters.findIndex(m => m.id === monster.id);
 								if (index !== -1) {
 									homebrewMonsters[index] = monster;
-									setHomebrewMonsters(homebrewMonsters);
-									persistMonsters();
+									persistMonsters(homebrewMonsters);
 								}
 								setView({ type: 'monsters', data: null });
 							}}
@@ -116,8 +114,7 @@ const Main = (props: Props) => {
 									const encounter = Factory.createEncounter();
 							
 									encounters.push(encounter);
-									setEncounters(encounters);
-									persistEncounters();
+									persistEncounters(encounters);
 			
 									return encounter;
 								}}
@@ -126,8 +123,7 @@ const Main = (props: Props) => {
 									setView({ type: 'encounters', data: copy });
 								}}
 								deleteEncounter={encounter => {
-									setEncounters(encounters.filter(e => e.id !== encounter.id));
-									persistEncounters();
+									persistEncounters(encounters.filter(e => e.id !== encounter.id));
 								}}
 							/>
 						);
@@ -140,8 +136,7 @@ const Main = (props: Props) => {
 									const index = encounters.findIndex(e => e.id === encounter.id);
 									if (index !== -1) {
 										encounters[index] = encounter;
-										setEncounters(encounters);
-										persistEncounters();
+										persistEncounters(encounters);
 									}
 									setView({ type: 'encounters', data: null });
 								}}
@@ -162,7 +157,7 @@ const Main = (props: Props) => {
 				mode='horizontal'
 				items={[
 					{
-						label: 'Home',
+						label: 'Moreau',
 						key: 'home',
 						disabled: view.data !== null
 					},

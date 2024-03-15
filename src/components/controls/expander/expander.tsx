@@ -3,8 +3,8 @@ import { Collapse } from 'antd';
 import './expander.scss';
 
 interface Props {
-	title: string;
-	children: React.ReactNode[];
+	title: string | React.ReactNode;
+	children: React.ReactNode | React.ReactNode[];
 }
 
 const Expander = (props: Props) => {
@@ -16,7 +16,7 @@ const Expander = (props: Props) => {
 		}
 	];
 	return (
-		<Collapse items={items} />
+		<Collapse items={items} expandIconPosition='end' />
 	);
 }
 

@@ -8,6 +8,9 @@
 
 	--highlight: #1677ff;
 	--highlight-light: #91caff;
+	--highlight-light-light: #d0e8ff;
+
+	--green: #009988;
 
 	--monster: rgb(74, 82, 49);
 	--monster-background: rgb(231, 228, 209);
@@ -38,4 +41,8 @@ svg {
 .ant-list-item {
 	display: block !important;
 	padding: 5px 0 !important;
+}
+
+.ant-collapse-header {
+	align-items: center !important;
 }

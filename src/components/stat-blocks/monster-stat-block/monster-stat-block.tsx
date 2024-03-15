@@ -1,13 +1,12 @@
 import { IconCirclePlus, IconTrash } from '@tabler/icons-react';
 import { Button, Flex, Tag } from 'antd';
 
-import { RoleFlag, PowerCategory, ActionType, RoleType, MonsterSize, MonsterOrigin, MonsterType, DamageType } from '../../../enums/enums';
+import { RoleFlag, PowerCategory, RoleType, MonsterSize, MonsterOrigin, MonsterType, DamageType } from '../../../enums/enums';
 
 import { MonsterLogic } from '../../../logic/monster-logic';
 import { Factory } from '../../../logic/factory';
 
 import { DamageModifier, Monster } from '../../../models/monster';
-import { Power } from '../../../models/power';
 
 import { EnumHelper } from '../../../utils/enum-helper';
 import { Format } from '../../../utils/format';
@@ -144,30 +143,7 @@ const MonsterStatBlock = (props: Props) => {
 	};
 
 	const getPowerSection = (category: PowerCategory) => {
-		let powers: Power[] = [];
-		if (category === PowerCategory.Trait) {
-			powers = props.monster.powers.filter(p => !p.action || p.action.action === ActionType.None);
-		} else {
-			let actions: ActionType[] = [];
-			switch (category) {
-				case PowerCategory.Standard:
-					actions = [ ActionType.Standard ];
-					break;
-				case PowerCategory.Move:
-					actions = [ ActionType.Move ];
-					break;
-				case PowerCategory.Minor:
-					actions = [ ActionType.Minor ];
-					break;
-				case PowerCategory.Free:
-					actions = [ ActionType.Free ];
-					break;
-				case PowerCategory.Triggered:
-					actions = [ ActionType.Reaction, ActionType.Interrupt, ActionType.Opportunity ];
-					break;
-			}
-			powers = props.monster.powers.filter(p => p.action && actions.includes(p.action.action));
-		}
+		const powers = props.monster.powers.filter(p => MonsterLogic.getPowerCategory(p) === category);
 
 		let count = powers.length;
 		if (category === PowerCategory.Trait) {

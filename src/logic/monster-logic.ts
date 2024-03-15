@@ -1,7 +1,8 @@
-import { MonsterOrigin, MonsterSize, MonsterType, RoleFlag, RoleType } from '../enums/enums';
+import { ActionType, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, RoleFlag, RoleType } from '../enums/enums';
 
 import { Monster } from '../models/monster';
 import { MonsterFilter } from '../models/monster-filter';
+import { Power } from '../models/power';
 
 import { EnumHelper } from '../utils/enum-helper';
 
@@ -175,11 +176,21 @@ export class MonsterLogic {
 
 	static matches = (monster: Monster, filter: MonsterFilter) => {
 		if (filter.text) {
-			if (!monster.name.toLowerCase().includes(filter.text.toLowerCase())) {
-				return false;
+			let match = false;
+
+			if (monster.name.toLowerCase().includes(filter.text.toLowerCase())) {
+				match = true;
 			}
 
-			if (!monster.keywords.toLowerCase().includes(filter.text.toLowerCase())) {
+			if (monster.keywords.toLowerCase().includes(filter.text.toLowerCase())) {
+				match = true;
+			}
+
+			if (monster.powers.some(p => p.name.toLowerCase().includes(filter.text.toLowerCase()))) {
+				match = true;
+			}
+
+			if (!match) {
 				return false;
 			}
 		}
@@ -227,6 +238,31 @@ export class MonsterLogic {
 		}
 
 		return true;
+	};
+
+	static getPowerCategory = (power: Power) => {
+		if (!power.action) {
+			return PowerCategory.Trait;
+		}
+
+		switch (power.action.action) {
+			case ActionType.None:
+				return PowerCategory.Trait;
+			case ActionType.Standard:
+				return PowerCategory.Standard;
+			case ActionType.Move:
+				return PowerCategory.Move;
+			case ActionType.Minor:
+				return PowerCategory.Minor;
+			case ActionType.Opportunity:
+			case ActionType.Interrupt:
+			case ActionType.Reaction:
+				return PowerCategory.Triggered;
+			case ActionType.Free:
+				return PowerCategory.Free;
+		}
+
+		return PowerCategory.Standard;
 	};
 
 	static getHP = (monster: Monster) => {
@@ -287,7 +323,7 @@ export class MonsterLogic {
 		return 5 + monster.level;
 	};
 
-	static getAverageDamage = (monster: Monster) => {
+	static getDamage = (monster: Monster, limitedUse: boolean, multipleTargets: boolean) => {
 		let value = 8 + monster.level;
 
 		if (monster.role.type === RoleType.Brute) {
@@ -296,6 +332,14 @@ export class MonsterLogic {
 
 		if (monster.role.flag === RoleFlag.Minion) {
 			value *= 0.5;
+		}
+
+		if (limitedUse) {
+			value *= 1.5;
+		}
+
+		if (multipleTargets) {
+			value *= 0.75;
 		}
 
 		return Math.round(value);

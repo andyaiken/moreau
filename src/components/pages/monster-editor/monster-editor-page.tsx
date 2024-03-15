@@ -1,12 +1,20 @@
-import { IconCircleCheck, IconCircleX } from '@tabler/icons-react';
-import { Button, Drawer, Flex, List, Tabs } from 'antd';
+import { IconCircleCheck, IconCirclePlus, IconCircleX } from '@tabler/icons-react';
+import { Button, Divider, Drawer, Flex, List, Statistic, Tabs } from 'antd';
 import { useState } from 'react';
+
+import { PowerCategory, RoleFlag } from '../../../enums/enums';
 
 import { MonsterLogic } from '../../../logic/monster-logic';
 
 import { Monster } from '../../../models/monster';
+import { Power } from '../../../models/power';
 
-import { InfoPanel, ListItemPanel } from '../../panels';
+import { Collections } from '../../../utils/collections';
+import { EnumHelper } from '../../../utils/enum-helper';
+import { Utils } from '../../../utils/utils';
+
+import { EnumField } from '../../fields';
+import { BarChartPanel, InfoPanel, ListItemPanel, PowerPanel } from '../../panels';
 import { MonsterStatBlock } from '../../stat-blocks';
 
 import './monster-editor-page.scss';
@@ -20,6 +28,7 @@ interface Props {
 
 const MonsterEditorPage = (props: Props) => {
 	const [ monster, setMonster ] = useState(props.monster);
+	const [ powerCategory, setPowerCategory ] = useState(PowerCategory.Standard);
 	const [ similarMonster, setSimilarMonster ] = useState<Monster | null>(null);
 
 	const changeMonsterValue = (source: object, field: string, value: unknown) => {
@@ -29,7 +38,17 @@ const MonsterEditorPage = (props: Props) => {
 		setMonster(copy);
 	};
 
+	const addPower = (power: Power) => {
+		const p = JSON.parse(JSON.stringify(power)) as Power;
+		p.id = Utils.guid();
+		monster.powers.push(p);
+
+		const copy = JSON.parse(JSON.stringify(monster)) as Monster;
+		setMonster(copy);
+	};
+
 	const similarMonsters = props.monsters.filter(m => (m.id !== monster.id) && (m.level === monster.level) && (m.role.type === monster.role.type) && (m.role.flag === monster.role.flag));
+	const similarPowers = Collections.sort(similarMonsters.flatMap(m => m.powers.filter(p => MonsterLogic.getPowerCategory(p) === powerCategory)), p => p.name);
 
 	return (
 		<div className='monster-editor-page'>
@@ -49,20 +68,107 @@ const MonsterEditorPage = (props: Props) => {
 								label: 'Suggested Statistics',
 								children: (
 									<div>
-										<InfoPanel content='Hit Points' info={MonsterLogic.getHP(monster)} />
-										<InfoPanel content='Armor Class' info={MonsterLogic.getAC(monster)} />
-										<InfoPanel content='Fortitude' info={MonsterLogic.getNAD(monster)} />
-										<InfoPanel content='Reflex' info={MonsterLogic.getNAD(monster)} />
-										<InfoPanel content='Will' info={MonsterLogic.getNAD(monster)} />
-										<InfoPanel content='Attack Bonus' info={'+' + MonsterLogic.getAttack(monster)} />
-										<InfoPanel content='Average Damage' info={MonsterLogic.getAverageDamage(monster)} />
+										{
+											monster.role.flag !== RoleFlag.Minion ?
+												<div>
+													<Divider orientation='left'>Hit Points</Divider>
+													<div className='stat-row'>
+														<div className='stat-value'>
+															<Statistic title='Hit Points' value={MonsterLogic.getHP(monster)} />
+														</div>
+														<div className='stat-chart'>
+															<BarChartPanel
+																min={Collections.min(similarMonsters.map(m => m.hp), n => n) ?? 0}
+																max={Collections.max(similarMonsters.map(m => m.hp), n => n) ?? 100}
+																highlights={[
+																	{ x: monster.hp, label: 'Current' },
+																	{ x: MonsterLogic.getHP(monster), label: 'Suggested' }
+																]}
+																getValue={key => similarMonsters.filter(m => m.hp === key).length}
+															/>
+														</div>
+													</div>
+												</div>
+												: null
+										}
+										<Divider orientation='left'>Defences</Divider>
+										<div className='stat-row'>
+											<div className='stat-value'>
+												<Statistic title='Armor Class' value={MonsterLogic.getAC(monster)} />
+											</div>
+											<div className='stat-chart'>
+												<BarChartPanel
+													min={Collections.min(similarMonsters.map(m => m.ac), n => n) ?? 0}
+													max={Collections.max(similarMonsters.map(m => m.ac), n => n) ?? 100}
+													highlights={[
+														{ x: monster.ac, label: 'Current' },
+														{ x: MonsterLogic.getAC(monster), label: 'Suggested' }
+													]}
+													getValue={key => similarMonsters.filter(m => m.ac === key).length}
+												/>
+											</div>
+										</div>
+										<div className='stat-row'>
+											<div className='stat-value'>
+												<Statistic title='Fortitude' value={MonsterLogic.getNAD(monster)} />
+											</div>
+											<div className='stat-chart'>
+												<BarChartPanel
+													min={Collections.min(similarMonsters.map(m => m.fortitude), n => n) ?? 0}
+													max={Collections.max(similarMonsters.map(m => m.fortitude), n => n) ?? 100}
+													highlights={[
+														{ x: monster.fortitude, label: 'Current' },
+														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
+													]}
+													getValue={key => similarMonsters.filter(m => m.fortitude === key).length}
+												/>
+											</div>
+										</div>
+										<div className='stat-row'>
+											<div className='stat-value'>
+												<Statistic title='Reflex' value={MonsterLogic.getNAD(monster)} />
+											</div>
+											<div className='stat-chart'>
+												<BarChartPanel
+													min={Collections.min(similarMonsters.map(m => m.reflex), n => n) ?? 0}
+													max={Collections.max(similarMonsters.map(m => m.reflex), n => n) ?? 100}
+													highlights={[
+														{ x: monster.reflex, label: 'Current' },
+														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
+													]}
+													getValue={key => similarMonsters.filter(m => m.reflex === key).length}
+												/>
+											</div>
+										</div>
+										<div className='stat-row'>
+											<div className='stat-value'>
+												<Statistic title='Will' value={MonsterLogic.getNAD(monster)} />
+											</div>
+											<div className='stat-chart'>
+												<BarChartPanel
+													min={Collections.min(similarMonsters.map(m => m.will), n => n) ?? 0}
+													max={Collections.max(similarMonsters.map(m => m.will), n => n) ?? 100}
+													highlights={[
+														{ x: monster.will, label: 'Current' },
+														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
+													]}
+													getValue={key => similarMonsters.filter(m => m.will === key).length}
+												/>
+											</div>
+										</div>
+										<Divider orientation='left'>Powers</Divider>
+										<Flex gap='small' justify='space-evenly'>
+											<Statistic title='Attack Bonus' value={'+' + MonsterLogic.getAttack(monster)} />
+											<Statistic title='Typical Damage' value={MonsterLogic.getDamage(monster, false, false)} />
+											<Statistic title='Limited Use' value={MonsterLogic.getDamage(monster, true, false)} />
+											<Statistic title='Multiple Targets' value={MonsterLogic.getDamage(monster, false, true)} />
+										</Flex>
 									</div>
 								)
 							},
 							{
 								key: '2',
 								label: 'Similar Monsters',
-								disabled: similarMonsters.length === 0,
 								children: (
 									<div>
 										<List
@@ -79,6 +185,37 @@ const MonsterEditorPage = (props: Props) => {
 														]}
 														isSelected={false}
 														onClick={() => setSimilarMonster(monster)}
+													/>
+												</List.Item>
+											)}
+										/>
+									</div>
+								)
+							},
+							{
+								key: '3',
+								label: 'Powers From Similar Monsters',
+								children: (
+									<div>
+										<EnumField
+											label='Category'
+											options={[ PowerCategory.Trait, PowerCategory.Standard, PowerCategory.Move, PowerCategory.Minor, PowerCategory.Triggered, PowerCategory.Free ]}
+											value={powerCategory}
+											format={value => EnumHelper.powerCategory(value as PowerCategory)}
+											isDisabled={() => false}
+											onChange={value => setPowerCategory(value as PowerCategory)}
+										/>
+										<Divider />
+										<List
+											dataSource={similarPowers}
+											split={false}
+											renderItem={(power: Power) => (
+												<List.Item key={power.id}>
+													<InfoPanel
+														content={<PowerPanel power={power} />}
+														actions={(
+															<Button icon={<IconCirclePlus />} onClick={() => addPower(power)} />
+														)}
 													/>
 												</List.Item>
 											)}

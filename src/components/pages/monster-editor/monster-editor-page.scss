@@ -19,6 +19,20 @@
 		.editor-sidebar {
 			flex: 1 1 0;
 			overflow-y: auto;
+
+			.stat-row {
+				margin: 10px 0;
+				display: flex;
+				align-items: center;
+
+				.stat-value {
+					flex: 0 0 100px;
+				}
+
+				.stat-chart {
+					flex: 1 1 0;
+				}
+			}
 		}
 	}
 }
