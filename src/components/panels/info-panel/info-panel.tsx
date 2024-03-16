@@ -17,7 +17,7 @@ const InfoPanel = (props: Props) => {
 	}
 
 	let info = null;
-	if (props.info) {
+	if ((props.info !== null) && (props.info !== undefined)) {
 		info = (
 			<div className='info-panel-info'>
 				{props.info}
@@ -26,7 +26,7 @@ const InfoPanel = (props: Props) => {
 	}
 
 	let actions = null;
-	if (props.actions) {
+	if ((props.actions !== null) && (props.actions !== undefined)) {
 		actions = (
 			<div className='info-panel-actions'>
 				{props.actions}

@@ -3,6 +3,7 @@ import { ActionType, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, Rol
 import { Monster } from '../models/monster';
 import { MonsterFilter } from '../models/monster-filter';
 import { Power } from '../models/power';
+import { Collections } from '../utils/collections';
 
 import { EnumHelper } from '../utils/enum-helper';
 
@@ -343,5 +344,10 @@ export class MonsterLogic {
 		}
 
 		return Math.round(value);
+	};
+
+	static getPowerCount = (category: PowerCategory, monsters: Monster[]) => {
+		const count = Collections.sum(monsters, m => m.powers.filter(p => MonsterLogic.getPowerCategory(p) === category).length);
+		return Math.round(count / monsters.length);
 	};
 }

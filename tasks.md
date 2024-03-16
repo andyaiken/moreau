@@ -1,3 +1,6 @@
+Monster Builder
+* Re-order powers
+
 Encounter Creation Help
 * BUG: you can't edit wave name
 * show appropriate monsters for the party

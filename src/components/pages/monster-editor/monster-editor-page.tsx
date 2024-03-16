@@ -157,12 +157,17 @@ const MonsterEditorPage = (props: Props) => {
 											</div>
 										</div>
 										<Divider orientation='left'>Powers</Divider>
-										<Flex gap='small' justify='space-evenly'>
-											<Statistic title='Attack Bonus' value={'+' + MonsterLogic.getAttack(monster)} />
-											<Statistic title='Typical Damage' value={MonsterLogic.getDamage(monster, false, false)} />
-											<Statistic title='Limited Use' value={MonsterLogic.getDamage(monster, true, false)} />
-											<Statistic title='Multiple Targets' value={MonsterLogic.getDamage(monster, false, true)} />
-										</Flex>
+										<InfoPanel content='Attack Bonus' info={'+' + MonsterLogic.getAttack(monster)} />
+										<InfoPanel content='Damage (typical)' info={MonsterLogic.getDamage(monster, false, false)} />
+										<InfoPanel content='Damage (limited use)' info={MonsterLogic.getDamage(monster, true, false)} />
+										<InfoPanel content='Damage (multiple targets)' info={MonsterLogic.getDamage(monster, false, true)} />
+										<Divider orientation='left'>Other Statistics</Divider>
+										<InfoPanel content='Number Of Traits' info={MonsterLogic.getPowerCount(PowerCategory.Trait, similarMonsters)} />
+										<InfoPanel content='Number Of Standard Actions' info={MonsterLogic.getPowerCount(PowerCategory.Standard, similarMonsters)} />
+										<InfoPanel content='Number Of Move Actions' info={MonsterLogic.getPowerCount(PowerCategory.Move, similarMonsters)} />
+										<InfoPanel content='Number Of Minor Actions' info={MonsterLogic.getPowerCount(PowerCategory.Minor, similarMonsters)} />
+										<InfoPanel content='Number Of Triggered Actions' info={MonsterLogic.getPowerCount(PowerCategory.Triggered, similarMonsters)} />
+										<InfoPanel content='Number Of Free Actions' info={MonsterLogic.getPowerCount(PowerCategory.Free, similarMonsters)} />
 									</div>
 								)
 							},
