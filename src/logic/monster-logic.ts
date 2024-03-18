@@ -1,11 +1,12 @@
 import { ActionType, MonsterOrigin, MonsterSize, MonsterType, PowerCategory, RoleFlag, RoleType } from '../enums/enums';
 
-import { Monster } from '../models/monster';
+import { Aura, DamageModifier, Monster, Regeneration } from '../models/monster';
 import { MonsterFilter } from '../models/monster-filter';
 import { Power } from '../models/power';
-import { Collections } from '../utils/collections';
 
+import { Collections } from '../utils/collections';
 import { EnumHelper } from '../utils/enum-helper';
+import { Utils } from '../utils/utils';
 
 export class MonsterLogic {
 	static getLevelAndRole = (monster: Monster) => {
@@ -239,6 +240,64 @@ export class MonsterLogic {
 		}
 
 		return true;
+	};
+
+	static splice = (monster: Monster, monsters: Monster[]) => {
+		monster.hp = Collections.draw(monsters).hp;
+
+		monster.ac = Collections.draw(monsters).ac;
+		monster.fortitude = Collections.draw(monsters).fortitude;
+		monster.reflex = Collections.draw(monsters).reflex;
+		monster.will = Collections.draw(monsters).will;
+
+		monster.keywords = Collections.draw(monsters).keywords;
+		monster.movement = Collections.draw(monsters).movement;
+		monster.initiative = Collections.draw(monsters).initiative;
+		monster.senses = Collections.draw(monsters).senses;
+		monster.skills = Collections.draw(monsters).skills;
+
+		monster.alignment = Collections.draw(monsters).alignment;
+		monster.equipment = Collections.draw(monsters).equipment;
+		monster.tactics = Collections.draw(monsters).tactics;
+		monster.details = Collections.draw(monsters).details;
+
+		const damageMods = monsters.flatMap(m => m.damageModifiers);
+		const damageModCount = Math.round(damageMods.length / monsters.length);
+		for (let n = 1; n <= damageModCount; ++n) {
+			const copy = JSON.parse(JSON.stringify(Collections.draw(damageMods))) as DamageModifier;
+			monster.damageModifiers.push(copy);
+		}
+
+		monster.resist = Collections.draw(monsters).resist;
+		monster.vulnerable = Collections.draw(monsters).vulnerable;
+		monster.immune = Collections.draw(monsters).immune;
+
+		monster.strength.score = Collections.draw(monsters).strength.score;
+		monster.constitution.score = Collections.draw(monsters).constitution.score;
+		monster.dexterity.score = Collections.draw(monsters).dexterity.score;
+		monster.intelligence.score = Collections.draw(monsters).intelligence.score;
+		monster.wisdom.score = Collections.draw(monsters).wisdom.score;
+		monster.charisma.score = Collections.draw(monsters).charisma.score;
+
+		const auras = monsters.flatMap(m => m.auras);
+		const auraCount = Math.round(auras.length / monsters.length);
+		for (let n = 1; n <= auraCount; ++n) {
+			const copy = JSON.parse(JSON.stringify(Collections.draw(auras))) as Aura;
+			copy.id = Utils.guid();
+			monster.auras.push(copy);
+		}
+
+		monster.regeneration = JSON.parse(JSON.stringify(Collections.draw(monsters).regeneration)) as Regeneration;
+
+		[ PowerCategory.Trait, PowerCategory.Standard, PowerCategory.Move, PowerCategory.Minor, PowerCategory.Triggered, PowerCategory.Free ].forEach(cat => {
+			const powers = monsters.flatMap(m => m.powers.filter(p => MonsterLogic.getPowerCategory(p) === cat));
+			const count = Math.round(powers.length / monsters.length);
+			for (let n = 1; n <= count; ++n) {
+				const copy = JSON.parse(JSON.stringify(Collections.draw(powers))) as Power;
+				copy.id = Utils.guid();
+				monster.powers.push(copy);
+			}
+		});
 	};
 
 	static getPowerCategory = (power: Power) => {

@@ -43,8 +43,8 @@ const EncountersPage = (props: Props) => {
 	return (
 		<div className='encounters-page'>
 			<div className='encounters-page-column encounter-tools'>
-				<Button block={true} type='primary' onClick={createEncounter}>Create Encounter</Button>
 				<InfoPanel content='Encounters' info={props.encounters.length} />
+				<Button block={true} type='primary' onClick={createEncounter}>Create Encounter</Button>
 			</div>
 			<div className='encounters-page-column encounter-list'>
 				<List

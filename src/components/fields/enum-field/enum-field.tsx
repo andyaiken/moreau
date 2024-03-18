@@ -26,7 +26,7 @@ const EnumField = (props: Props) => {
 			<div className='enum-field-label'>{props.label}</div>
 			<Select
 				className='enum-field-control'
-				defaultValue="Select..."
+				defaultValue='Select...'
 				options={options}
 				value={props.value}
 				disabled={props.disabled}

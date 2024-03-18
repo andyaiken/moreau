@@ -11,9 +11,6 @@ Encounter Creation Help
   * threats in an easy encounter can be as many as four levels below the party’s level
   * threats in a hard encounter can be as many as three to five levels above the party’s level
 
-Random Monsters
-* select level, role, flag, origin, type; create a random monster based on existing data
-
 Encounter Templates
 * create an encounter with a template
 * create a random encounter based on templates

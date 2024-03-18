@@ -81,7 +81,6 @@ const MonsterEditorPage = (props: Props) => {
 																min={Collections.min(similarMonsters.map(m => m.hp), n => n) ?? 0}
 																max={Collections.max(similarMonsters.map(m => m.hp), n => n) ?? 100}
 																highlights={[
-																	{ x: monster.hp, label: 'Current' },
 																	{ x: MonsterLogic.getHP(monster), label: 'Suggested' }
 																]}
 																getValue={key => similarMonsters.filter(m => m.hp === key).length}
@@ -101,7 +100,6 @@ const MonsterEditorPage = (props: Props) => {
 													min={Collections.min(similarMonsters.map(m => m.ac), n => n) ?? 0}
 													max={Collections.max(similarMonsters.map(m => m.ac), n => n) ?? 100}
 													highlights={[
-														{ x: monster.ac, label: 'Current' },
 														{ x: MonsterLogic.getAC(monster), label: 'Suggested' }
 													]}
 													getValue={key => similarMonsters.filter(m => m.ac === key).length}
@@ -117,7 +115,6 @@ const MonsterEditorPage = (props: Props) => {
 													min={Collections.min(similarMonsters.map(m => m.fortitude), n => n) ?? 0}
 													max={Collections.max(similarMonsters.map(m => m.fortitude), n => n) ?? 100}
 													highlights={[
-														{ x: monster.fortitude, label: 'Current' },
 														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
 													]}
 													getValue={key => similarMonsters.filter(m => m.fortitude === key).length}
@@ -133,7 +130,6 @@ const MonsterEditorPage = (props: Props) => {
 													min={Collections.min(similarMonsters.map(m => m.reflex), n => n) ?? 0}
 													max={Collections.max(similarMonsters.map(m => m.reflex), n => n) ?? 100}
 													highlights={[
-														{ x: monster.reflex, label: 'Current' },
 														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
 													]}
 													getValue={key => similarMonsters.filter(m => m.reflex === key).length}
@@ -149,7 +145,6 @@ const MonsterEditorPage = (props: Props) => {
 													min={Collections.min(similarMonsters.map(m => m.will), n => n) ?? 0}
 													max={Collections.max(similarMonsters.map(m => m.will), n => n) ?? 100}
 													highlights={[
-														{ x: monster.will, label: 'Current' },
 														{ x: MonsterLogic.getNAD(monster), label: 'Suggested' }
 													]}
 													getValue={key => similarMonsters.filter(m => m.will === key).length}
@@ -162,12 +157,12 @@ const MonsterEditorPage = (props: Props) => {
 										<InfoPanel content='Damage (limited use)' info={MonsterLogic.getDamage(monster, true, false)} />
 										<InfoPanel content='Damage (multiple targets)' info={MonsterLogic.getDamage(monster, false, true)} />
 										<Divider orientation='left'>Other Statistics</Divider>
-										<InfoPanel content='Number Of Traits' info={MonsterLogic.getPowerCount(PowerCategory.Trait, similarMonsters)} />
-										<InfoPanel content='Number Of Standard Actions' info={MonsterLogic.getPowerCount(PowerCategory.Standard, similarMonsters)} />
-										<InfoPanel content='Number Of Move Actions' info={MonsterLogic.getPowerCount(PowerCategory.Move, similarMonsters)} />
-										<InfoPanel content='Number Of Minor Actions' info={MonsterLogic.getPowerCount(PowerCategory.Minor, similarMonsters)} />
-										<InfoPanel content='Number Of Triggered Actions' info={MonsterLogic.getPowerCount(PowerCategory.Triggered, similarMonsters)} />
-										<InfoPanel content='Number Of Free Actions' info={MonsterLogic.getPowerCount(PowerCategory.Free, similarMonsters)} />
+										<InfoPanel content='Number of Traits' info={MonsterLogic.getPowerCount(PowerCategory.Trait, similarMonsters)} />
+										<InfoPanel content='Number of Standard Actions' info={MonsterLogic.getPowerCount(PowerCategory.Standard, similarMonsters)} />
+										<InfoPanel content='Number of Move Actions' info={MonsterLogic.getPowerCount(PowerCategory.Move, similarMonsters)} />
+										<InfoPanel content='Number of Minor Actions' info={MonsterLogic.getPowerCount(PowerCategory.Minor, similarMonsters)} />
+										<InfoPanel content='Number of Triggered Actions' info={MonsterLogic.getPowerCount(PowerCategory.Triggered, similarMonsters)} />
+										<InfoPanel content='Number of Free Actions' info={MonsterLogic.getPowerCount(PowerCategory.Free, similarMonsters)} />
 									</div>
 								)
 							},

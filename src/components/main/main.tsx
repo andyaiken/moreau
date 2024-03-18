@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import { useState } from 'react';
 
 import { Factory } from '../../logic/factory';
+import { MonsterLogic } from '../../logic/monster-logic';
 
 import { Encounter } from '../../models/encounter';
 import { Monster } from '../../models/monster';
@@ -82,6 +83,24 @@ const Main = (props: Props) => {
 							}}
 							deleteMonster={monster => {
 								persistMonsters(homebrewMonsters.filter(m => m.id !== monster.id));
+							}}
+							generateMonster={(level, role, flag, origin, type) => {
+								const monster = Factory.createMonster();
+								monster.category = 'homebrew';
+
+								monster.level = level;
+								monster.role.type = role;
+								monster.role.flag = flag;
+								monster.origin = origin;
+								monster.type = type;
+
+								const monsters = props.officialMonsters.filter(m => (Math.abs(m.level - level) <= 1) && (m.role.type === role) && (m.role.flag === flag) && (m.origin === origin) && (m.type === type));
+								MonsterLogic.splice(monster, monsters);
+						
+								homebrewMonsters.push(monster);
+								persistMonsters(homebrewMonsters);
+
+								return monster;
 							}}
 						/>
 					);

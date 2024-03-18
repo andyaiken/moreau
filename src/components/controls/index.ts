@@ -1,3 +1,3 @@
-import { Expander } from "./expander/expander";
+import { Expander } from './expander/expander';
 
 export { Expander }

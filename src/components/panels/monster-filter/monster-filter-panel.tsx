@@ -1,4 +1,4 @@
-import { Slider, Button } from 'antd';
+import { Slider, Button, Divider } from 'antd';
 
 import { RoleType, RoleFlag, MonsterSize, MonsterOrigin, MonsterType } from '../../../enums/enums';
 
@@ -155,7 +155,7 @@ const MonsterFilterPanel = (props: Props) => {
 	return (
 		<Expander title='Filter Monsters'>
 			<StringField placeholder='Name, keywords, etc' value={props.filter.text} onChange={value => setFilterText(value)} />
-			<hr />
+			<Divider />
 			<div className='filter-level'>
 				<InfoPanel content='Show Levels' info={Math.min(...props.filter.level) + ' to ' + Math.max(...props.filter.level)} />
 				<div className='filter-level-slider'>
@@ -168,7 +168,7 @@ const MonsterFilterPanel = (props: Props) => {
 					/>
 				</div>
 			</div>
-			<hr />
+			<Divider />
 			<EnumField
 				label='Role'
 				options={[RoleType.Any, RoleType.Artillery, RoleType.Brute, RoleType.Controller, RoleType.Lurker, RoleType.Skirmisher, RoleType.Soldier]}
@@ -185,10 +185,10 @@ const MonsterFilterPanel = (props: Props) => {
 				isDisabled={() => false}
 				onChange={value => setFilterRoleFlag(value as RoleFlag)}
 			/>
-			<hr />
+			<Divider />
 			<BooleanField label='Show Leaders' value={props.filter.roleLeader} onChange={value => setFilterLeader(value)} />
 			<BooleanField label='Show Non-Leaders' value={props.filter.roleNonLeader} onChange={value => setFilterNonLeader(value)} />
-			<hr />
+			<Divider />
 			<EnumField
 				label='Size'
 				options={[MonsterSize.Any, MonsterSize.Tiny, MonsterSize.Small, MonsterSize.Medium, MonsterSize.Large, MonsterSize.Huge, MonsterSize.Gargantuan]}
@@ -213,10 +213,10 @@ const MonsterFilterPanel = (props: Props) => {
 				isDisabled={() => false}
 				onChange={value => setFilterMonsterType(value as MonsterType)}
 			/>
-			<hr />
+			<Divider />
 			<BooleanField label='Show Official Monsters' value={props.filter.showOfficial} onChange={value => setFilterOfficial(value)} />
 			<BooleanField label='Show Homebrew Monsters' value={props.filter.showHomebrew} onChange={value => setFilterHomebrew(value)} />
-			<hr />
+			<Divider />
 			<Button block={true} disabled={!getFilterIsActive()} onClick={resetFilter}>Reset Filter</Button>
 		</Expander>
 	);

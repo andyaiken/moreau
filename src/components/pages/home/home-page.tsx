@@ -10,17 +10,7 @@ const HomePage = () => {
 				<Divider />
 				<div>Moreau is an app for D&D 4E DMs.</div>
 				<Divider />
-				<div>Moreau helps you to <b>create unforgettable monsters</b>.</div>
-				<ul>
-					<li>Thing One</li>
-					<li>Thing Two</li>
-				</ul>
-				<Divider />
-				<div>Moreau helps you to <b>design exciting encounters</b>.</div>
-				<ul>
-					<li>Thing One</li>
-					<li>Thing Two</li>
-				</ul>
+				<div>Moreau helps you to <b>create unforgettable monsters</b> and <b>design exciting encounters</b>.</div>
 			</Flex>
 		</div>
 	);

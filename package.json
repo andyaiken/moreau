@@ -5,7 +5,7 @@
 	"homepage": "https://andyaiken.github.io/moreau/",
 	"dependencies": {
 		"@tabler/icons-react": "^3.1.0",
-		"antd": "^5.15.2",
+		"antd": "^5.15.3",
 		"html2canvas": "^1.4.1",
 		"localforage": "^1.10.0",
 		"react": "^18.2.0",
