@@ -13,6 +13,7 @@ import { Main } from './components/main/main.tsx';
 
 import './index.scss';
 
+import encounterTemplates from './data/encounter-templates.ts';
 import monsters from './data/monsters';
 
 monsters.forEach(monster => {
@@ -35,6 +36,7 @@ localforage
 							officialMonsters={monsters}
 							homebrewMonsters={homebrewMonsters ?? []}
 							encounters={encounters ?? []}
+							encounterTemplates={encounterTemplates}
 						/>
 					</StrictMode>
 				);

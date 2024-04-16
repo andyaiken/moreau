@@ -2,7 +2,7 @@ import './number-field.scss';
 import { InputNumber } from 'antd';
 
 interface Props {
-	label: string;
+	label?: string;
 	value: number;
 	disabled?: boolean;
 	validate?: (value: number) => boolean;
@@ -20,7 +20,7 @@ const NumberField = (props: Props) => {
 
 	return (
 		<div className='number-field'>
-			<div className='number-field-label'>{props.label}</div>
+			{props.label ? <div className='number-field-label'>{props.label}</div> : null}
 			<InputNumber
 				className='number-field-control'
 				value={props.value}

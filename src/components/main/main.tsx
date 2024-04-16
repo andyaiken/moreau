@@ -20,6 +20,7 @@ interface Props {
 	officialMonsters: Monster[];
 	homebrewMonsters: Monster[];
 	encounters: Encounter[];
+	encounterTemplates: Encounter[];
 }
 
 const Main = (props: Props) => {
@@ -129,6 +130,7 @@ const Main = (props: Props) => {
 							<EncountersPage
 								encounters={encounters}
 								monsters={getAllMonsters()}
+								encounterTemplates={props.encounterTemplates}
 								createEncounter={() => {
 									const encounter = Factory.createEncounter();
 							
@@ -136,6 +138,21 @@ const Main = (props: Props) => {
 									persistEncounters(encounters);
 			
 									return encounter;
+								}}
+								createEncounterFromTemplate={(templateID, level) => {
+									const template = props.encounterTemplates.find(et => et.id === templateID) as Encounter;
+									const copy = JSON.parse(JSON.stringify(template)) as Encounter;
+
+									copy.waves.forEach(w => {
+										w.slots.forEach(s => {
+											s.templateLevel = Math.max(s.templateLevel + level, 1);
+										});
+									});
+							
+									encounters.push(copy);
+									persistEncounters(encounters);
+			
+									return copy;
 								}}
 								editEncounter={encounter => {
 									const copy = JSON.parse(JSON.stringify(encounter)) as Encounter;

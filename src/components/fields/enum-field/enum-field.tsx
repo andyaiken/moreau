@@ -3,7 +3,7 @@ import { Select } from 'antd';
 import './enum-field.scss';
 
 interface Props {
-	label: string;
+	label?: string;
 	options: unknown[];
 	value: unknown;
 	disabled?: boolean;
@@ -23,7 +23,7 @@ const EnumField = (props: Props) => {
 
 	return (
 		<div className='enum-field'>
-			<div className='enum-field-label'>{props.label}</div>
+			{props.label ? <div className='enum-field-label'>{props.label}</div> : null}
 			<Select
 				className='enum-field-control'
 				defaultValue='Select...'

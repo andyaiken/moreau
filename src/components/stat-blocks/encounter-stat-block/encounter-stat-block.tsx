@@ -2,7 +2,7 @@ import { IconCircleMinus, IconCirclePlus, IconTrash } from '@tabler/icons-react'
 import { Button, Drawer, Empty, Flex } from 'antd';
 import { useState } from 'react';
 
-import { ThreatType } from '../../../enums/enums';
+import { RoleFlag, ThreatType } from '../../../enums/enums';
 
 import { EncounterLogic } from '../../../logic/encounter-logic';
 import { Factory } from '../../../logic/factory';
@@ -12,17 +12,19 @@ import { Encounter, EncounterSlot, EncounterWave } from '../../../models/encount
 import { Monster } from '../../../models/monster';
 
 import { Collections } from '../../../utils/collections';
+import { EnumHelper } from '../../../utils/enum-helper';
 
 import { StringField } from '../../fields';
 import { EditablePanel, InfoPanel, ListItemPanel } from '../../panels';
+import { MonsterStatBlock } from '..';
 
 import './encounter-stat-block.scss';
-import { MonsterStatBlock } from '..';
 
 interface Props {
 	mode: 'view' | 'edit';
 	encounter: Encounter,
 	monsters: Monster[];
+	onTemplateSelected: (slot: EncounterSlot) => void;
 	changeValue: (source: object, field: string, value: unknown) => void;
 }
 
@@ -76,18 +78,31 @@ const EncounterStatBlock = (props: Props) => {
 		let name = '';
 		const info = [];
 		let onClick = undefined;
-		switch (slot.threatType) {
-			case ThreatType.Monster: {
-				const monster = props.monsters.find(m => m.id === slot.threatID);
-				if (monster) {
-					name = monster.name;
-					info.push(MonsterLogic.getLevelAndRole(monster));
-					info.push(MonsterLogic.getPhenotype(monster));
-					onClick = () => setSelectedMonster(monster);
-				} else {
-					name = 'Monster Not Found';
+		if (slot.threatID === '') {
+			// No threat added - must be an empty template slot
+			if (slot.templateFlag === RoleFlag.Standard) {
+				name = slot.templateRoles.map(EnumHelper.roleType).join(', ');
+			} else {
+				name = `${EnumHelper.roleFlag(slot.templateFlag)} ${slot.templateRoles.map(EnumHelper.roleType).join(', ')}`;
+			}
+			info.push(`Level ${slot.templateLevel}`);
+			if (props.mode === 'edit') {
+				onClick = () => props.onTemplateSelected(slot);
+			}
+		} else {
+			switch (slot.threatType) {
+				case ThreatType.Monster: {
+					const monster = props.monsters.find(m => m.id === slot.threatID);
+					if (monster) {
+						name = monster.name;
+						info.push(MonsterLogic.getLevelAndRole(monster));
+						info.push(MonsterLogic.getPhenotype(monster));
+						onClick = () => setSelectedMonster(monster);
+					} else {
+						name = 'Monster Not Found';
+					}
+					break;
 				}
-				break;
 			}
 		}
 
@@ -141,13 +156,13 @@ const EncounterStatBlock = (props: Props) => {
 					<div className='subheading'>
 						<InfoPanel
 							content=''
-							actions={<Button icon={<IconCirclePlus />} onClick={addWave} />}
+							actions={<Button icon={<IconCirclePlus />} onClick={addWave}>Add Wave</Button>}
 						/>
 					</div>
 					: null
 			}
 			<Drawer
-				open={selectedMonster != null}
+				open={selectedMonster !== null}
 				width='50%'
 				onClose={() => setSelectedMonster(null)}
 			>

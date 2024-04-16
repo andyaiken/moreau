@@ -293,7 +293,8 @@ export class MonsterLogic {
 			const powers = monsters.flatMap(m => m.powers.filter(p => MonsterLogic.getPowerCategory(p) === cat));
 			const count = Math.round(powers.length / monsters.length);
 			for (let n = 1; n <= count; ++n) {
-				const copy = JSON.parse(JSON.stringify(Collections.draw(powers))) as Power;
+				const names = monster.powers.map(p => p.name);
+				const copy = JSON.parse(JSON.stringify(Collections.draw(powers.filter(p => !names.includes(p.name))))) as Power;
 				copy.id = Utils.guid();
 				monster.powers.push(copy);
 			}

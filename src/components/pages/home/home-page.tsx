@@ -5,7 +5,7 @@ import './home-page.scss';
 const HomePage = () => {
 	return (
 		<div className='home-page'>
-			<Flex vertical={true} gap='small'>
+			<Flex className='container' vertical={true} gap='small'>
 				<Typography.Title>Welcome to Moreau.</Typography.Title>
 				<Divider />
 				<div>Moreau is an app for D&D 4E DMs.</div>

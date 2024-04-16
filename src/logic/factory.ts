@@ -139,7 +139,7 @@ export class Factory {
 	static createMonsterFilter = (): MonsterFilter => {
 		return {
 			text: '',
-			level: [1, 10],
+			level: [1, 5],
 			roleType: RoleType.Any,
 			roleFlag: RoleFlag.Any,
 			roleLeader: true,
@@ -171,6 +171,9 @@ export class Factory {
 	static createEncounterSlot = (): EncounterSlot => {
 		return {
 			id: Utils.guid(),
+			templateLevel: 0,
+			templateRoles: [ RoleType.Artillery, RoleType.Brute, RoleType.Controller, RoleType.Lurker, RoleType.Skirmisher, RoleType.Soldier ],
+			templateFlag: RoleFlag.Standard,
 			threatType: ThreatType.Monster,
 			threatID: '',
 			count: 1

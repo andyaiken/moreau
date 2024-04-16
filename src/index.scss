@@ -38,6 +38,16 @@ svg {
 	stroke-width: 1.2 !important;
 }
 
+.ant-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ant-btn-block {
+	min-height: 42px;
+}
+
 .ant-list-item {
 	display: block !important;
 	padding: 5px 0 !important;
