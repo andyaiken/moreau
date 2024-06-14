@@ -2,6 +2,8 @@ import { Slider, Button, Divider } from 'antd';
 
 import { RoleType, RoleFlag, MonsterSize, MonsterOrigin, MonsterType } from '../../../enums/enums';
 
+import { Factory } from '../../../logic/factory';
+
 import { MonsterFilter } from '../../../models/monster-filter';
 
 import { EnumHelper } from '../../../utils/enum-helper';
@@ -85,19 +87,7 @@ const MonsterFilterPanel = (props: Props) => {
 	};
 
 	const resetFilter = () => {
-		const copy = JSON.parse(JSON.stringify(props.filter)) as MonsterFilter;
-		copy.text = '';
-		copy.level = [1, 10];
-		copy.roleType = RoleType.Any;
-		copy.roleFlag = RoleFlag.Any;
-		copy.roleLeader = true;
-		copy.roleNonLeader = true;
-		copy.monsterSize = MonsterSize.Any;
-		copy.monsterOrigin = MonsterOrigin.Any;
-		copy.monsterType = MonsterType.Any;
-		copy.showOfficial = true;
-		copy.showHomebrew = true;
-		props.onChange(copy);
+		props.onChange(Factory.createMonsterFilter());
 	};
 
 	const getFilterIsActive = () => {
@@ -109,7 +99,7 @@ const MonsterFilterPanel = (props: Props) => {
 			return true;
 		}
 
-		if (Math.max(...props.filter.level) !== 10) {
+		if (Math.max(...props.filter.level) !== 5) {
 			return true;
 		}
 

@@ -303,7 +303,7 @@ const MonsterStatBlock = (props: Props) => {
 							editor={<StringField label='Name' value={props.monster.name} onChange={value => props.changeValue(props.monster, 'name', value)} />}
 						/>
 					</div>
-					<div className='cell right big'>
+					<div className='cell right'>
 						<EditablePanel
 							editable={props.mode === 'edit'}
 							viewer={<div>{MonsterLogic.getLevelAndRole(props.monster)}</div>}

@@ -141,7 +141,7 @@ const EncounterStatBlock = (props: Props) => {
 							editor={<StringField label='Name' value={props.encounter.name} onChange={value => props.changeValue(props.encounter, 'name', value)} />}
 						/>
 					</div>
-					<div className='cell right big'>
+					<div className='cell right'>
 						<EditablePanel
 							editable={false}
 							viewer={<div>{EncounterLogic.getXP(props.encounter, props.monsters)} XP</div>}
